@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-family: "Roboto";
+    --normal-font: 17px;
+    /* --bold-font: 700;
+    --bolder-font: 900;
+    --bg-color: #fcfcfc;
+    --primary-color: #4756df;
+    --secondary-color: #ff7235;
+    --primary-shadow: #8b8eaf;
+    --secondary-shadow: #a17a69;
+    --bottom-margin: 0.5rem;
+    --bottom-margin-2: 1rem;
+    --line-height: 1.7rem;
+    --transition: 0.3s ease; */
+  }
+
+.Rounded-Rectangle{
+    border: 1px solid #fff;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+
+.nav-link{
+    font-family: var(--font-family);
+    font-size: var(--normal-font);
+    color:white;
+    text-align: center;
+    letter-spacing: 0.5px;
+  
+}
+
+ul li{
+    margin: 0px 3px ;
+
+}
+
+ul li a:hover{
+    color: white;
+}
+
+.shape{
+    height: 255px;
+    width: 24px;
+    background-color: #1d7a8c;
+}
+
+.container1 {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Rectangle-21-copy-3 {
+    width: 100px;
+    height: 66px;
+    font-size: 24px;
+    color: #fff;
+    font-family: var(--font-family);
+    background-color: #1d7a8c;
+  }
+  
+.Rectangle-21 {
+    width: 100px;
+    height: 66px;
+    font-size: 24px;
+    color: black;
+    font-family: var(--font-family);
+    background-color: #f6f6f6;
+    border-bottom: 3px solid #1d7a8c;
+  }
+
+  .collapse-title{
+      font-family: var(--font-family);
+      text-align: justify;
+      padding-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #646464;
+  }
+
+  .collapse-content{
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: #646464;
+    text-align: justify;
+}
+
+.mail-btn {
+    text-align: center;
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 1px #565656;
+    background-color: #f4f5f8;
+  }
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 53px;
+  }
+
+.up-aero{
+    background:#525252;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin-left: -450px;
+    margin-top: -50px;
+}
+
+.msg-us{
+    width: 48px;
+    height: 48px;
+    margin-left: 450px;
+    margin-top: -50px;
+}
+.submit-btn {
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 1px #ff7b6d;
+    background-color: #ff7b6d;
+  }
+

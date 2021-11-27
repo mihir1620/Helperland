@@ -22,9 +22,9 @@
 
 .nav-link{
     color:white;
-    margin-left: 0px;
     text-align: center;
     letter-spacing: 0.5px;
+    
 }
 
 ul li{
@@ -47,9 +47,6 @@ ul li a:hover{
 .Rounded-Rectangle{
     border: 1px solid #fff;
     border-radius: 22px;
-    padding-left: 5px;
-    padding-right: 5px;
-    text-align: left;
     letter-spacing: 0.5px;
 }
 
