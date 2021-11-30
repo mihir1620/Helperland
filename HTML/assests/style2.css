@@ -57,6 +57,7 @@ ul li a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 53px;
 }
 
 .Rectangle-21-copy-3 {
@@ -105,14 +106,6 @@ ul li a:hover{
     background-color: #f4f5f8;
   }
 
-.container1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin-bottom: 53px;
-  }
-
 .up-aero{
     background:#525252;
     border-radius: 50%;
@@ -151,3 +144,48 @@ div p a:hover{
     overflow: hidden;
 }
 
+.cleaning div{
+    margin-bottom: 5px;
+}
+
+.cleaning div span{
+    font-size: 16px;
+    font-family: Roboto;
+    color: #4F4F4F;
+}
+
+.why-heading{
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #646464;
+}
+
+.why-content{
+    font-family: Roboto;
+    font-size: 14px;
+    color: #646464;
+}
+
+.up-aero{
+    background:#525252;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin-left: -450px;
+    margin-top: -50px;
+}
+
+.msg-us{
+    width: 48px;
+    height: 48px;
+    margin-left: 450px;
+    margin-top: -50px;
+}
+.submit-btn {
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 1px #ff7b6d;
+    background-color: #ff7b6d;
+  }
