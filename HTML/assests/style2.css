@@ -189,3 +189,56 @@ div p a:hover{
     border: solid 1px #ff7b6d;
     background-color: #ff7b6d;
   }
+
+.contact-section{
+    margin-top: 52.92px;
+}
+.contact-img{
+    padding-top: 10px;
+    margin-bottom: 19.99px;
+}
+
+.div2 div p{
+    white-space: pre;
+}
+
+.form-section input,select,textarea{
+    border: #C8C8C8 1px solid;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    height: 46px;
+    font-family: Roboto;
+    font-size: 16px;
+}
+
+.form-btn{
+    border: none;
+    font-family: Roboto;
+    font-weight: bold;
+    color: white;
+    border-radius: 23px;
+    background-color: #1D7A8C;
+    width: 163px;
+    height: 46px;
+}
+
+.map-section{
+    margin-top: 92px;;
+}
+.map-section{
+    position: relative; 
+    left: 0; 
+    top: 0;
+}
+
+.map{
+    position: relative;
+    top:0;
+    left: 0;
+}
+
+.pin{
+    position: absolute;
+    left: 600px;
+    top: 150px;
+}
