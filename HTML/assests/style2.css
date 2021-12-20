@@ -198,9 +198,9 @@ div p a:hover{
     margin-bottom: 19.99px;
 }
 
-.div2 div p{
+/* .div2 div p{
     white-space: pre;
-}
+} */
 
 .form-section input,select,textarea{
     border: #C8C8C8 1px solid;
@@ -241,4 +241,21 @@ div p a:hover{
     position: absolute;
     left: 600px;
     top: 150px;
+}
+
+.few-words-section{
+    margin-bottom: 39.67px;
+}
+
+.story-section{
+    margin-bottom: 47.67px;
+}
+/* .about-para{
+    margin-left: 284px;
+    margin-right: 284px;
+} */
+.about-para p{
+    font-size: 16px;
+    font-family: Roboto;
+    color: #646464;
 }
