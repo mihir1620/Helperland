@@ -260,3 +260,129 @@ div p a:hover{
     color: #646464;
 }
 
+.become-pro-background {
+    background-image: url(./images/become-a-pro-banner.png);
+    position: center;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat;
+}
+
+.become-pro-section{
+    margin-top: 67px;
+}
+
+.become-pro-form{
+    background-color: white;
+    padding-left: 35px;
+    padding-right: 35px;
+    border-radius: 2px;
+    padding-bottom: 19px;
+}
+
+.register-now{
+    font-size: 24px;
+    font-family: Roboto;
+    color: #4F4F4F;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 19px;
+    padding-bottom: 24px;
+}
+
+.form-btn{
+    border: none;
+    margin-top: 20px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: white;
+    border-radius: 23px;
+    background-color: #1D7A8C;
+    width: 163px;
+    height: 46px;
+}
+
+.downarrow{
+    text-align: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    
+}
+.image1{
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    display: block;
+}
+
+.image2{
+    position: absolute;
+    margin: auto;
+    display: block;
+    padding-top: 5px;
+}
+
+.scroller{
+    margin-top: 44px;
+}
+
+.how-it-works div p{
+    position: relative;
+    color: #4f4f4f;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Roboto;
+    text-align: center;
+    padding-top: 68px;
+    margin-bottom: 73px;
+}
+
+/* .how-it-works-services-title{
+    margin-top: auto;
+    margin-bottom: auto;
+} */
+
+.how-it-works-services-title{
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 30px;
+    color: #4F4F4F;
+}
+
+.how-it-works-services-content{
+    font-family: Roboto;
+    font-size: 18px;
+    color: #4F4F4F;
+}
+
+div p a{
+    color: white;
+}
+
+div p a:hover{
+    color: white;
+}
+
+.vertical-line{
+    border-right: 1px solid white;
+    height: 48px;
+
+}
+
+
+.name-container div{
+    text-align: center;
+    background-color: #F9F9F9;
+    font-weight: bold;
+    font-family: Roboto;
+    min-height: 119px;
+    padding-top: 38px ;
+    
+}
+@media(max-width:991px){
+    .navbar-nav .remove{
+        display: none;
+    }
+}
