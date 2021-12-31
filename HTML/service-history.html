@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Upcoming Services</title>
+        <title>Service History</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -25,6 +25,11 @@
                 
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto text-center">
+                    <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                        <a href="#" class="nav-link ">
+                            Book Now
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link ">
                             Prices & Services
@@ -45,29 +50,31 @@
                             Contact
                         </a>
                     </li>
-                    <li class="vertical-line remove">
+                   <li class="vertical-line remove">
 
-                    </li>
+                     </li>
                     <li class="nav-item ">
                         <a href="#" class="nav-link">
-                            <span class="notify-badge" style=""><h6>2</h6></span>
-                        <img src="./assests/images/icon-notification.png">
+                        <span class="notify-badge" style=""><h6>2</h6></span>
+                        <img src="./assests/images/icon-notification.png" style="max-height: 30px;">
                         </a>
                     </li>
                     <li class="vertical-line remove">
                         
                     </li>
-                    <li class="nav-item ">
+                     <li class="nav-item ">
                         <a href="#" class="nav-link">
-                            <img src="./assests/images/user.png">
-                            <span><img src="./assests/images/keyboard-right-arrow-button.png"></span>
-
+                            <img src="./assests/images/user.png" style="max-height: 30px;">
+                            <span><img src="./assests/images/keyboard-right-arrow-button.png" style="max-height: 6px;"></span>
                         </a>
-                    </li>
+                    </li> 
                 </ul>
             </div>
             </nav>
-    
+
+                </ul>
+            </div>
+            </nav>
             <section class="name-container text-align-center">
                 <div class="container-fluid ">
                     <h1>Welcome <b>User!</b></h1>
@@ -171,16 +178,9 @@
 
                                 <tr>
                                     <td>
-                                    <a href="#"><p>New Service Requests</p></a>
+                                    <a href="#"><p>Service History</p></a>       
                                 </td>
                                 </tr>
-
-                                <tr>
-                                    <td>
-                                    <a href="#"><p>Upcoming Services</p></a>
-                                </td>
-                                </tr>
-
                                 <tr>
                                     <td>
                                     <a href="#"><p>Service Schedule</p></a>
@@ -189,38 +189,44 @@
 
                                 <tr>
                                     <td>
-                                    <a href="#"><p>Service History</p></a>       
+                                    <a href="#"><p>Favorite Pros</p></a>
                                 </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                    <a href="#"><p>My Ratings</p></a>
+                                    <a href="#"><p>Invoices</p></a>
                                 </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                    <a href="#"><p>Block Customer</p></a>
+                                    <a href="#"><p>Notifications</p></a>
                                 </td>
                                 </tr>
                             </tbody>
                         </table>
                         </div>
+
+                        
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 table-responsive">
-                            <table class="table service-table table-hover">
+                            <div class="btn-group ">
+                                <p  style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                            </div>
+                            <button class="export-btn float-right">Export</button>
+                            <table class="table service-table table-hover ">
                                 <thead>
                                   <tr>
-                                    <th class="table-heading">Service ID <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
-                                    <th class="table-heading">Service Date <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
-                                    <th class="table-heading">Customer Details <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
-                                    <th class="table-heading">Distance  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
-                                    <th class="table-heading">Actions</th>
+                                    <th class="table-heading">Service Details  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Service Provider  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Payment  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Status  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Rate SP</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -231,19 +237,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -254,19 +267,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -277,19 +297,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -300,19 +327,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -323,19 +357,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -346,19 +387,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -369,19 +417,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -392,19 +447,26 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>323436</td>
                                     <td>
                                         <div>
                                             <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
@@ -415,68 +477,51 @@
                                     </td>
                                     <td>
                                         <div>
-                                            David Bough
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
                                         </div>
                                         <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
                                         </div>
                                     </td>
-                                    <td>15 km</td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
                                     <td>
-                                        <button class="cancel-btn"> Cancel </button>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
                                     </td>
                                   </tr>
-                                  <tr>
-                                    <td>323436</td>
-                                    <td>
-                                        <div>
-                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            David Bough
-                                        </div>
-                                        <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <button class="cancel-btn"> Cancel </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>323436</td>
-                                    <td>
-                                        <div>
-                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            David Bough
-                                        </div>
-                                        <div>
-                                            <span><img src="./assests/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <button class="cancel-btn"> Cancel </button>
-                                    </td>
-                                  </tr>
+                                  
                                 </tbody>
                               </table>
+                              <div class="row" style="margin-left: 10px;">Show 
+                                <span class="col">
+                                    <select class="entry-btn" name="pages" id="pages">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                      </select> entries. Total record : 65.
+                                </span>
+
+                                <div class="col navigation-icon" style="text-align: right;">
+                                    <span></span>
+                                    <span></span>
+                                    <span>1</span>
+
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
+
+
                 </div>
             </section>
 

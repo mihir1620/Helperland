@@ -24,7 +24,8 @@
 .Rounded-Rectangle{
     border: 1px solid #fff;
     border-radius: 20px;
-    letter-spacing: 0.5px;
+    text-align: center;
+    background-color: #29626D;
 }
 
 
@@ -365,10 +366,22 @@ div p a:hover{
     color: white;
 }
 
+.notify-badge{
+    position: absolute;
+    background: red;
+    height:18px;
+    top:18px;
+    right:100px;
+    width:18px;
+    text-align: center;
+    border: solid red;
+    border-radius: 50%;
+    color:white;
+
+}
 .vertical-line{
     border-right: 1px solid white;
-    height: 48px;
-
+    max-height: 48px;
 }
 
 
@@ -381,6 +394,110 @@ div p a:hover{
     padding-top: 38px ;
     
 }
+
+.left-side-menu{
+    margin-top: 30px;
+}
+
+.menu{
+    background-color: #1d7a8c;
+    font-size: 18px;
+    font-family: var(--font-family);
+    color: #F9F9F9;
+}
+
+    
+
+.menu  a{
+    color: white;
+}
+
+.menu  a:hover{
+    color: white;
+    text-decoration: none;
+}
+.service-table{
+    font-family: var(--font-family);
+    font-size: 16px;
+    border: 1px solid #e1e1e1;
+}
+
+.table-heading {
+
+}
+.service-table thead{
+    background-color: #F9F9F9;
+}
+
+.export-btn{
+    background-color: #146371;
+    border-radius: 17px;
+    border: none;
+    min-width: 70px;
+    min-height: 34px;
+    color: white;
+    font-family: Roboto;
+}
+.cancel-btn{
+    background-color: #FF6B6B;
+    border: 0px solid #FF6B6B;
+    border-radius: 17px;
+    min-width: 80px;
+    min-height: 34px;
+}
+
+.payment-clm{
+    font-size: 24px;
+    color: #1d7a8c;
+    font-family: Roboto;
+    font-weight: bold;
+}
+
+.completed-btn{
+    min-width: 82px;
+    background-color: #67b644;
+    color: white;
+    font-family: Roboto;
+    font-size: 13px;
+    border: none;
+}
+
+.cancelled-btn{
+    min-width: 82px;
+    background-color: #ff6b6b;
+    color: white;
+    font-family: Roboto;
+    font-size: 13px;
+    border: none;
+}
+
+.rate-sp-btn{
+    min-width: 70px;
+    min-height: 34px;
+    background-color: #6DA9B5;
+    border-radius: 17px;
+    color: white;
+    font-family: Roboto;
+    font-size: 14px;
+    border: none;
+}
+
+.entry-btn{
+    background-color: white;border: 1px solid #E1E1E1;border-radius: 4px;
+    padding: 14px;
+    margin-left: 10px;
+    min-width: 62px;
+    margin-right: 10px;
+}
+
+.navigation-icon span{
+    border: 1px solid #e1e1e1;
+    border-radius: 50%;
+    min-width: 38px;
+    min-height: 38px;
+    margin-left: 20px;
+}
+
 @media(max-width:991px){
     .navbar-nav .remove{
         display: none;
