@@ -21,15 +21,11 @@
     --transition: 0.3s ease; */
   }
 
-.Rounded-Rectangle{
-    border: 1px solid #fff;
-    border-radius: 20px;
-    text-align: center;
-    background-color: #29626D;
-}
+  .navbar{
+    background-color: #525252;min-height: 54px;
+  }
 
-
-.nav-link{
+  .nav-link{
     font-family: var(--font-family);
     font-size: var(--normal-font);
     color:white;
@@ -47,10 +43,34 @@ ul li a:hover{
     color: white;
 }
 
-.shape{
-    height: 255px;
-    width: 24px;
-    background-color: #1d7a8c;
+.faq-banner div img{
+    width:100%;height: auto;
+}
+
+.faq-header{
+    margin-top: 32px;margin-bottom: -15px;
+}
+
+.faq-header p{
+    font-family: Roboto;color: #4F4F4F;text-align: center;font-size: 35.95px;
+}
+
+.faq-pattern{
+    display: flex;justify-content: center;align-items: center;margin-bottom: 46px;
+}
+
+.faq-pattern hr{
+    background-color: #CCCCCC;margin-right: 8px;border: #CCCCCC 1px solid;width: 62px;
+}
+
+.faq-pattern .hr2{
+    background-color: #CCCCCC;margin-left: 8px;border: #CCCCCC 1px solid;width: 62px;
+}
+.Rounded-Rectangle{
+    border: 1px solid #fff;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #29626D;
 }
 
 .container1 {
@@ -61,6 +81,14 @@ ul li a:hover{
     margin-bottom: 53px;
 }
 
+.container1 p{
+    font-family: Roboto;color: #4F4F4F;font-size: 18px;text-align: center;
+}
+
+.faq-title{
+    text-align: center;
+}
+
 .Rectangle-21-copy-3 {
     width: 100px;
     padding-bottom: 10px;
@@ -68,7 +96,7 @@ ul li a:hover{
     color: #fff;
     font-family: var(--font-family);
     background-color: #1d7a8c;
-    
+    margin-left:auto;padding-top: 15px;
   }
   
 .Rectangle-21 {
@@ -79,6 +107,7 @@ ul li a:hover{
     font-family: var(--font-family);
     background-color: #f6f6f6;
     border-bottom: 3px solid #1d7a8c;
+    margin-right:auto;padding-top: 15px;
   }
 
   .collapse-title{
@@ -98,38 +127,65 @@ ul li a:hover{
 
 }
 
-.mail-btn {
-    text-align: center;
-    width: 233px;
-    height: 40px;
-    border-radius: 20px;
-    border: solid 1px #565656;
-    background-color: #f4f5f8;
-  }
-
-.up-aero{
-    background:#525252;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    margin-left: -450px;
-    margin-top: -50px;
+.footer{
+    background-color: #111111;padding-top: 10px;margin-top: 10px;
 }
 
-.msg-us{
-    width: 48px;
-    height: 48px;
-    margin-left: 450px;
-    margin-top: -50px;
+.footer-logo{
+    display: flex;justify-content: center;align-items: center;
 }
-.submit-btn {
-    width: 88px;
-    height: 40px;
-    border-radius: 20px;
-    border: solid 1px #ff7b6d;
-    background-color: #ff7b6d;
-  }
 
+.footer-links{
+    text-align: center;display: flex;justify-content: center;align-items: center;
+}
+
+.footer-links p{
+    word-spacing: 15px;color: #f1f1f1;
+}
+
+.social-media-icons{
+   display: flex;justify-content: center;align-items: center;
+}
+
+.footer-links-2{
+    text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;
+}
+
+.prices-container{
+    margin-top: 32px;margin-bottom: -15px;
+}
+
+.prices-container p{
+    font-family: Roboto;color: #4F4F4F;text-align: center;font-size: 35.95px;
+}
+
+.price-div1{
+    width:553px;height: 304px;border: solid 1px #b0c9ce;
+}
+
+.price-div2{
+    height: 59px;background-color: #1d7a8c;
+}
+
+.price-div2 p{
+    padding-top: 10px;font-size: 28px;font-family: Roboto;font-weight: bold;text-align: center;color: white;
+}
+
+.price-euro{
+    font-family: Roboto;font-weight: bold;text-align: center;color: #646464;
+}
+
+.extraservice{
+    margin-left:150px;margin-right: auto;
+}
+
+.extraservice div img{
+    height: 24px;width: 24px;margin-right: 9px;
+}
+
+.extraservice div p{
+    font-size: 16px;font-family: Roboto;color: #646464;
+}
 div p a{
     color: white;
 }
@@ -168,29 +224,17 @@ div p a:hover{
     color: #646464;
 }
 
-.up-aero{
-    background:#525252;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    margin-left: -450px;
-    margin-top: -50px;
+.contact-banner{
+    width:100%;height: auto;
 }
 
-.msg-us{
-    width: 48px;
-    height: 48px;
-    margin-left: 450px;
-    margin-top: -50px;
+.contact-title{
+    margin-top: 32px;margin-bottom: -15px;
 }
-.submit-btn {
-    width: 88px;
-    height: 40px;
-    border-radius: 20px;
-    border: solid 1px #ff7b6d;
-    background-color: #ff7b6d;
-  }
 
+.contact-title p{
+    font-family: Roboto;color: #4F4F4F;text-align: center;font-size: 35.95px;
+}
 .contact-section{
     margin-top: 52.92px;
 }
@@ -248,6 +292,13 @@ div p a:hover{
     margin-bottom: 39.67px;
 }
 
+.few-word-div{
+    margin-top: 32px;margin-bottom: -15px;
+}
+
+.few-word-div p{
+    font-family: Roboto;color: #4F4F4F;text-align: center;font-size: 35.95px;
+}
 .story-section{
     margin-bottom: 47.67px;
 }

@@ -14,10 +14,9 @@
     <body>
 
         <div class="wrapper">
-        <div class="become-pro-background">
-            <header class="site-header " >
+            <header class="site-header">
 
-                <nav class="navbar navbar-expand-lg" style="background: transparent;">
+                <nav class="navbar navbar-expand-lg fixed-top bgcolor">
                     <a href="#" class="navbar-brand">
                         <img src="./assests/images/white-logo-transparent-background.png" class="helperhand-logo">
                     </a>
@@ -68,9 +67,9 @@
                 </div>
                 </nav>
             </header>
-        <main >
 
-            <section class="become-pro-section">
+            <section class="become-pro-background">
+            <main>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
@@ -122,21 +121,14 @@
                                   </div>
                               </form>
                         </div>
-                    </div>
-
-                    
+                    </div>                    
                 </div>
 
-            </section>
-
-            
                 <div class="downarrow">            
                     <div class="image1 "><a href="#howitworks"><img src="./assests/images/ellipse.png"></a></div>
                     <div class="image2"><a href="#howitworks"><img img src="./assests/images/shape-1.png"></a></div>
                 </div>
-           
-
-        </div>
+        </section>
 
             <section class="how-it-works">
                 <div id="howitworks">
@@ -146,13 +138,11 @@
                         <div class="">
                             <p>How it works</p>
                         </div>
-
                 </div>
             </section>
 
             <section class="how-it-works-services">
                 <div class="container">
-                    
                     <div class="row justify-content-center">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-6 align-items-center ">
@@ -198,15 +188,14 @@
                 </div>
             </section>
 
-            <section>
-                <div class="container-fluid" style=" background-color: black;padding-top: 10px;margin-top:53px">
+            <section class="footer">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-3" style="display: flex;justify-content: center;align-items: center;">
+                        <div class="col-sm-3 footer-logo">
                             <a href=#><img src="./assests/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
                         </div>
-                        
-                        <div class="col-sm-6" style="text-align: center;display: flex;justify-content: center;align-items: center;">
-                            <p style="word-spacing: 15px;color: #f1f1f1;">
+                        <div class="col-sm-6 footer-links">
+                            <p>
                                 <a href="#">HOME</a>   
                                 <a href="#">ABOUT</a>   
                                 <a href="#">TESTIMONIALS</a>   
@@ -216,29 +205,28 @@
                                 <a href="#">IMPRESSUM</a>     
                             </p>
                         </div>
-                        <div class="col-sm-3" style=" background-color: black;display: flex;justify-content: center;align-items: center;">
+                        <div class="col-sm-3 social-media-icons">
                 
                                 <a href=#><img src="./assests/images/ic-facebook.png" style="padding-right: 15px;"></a>
                                 <a href=#><img src="./assests/images/ic-instagram.png"></a>
                         </div>
                     </div>
-                    <div style="text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;">
+                    <div class="footer-links-2">
                         <hr style="border: #424242 1px solid;text-align: center;width: 1150px;">
                     </div>
                     
-                    <div style="text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;">
+                    <div class="footer-links-2">
                         <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
                     </div>
                     </div>
                 </section>
-
-
-
         </main>
-
-        
-        
-        
         </div>
     </body>
+
+    <script>
+        $(window).scroll(function(){
+            $('nav').toggleClass('scrolled',$(this).scrollTop()>60);
+        });
+    </script>
 </html>
