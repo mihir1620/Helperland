@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Service History</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/3960232895.js"></script>
+        <link rel="stylesheet" href="./assests/style2.css">
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <section class="header">
+                <nav class="navbar navbar-expand-lg " style="background-color: #525252;min-height: 54px;">
+                    <a href="#" class="navbar-brand"><img src="./assests/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
+                    <div class="center-icon justify-content">
+    
+                        <a href="#" ><img src="./assests/images/icon-notification.png" 
+                            style="border-left: 1px solid white;border-right: 1px solid white;padding-left: 10px;padding-right: 10px;"></a>
+     
+                    </div>
+    
+                    <button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                        </span>
+                    </button>
+    
+                    <!-- <button class="navbar-toggler "  data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                        </span>
+                      </button> -->
+                    
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto text-center">
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="#" class="nav-link">
+                                Book Now
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="vertical-line remove">
+    
+                        </li>
+                        <li class="nav-item remove">
+                            <a href="#" class="nav-link">
+                                <!-- <span class="notify-badge remove" style=""><h6>2</h6></span> -->
+                            <img src="./assests/images/icon-notification.png">
+                            </a>
+                        </li>
+    
+                        <li class="vertical-line remove">
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <img src="./assests/images/user.png">
+                                <span><img src="./assests/images/keyboard-right-arrow-button.png"></span>
+    
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+            </section>
+
+
+            <section class="name-container text-align-center">
+                <div class="container-fluid ">
+                    <h1>Welcome <b>User!</b></h1>
+                </div>
+            </section>
+
+            <div class="container modal-menu">
+                <!-- The Modal -->
+                <div class="modal fade" id="collapsiblemodal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                          <div class="container">
+                              <div>
+                                <h5 class="modal-title">Welcome</h5>
+                              </div>
+                              <div>
+                                <p class="modal-title">User!</p>
+                              </div>
+                          </div>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class="container">
+
+                                    <a href="#" >Dashboard</a>
+                                    <a href="#">New Service Request</a>
+                                    <a href="#" class="active">Upcoming Service</a>
+                                    <a href="#">Service Schedule</a>
+                                    <a href="#">Service History</a>
+                                    <a href="#">My Rating</a>
+                                    <a href="#">Block Customer</a>
+                                    <a href="#">My Setting</a>
+                                    <a href="#"></a>
+
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div  class="modal-footer">
+                        <div class="container">
+                        <a href="#" >Prices & Services</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Content</a>  
+                        </div>
+                      </div>
+                      
+                      <div  class="modal-footer">
+                        <div class="container" style="display: flex;margin: auto;justify-content: space-around;">
+                        <a href="#" ><img src="./assests/images/ic-facebook.png"></a>
+                        <a href="#"><img src="./assests/images/ic-instagram.png"></a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+
+            <section class="left-side-menu">
+               
+                <div class="container">
+
+                        <div class="row">
+                        <!-- <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3 table-responsive menu service-tabs"> -->
+                            <div class="col-lg-3 menu remove">
+                            
+                                <a href="#">Dashboard</a>
+                    
+                                <a href="#" class="active">Service History</a>       
+                            
+                                <a href="#">Service Schedule</a>
+
+                                <a href="#">Favorite Pros</a>
+                            
+                                <a href="#">Invoices</a>
+                            
+                                <a href="#">Notifications</a>
+                            
+                        </div>
+                      
+                        <div class="col-lg-9 table-responsive service-details">
+                            <div class="btn-group ">
+                                <p  style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                            </div>
+                            <button class="export-btn float-right">Export</button>
+                            <table class="table service-table table-hover ">
+                                <thead>
+                                  <tr >
+                                    <th class="table-heading">Service Details  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Service Provider  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Payment  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Status  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
+                                    <th class="table-heading">Rate SP</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                  <tr >
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="cancelled-btn">Cancelled</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                        </div>
+                                        <div>
+                                            <span><img src="./assests/images/layer-14.png"></span>  12:00-18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <span><img src="./assests/images/cap.png"></span>  Lyum Watson
+                                        </div>
+                                        <div>
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/star1.png">
+                                            <img src="./assests/images/grey-small-star.png"> <span>  4</span>
+                                        </div>
+                                    </td>
+                                    <td class="payment-clm"><span style="font-size:20px;">€</span>63</td>
+                                    <td>
+                                        <button class="completed-btn">Completed</button>
+                                    </td>
+                                    <td>
+                                        <button class="rate-sp-btn"> Rate SP</button>
+                                    </td>
+                                  </tr>
+                                  
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+                </section>
+
+                <!-- <section>
+                    <div class="container navigation-icon" >
+                        <div class="row" >
+                            <p > Show</p>
+                            <div class="col-lg-5" >
+                                <select class="entry-btn" name="pages" id="pages">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                  </select> entries. Total record : 65.
+                            </div>
+
+
+                                <div class="col-lg-1 footer-navigation">
+                                    <div>
+                                        <a href="#"><p>1</p></a>
+                                    </div>                            
+                                </div>
+                                <div class="col-lg-1 footer-navigation">
+                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
+                                </div>
+                                <div class="col-lg-1 footer-navigation">
+                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
+                                </div>
+                                <div class="col-lg-1 footer-navigation">
+                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
+                                </div>
+                                <div class="col-lg-1 footer-navigation">
+                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
+                                </div>
+
+                            
+                        </div>
+                        </div>
+                </section> -->
+
+            <section>
+            <footer class="container-fluid" style=" background-color: black;padding-top: 10px;margin-top:53px;bottom: 0;">
+                <div class="row">
+                    <div class="col-sm-3" style="display: flex;justify-content: center;align-items: center;" >
+                        <a href=#><img src="./assests/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
+                    </div>
+                    <div class="col-sm-6" style="text-align: center;display: flex;justify-content: center;align-items: center;">
+                        <p style="word-spacing: 15px;color: #f1f1f1;">
+                            <a href="#">HOME</a>   
+                            <a href="#">ABOUT</a>   
+                            <a href="#">TESTIMONIALS</a>   
+                            <a href="#">FAQS</a>  
+                            <a href="#">INSURANCE</a>   
+                            <a href="#">POLICY</a>   
+                            <a href="#">IMPRESSUM</a>     
+                        </p>
+                    </div>
+                    <div class="col-sm-3" style=" background-color: black;display: flex;justify-content: center;align-items: center;">
+            
+                            <a href=#><img src="./assests/images/ic-facebook.png" style="padding-right: 15px;"></a>
+                            <a href=#><img src="./assests/images/ic-instagram.png"></a>
+                    </div>
+                </div>
+                <div style="text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;">
+                    <hr style="border: #424242 1px solid;text-align: center;width: 1150px;">
+                </div>
+                
+                <div style="text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;">
+                    <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
+                </div>
+            </footer>
+            </section>
+        </div>
+    </body>
+</html>

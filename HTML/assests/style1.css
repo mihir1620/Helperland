@@ -424,7 +424,7 @@ ul li a:hover{
 {
     .navbar{
         background-color: #73706C;
-        height: auto;
+        height: 54px;
         }
     ul li a:hover{
         color: white;

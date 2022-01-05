@@ -17,14 +17,28 @@
         <div class="wrapper">
             <nav class="navbar navbar-expand-lg " style="background-color: #525252;min-height: 54px;">
                 <a href="#" class="navbar-brand"><img src="./assests/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
-                <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
+                <div class="center-icon justify-content">
+
+                    <a href="#" ><img src="./assests/images/icon-notification.png" 
+                        style="border-left: 1px solid white;border-right: 1px solid white;padding-left: 10px;padding-right: 10px;"></a>
+ 
+                </div>
+
+                <button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
                     <span class="navbar-toggler-icon">
                         <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
                     </span>
-                  </button>
+                </button>
+
+                <!-- <button class=" nav-btn"  data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                    </span>
+                </button> -->
                 
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto text-center">
+
                     <li class="nav-item">
                         <a href="#" class="nav-link ">
                             Prices & Services
@@ -48,16 +62,17 @@
                     <li class="vertical-line remove">
 
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item remove">
                         <a href="#" class="nav-link">
-                            <span class="notify-badge remove" style=""><h6>2</h6></span>
+                            <!-- <span class="notify-badge remove" style=""><h6>2</h6></span> -->
                         <img src="./assests/images/icon-notification.png">
                         </a>
                     </li>
+
                     <li class="vertical-line remove">
                         
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <img src="./assests/images/user.png">
                             <span><img src="./assests/images/keyboard-right-arrow-button.png"></span>
@@ -74,55 +89,89 @@
                 </div>
             </section>
 
+            <div class="container modal-menu">
+                <!-- The Modal -->
+                <div class="modal fade" id="collapsiblemodal">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                          <div class="container">
+                              <div>
+                                <h5 class="modal-title">Welcome</h5>
+                              </div>
+                              <div>
+                                <p class="modal-title">User!</p>
+                              </div>
+                          </div>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
 
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class="container">
+
+                                    <a href="#" >Dashboard</a>
+                                    <a href="#">New Service Request</a>
+                                    <a href="#" class="active">Upcoming Service</a>
+                                    <a href="#">Service Schedule</a>
+                                    <a href="#">Service History</a>
+                                    <a href="#">My Rating</a>
+                                    <a href="#">Block Customer</a>
+                                    <a href="#">My Setting</a>
+                                    <a href="#"></a>
+
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div  class="modal-footer">
+                        <div class="container">
+                        <a href="#" >Prices & Services</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Content</a>  
+                        </div>
+                      </div>
+                      
+                      <div  class="modal-footer">
+                        <div class="container" style="display: flex;margin: auto;justify-content: space-around;">
+                        <a href="#" ><img src="./assests/images/ic-facebook.png"></a>
+                        <a href="#"><img src="./assests/images/ic-instagram.png"></a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
             <section class="left-side-menu">
-
             <div class="container">
                 <div class="row">
-                        <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3 table-responsive menu service-tabs">
-                            <table class=" table  table-hover ">
-                                <thead></thead>
-                                <tbody class="align-items-center justify-content-center">
-                                    <tr>
-                                        <td>
-                                            <a href="#"><p>Dashboard</p></a>
-                                        </td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>
-                                        <a href="#"><p>Service History</p></a>       
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <a href="#"><p>Service Schedule</p></a>
-                                    </td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>
-                                        <a href="#"><p>Favorite Pros</p></a>
-                                    </td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>
-                                        <a href="#"><p>Invoices</p></a>
-                                    </td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>
-                                        <a href="#"><p>Notifications</p></a>
-                                    </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 table-responsive">
-                            <table class="table service-table table-hover">
-                                <thead>
+                        <div class="col-lg-3 menu remove">
+                            
+                                <a href="#">Dashboard</a>
+                    
+                                <a href="#" class="active">New Service Request</a>       
+                            
+                                <a href="#">Upcoming Service</a>
+                            
+                                <a href="#">Service Schedule</a>
+
+                                <a href="#">Service History</a>
+                            
+                                <a href="#">My Rating</a>
+                            
+                                <a href="#">Block Customer</a>
+                            
+                        </div>
+                        
+                        <div class="col-lg-9 table-responsive">
+                            <table class="table service-table table-hover ">
+                                <thead >
                                   <tr>
                                     <th class="table-heading">Service ID <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
                                     <th class="table-heading">Service Date <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
@@ -392,6 +441,8 @@
                     </div>
                 </div>
             </section>
+
+
 
             <section class="footer">
                 <div class="container-fluid">
