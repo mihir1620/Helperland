@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Management</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/3960232895.js"></script>
+        
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="./assests/style2.css"> 
+    </head>
+
+    <body style="background-color: #e5e5e5;">
+
+        <section class="header">
+            <nav class="navbar navbar-expand-lg admin-nav fixed-top">
+                <a href="#" class="navbar-brand"><p>helperland</p></a>
+                <div class="center-icon align-items-center ">
+                    <a href="#" ><img src="./assests/images/user.png" style="margin-right: 15px;"></a>
+                    <a style="margin-right: 15px;"> James Smith</a>
+                    <a href="#"><img src="./assests/images/logout.png" ></a>
+                </div>
+                <!-- <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                    </span>
+                </button> -->
+
+                <button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                    </span>
+                </button>
+
+                
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto text-center align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img src="./assests/images/user.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                           James Smith
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img src="./assests/images/logout.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+        </section>
+
+ 
+        <div class="wrapper user-management-wrapper">
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 remove">
+                        <div class="user-management-sidebar">
+                            <a href="#">Service Requests</a>
+                            <a class="active" href="#">User Management</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 right-side-admin"  >
+                        <div class="user-div-1">
+                            <div>
+                                <p>
+                                    User Management
+                                </p>
+                            </div>
+                            <div>
+                                <button > <span><img src="./assests/images/add.png">    Add new user</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="container modal-menu">
+            <!-- The Modal -->
+            <div class="modal fade" id="collapsiblemodal">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                      <div class="container">
+                          <div>
+                            <h5 class="modal-title">Welcome</h5>
+                          </div>
+                          <div>
+                            <p class="modal-title">Admin!</p>
+                          </div>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <div class="container">
+
+                                <a href="#">Service Request</a>
+                                <a href="#" class="active">Request Management</a>
+
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <section class="form-section admin-form-section">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10 right-side-admin">
+                        <form class="form-inline">
+              
+                                <select class="selectpicker" >
+                                    <option>Select Username</option>
+                                    <option></option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                                
+                              <select class="selectpicker" >
+                                <option>Select User Role</option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                              </select>
+
+                              <div class="input-group" >
+                                <div class="input-group-text">+49</div>
+                                <input class="form-control" type="tel" id="MobileNo" name="MobileNo" placeholder="Mobile Number">                                
+                              </div>
+
+                            <input class="form-control" type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
+
+                         </form>
+
+                         <form class="form-inline">                
+                            <button class="user-search-btn">Search</button>
+                            <button class="user-clear-btn">Clear</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+          </section>
+
+          <section class="table-section">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10  right-side-admin">
+                        <table class="table user-management-table" id="datatable">
+
+                            <thead class="user-management-tableheader">
+                              <tr>
+                                <th>User name </th>
+                                <th>Role</th>
+                                <th>Date of Regestratiion</th>
+                                <th>User type</th>
+                                <th>Phone</th>
+                                <th>Postal code  </th>
+                                <th>User Status </th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                                
+                              <tr>
+                                <td>Lyum watson</td>
+
+                                <td>
+                                </td>
+
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="completed-btn">Active</button>
+                                </td>
+                                <td>
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                              <a href="#"><div>Delete</div></a>
+                                            </div>
+                                          </div>    
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <td>John Smith</td>
+                                <td>
+                                </td>
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="cancelled-btn">Inactive</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                          <a href="#"><div>Delete</div></a>
+                                        </div>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>Lyum watson</td>
+
+                                <td>
+                                </td>
+
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="completed-btn">Active</button>
+                                </td>
+                                <td>
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                              <a href="#"><div>Delete</div></a>
+                                            </div>
+                                          </div>    
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <td>John Smith</td>
+                                <td>
+                                </td>
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="cancelled-btn">Inactive</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                          <a href="#"><div>Delete</div></a>
+                                        </div>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>Lyum watson</td>
+
+                                <td>
+                                </td>
+
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="completed-btn">Active</button>
+                                </td>
+                                <td>
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                              <a href="#"><div>Delete</div></a>
+                                            </div>
+                                          </div>    
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <td>John Smith</td>
+                                <td>
+                                </td>
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="cancelled-btn">Inactive</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                          <a href="#"><div>Delete</div></a>
+                                        </div>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>Lyum watson</td>
+
+                                <td>
+                                </td>
+
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="completed-btn">Active</button>
+                                </td>
+                                <td>
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                              <a href="#"><div>Delete</div></a>
+                                            </div>
+                                          </div>    
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <td>John Smith</td>
+                                <td>
+                                </td>
+                                <td>
+                                    <span><img src="./assests/images/calendar2.png"></span>  <b>09/04/2018</b>
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>7545541515</td>
+
+                                <td></td>
+
+                                <td>
+                                    <button class="cancelled-btn">Inactive</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                          <a href="#"><div>Delete</div></a>
+                                        </div>
+                                      </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                         </div>
+                      </div>
+                  </div>
+
+                </section>
+
+                <section class="">
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-lg-2"></div>
+                          <div class="col-lg-10  right-side-admin" style="display: flex;justify-content: space-between;">
+
+                            <div>
+                                Show 
+                                <select style="width: 70px;border-radius: 4px;border: #D6D6D6 1px solid;">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                </select>
+                                Entries.
+                            </div>
+
+                            <div aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                  </li>
+                                  <li class="page-item active"><a class="page-link" style="text-decoration: none;" href="#">1</a></li>
+                                  <li class="page-item "><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </section>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-10  right-side-admin" style="display: flex;justify-content: space-between;">
+                        <p class="footnote">©2018 Helperland. All rights reserved.</p>
+                    </div>
+                   </div>
+                </div>
+
+        </div>  
+
+        <!-- <script>
+            $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+        </script> -->
+    </body>
+</html>

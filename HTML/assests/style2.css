@@ -518,9 +518,6 @@ div p a:hover{
     background-color: #1d7a8c;
     height: auto;
     overflow: auto;
-
-
-
     /* margin: 0; */
     /* padding: 0; */
 }
@@ -553,7 +550,6 @@ div p a:hover{
 .center-icon{
     display: none;
 }
-
 
 .table-heading {
 
@@ -650,6 +646,173 @@ div p a:hover{
 }
 
 
+.admin-nav{
+    background-color: #1FB6FF;
+    color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-brand  p{
+    color: white;
+    font-size: 37px;
+    text-decoration: none;
+}
+
+.user-management-wrapper{
+    margin-top: 60px;
+}
+
+.user-management-sidebar {
+    width: 275px;
+    left: 0;
+    background-color: #FFFFFF;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 3px 3px #f2f4f5;
+    margin-right: 20px;
+  }
+  
+  .user-management-sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: Roboto;
+    font-size: 16px;
+    
+    /* margin-top: -5px;
+    margin-bottom: -10px; */
+  }
+   
+  .user-management-sidebar a.active {
+    color: #1FB6FF;
+  }
+
+  .user-management-sidebar a:hover:not(.active) {
+    color: #1FB6FF;
+  }
+
+  .left-sidebar-admin{
+      left: 0;
+  }
+  .right-side-admin{
+       background-color: #e5e5e5;padding-top: 10px;
+  }
+  .user-div-1{
+    display: flex;justify-content: space-between;
+}
+.user-div-1 div p{
+    font-size: 22px;font-family: Roboto;font-weight: bold;color: #646464;
+  }
+.user-div-1 div button{
+    background-color: #1fb6ff;font-family: Roboto;font-size: 14px;border-radius: 4px;height: 36px;width: 150px;
+}
+.user-div-1 div span{
+    font-family: Roboto;font-size: 14px;color: white;
+}
+
+.form-inline{
+    display: flex;justify-content: space-between;background-color: white;padding: 15px;
+}
+
+.selectpicker{
+    width: 180px;
+}
+.input-group{
+    margin-top: -15px;
+}
+
+.user-search-btn{
+    width: 84px;
+    height: 46px;
+    background-color: #1FB6FF;
+    font-family: Roboto;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    border: #e5e5e5 1px solid;
+    margin-top: -30px;
+}
+
+.user-clear-btn{
+    width: 84px;
+    height: 46px;
+    background-color: white;
+    font-family: Roboto;
+    color: black;
+    border: #e5e5e5 1px solid;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: -30px;
+}
+
+.user-management-table{
+    background-color: white;
+    border: 1px solid #E1E1E1;
+}
+
+.user-management-tableheader{
+    background-color: #F9F9F9;
+    font-size: 16px;color: #646464;font-weight: bold;font-family: Roboto;
+    align-items: center;
+}
+
+/* .dataTables_filter{
+    display: none;
+}
+
+.dataTables_length{
+    color: white;
+} */
+
+.three-dots:after {
+cursor: pointer;
+color: #646464;
+content: '\2807';
+font-size: 20px;
+padding: 0 5px;
+}
+  
+.dropdown {
+position: absolute;
+right: 20px;
+background-color: white;
+box-shadow: 0px 0px 6px 0px #00000040;
+outline: none;
+opacity: 0;
+z-index: -1;
+transition: ease 0.2s, 
+}
+
+.dropdown-container a{
+    text-decoration: none;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #646464;
+}
+
+.dropdown-container:focus {
+outline: none;
+}
+
+.dropdown-container:focus .dropdown {
+opacity: 1;
+z-index: 100;
+max-height: 100vh;
+transition: ease 0.2s, 
+}
+
+.pagination{
+}
+.footnote{
+    font-size: 14px;
+    color: #A2A6A8;
+    font-family: Roboto;
+}
 @media (max-width:576px){
 
 }
@@ -666,6 +829,9 @@ div p a:hover{
     .remove{
         display: none;
     }
+    .admin-nav{
+        height: auto;
+    }
     .table{
         width: 100%;
     }
@@ -676,11 +842,15 @@ div p a:hover{
     .nav-btn{
         display: none;
     }
-    .navbar-collapse{
-        display: none;
+    .user-div-1{
+        margin-top: 30px;
     }
-    .collapse{
-        display: none;
-    }
+}
+@media(max-width:1200px){
 
 }
+
+@media(max-width:1305px){
+
+}
+
