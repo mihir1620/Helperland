@@ -30,11 +30,21 @@ nav{
     height: 200px;
 }
 
+.nav-item :hover{
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+
+}
 .bgcolor.scrolled{
     background-color: #73706C;
     transition: ease .3s;
-    min-height: 100px;
+    max-height: 100px;
 }
+.bgcolor.scrolled .navbar-brand img{
+    height: 50%;
+    width: 50%;
+    transition: ease .3s;
+} 
 .nav-link{
     color:white;
     text-align: left;
@@ -93,6 +103,11 @@ ul li a:hover{
 .inner-Lorem-ipusm-text{
     font-size: 16px;
     color: white;
+}
+
+.process-img{
+    display: flex;
+    flex-wrap: wrap;
 }
 .btn-section{
     margin-top: 35px;
@@ -153,6 +168,13 @@ span img{
     color: #4F4F4F;
 }
 
+.zoom-in img{
+    transition: 0.5s all ease-in-out;
+}
+
+.zoom-in:hover img{
+    transform: scale(1.1);
+}
 .helper-land-images-title{
     margin-top: 32px;
     font-family: Roboto;
@@ -273,29 +295,7 @@ span img{
     text-align: center;display: flex;justify-content: center;align-items: center;color: #9ba0a3;
 }
 
-.small-footer {
-    color: white;
-    background-color: #292929;
-    min-height: 64px;
-}
 
-.small-footer p{
-    text-align: center;
-    color: white;
-    padding-top: 10px;
-
-}
-
-.ok-btn{
-    border-radius: 27px;
-    border: 1px solid  #F1F1F1;
-    background-color: #EED507;
-    color: black;
-    width: 100px;
-    height: 40px;
-    margin-top: 11px;
-    right: -10;
-}
 
 
 .become-pro-background {
@@ -362,6 +362,28 @@ span img{
     right: 27px;
 }
 
+.to-top {
+    background-color: rgb(20, 19, 19);
+    border: 1px solid white;
+    position: fixed;
+    bottom: 16px;
+    left:32px;
+    width:48px;
+    height:48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity:0;
+    pointer-events: none;
+    transition: all .3s;
+  }
+  
+  .to-top.active {
+    bottom:32px;
+    pointer-events: auto;
+    opacity:1;
+  }
 .how-it-works div p{
     position: relative;
     color: #4f4f4f;
@@ -444,6 +466,15 @@ ul li a:hover{
     .remove{
         display: none;
     }
+    .navbar-brand img{
+        width: 50%;
+        height: 50%;
+        transition: ease .3s;
+    }
+    .nav-item :hover{
+        display: none;
+    
+    }
 }
 
 @media (max-width:768px)
@@ -455,6 +486,10 @@ ul li a:hover{
 @media (max-width:540px){
     .remove-img{
         display: none;
+    }
+    .review-card{
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
