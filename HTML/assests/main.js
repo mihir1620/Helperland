@@ -12,3 +12,9 @@ window.addEventListener("scroll", () => {
 $(window).scroll(function(){
     $('nav').toggleClass('scrolled',$(this).scrollTop()>60);
 });
+
+
+
+$(document).ready(function() {
+$('#example').DataTable();
+} );

@@ -5,17 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/3960232895.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="./assests/style2.css">
     </head>
 
     <body>
 
         <div class="wrapper">
-            <section class="header">
+            <section class="">
                 <nav class="navbar navbar-expand-lg " style="background-color: #525252;min-height: 54px;">
                     <a href="#" class="navbar-brand"><img src="./assests/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
                     <div class="center-icon justify-content">
@@ -183,7 +180,7 @@
                                 <p  style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
                             </div>
                             <button class="export-btn float-right">Export</button>
-                            <table class="table service-table table-hover ">
+                            <table class="table service-table table-hover " id="example">
                                 <thead>
                                   <tr >
                                     <th class="table-heading">Service Details  <span><a href="#"><img src="./assests/images/sort.png"></a></span></th>
@@ -470,43 +467,11 @@
                         </div>
                     </div>
                 </div>
+                <a href="#top" class="to-top">
+                    <img src="./assests/images/up-aero.png">
+                  </a>
                 </section>
 
-                <!-- <section>
-                    <div class="container navigation-icon" >
-                        <div class="row" >
-                            <p > Show</p>
-                            <div class="col-lg-5" >
-                                <select class="entry-btn" name="pages" id="pages">
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="30">30</option>
-                                  </select> entries. Total record : 65.
-                            </div>
-
-
-                                <div class="col-lg-1 footer-navigation">
-                                    <div>
-                                        <a href="#"><p>1</p></a>
-                                    </div>                            
-                                </div>
-                                <div class="col-lg-1 footer-navigation">
-                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
-                                </div>
-                                <div class="col-lg-1 footer-navigation">
-                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
-                                </div>
-                                <div class="col-lg-1 footer-navigation">
-                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
-                                </div>
-                                <div class="col-lg-1 footer-navigation">
-                                    <div style="border-radius: 50%;background-color: #1D7A8C;width: 38px;height: 38px;"><p>1</p></div>                            
-                                </div>
-
-                            
-                        </div>
-                        </div>
-                </section> -->
 
             <section>
             <footer class="container-fluid" style=" background-color: black;padding-top: 10px;margin-top:53px;bottom: 0;">
@@ -542,4 +507,11 @@
             </section>
         </div>
     </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="./assests/main.js"></script>
 </html>

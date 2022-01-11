@@ -33,12 +33,11 @@ nav{
 .nav-item :hover{
     border: 1px solid #FFFFFF80;
     border-radius: 20px;
-
 }
 .bgcolor.scrolled{
     background-color: #73706C;
     transition: ease .3s;
-    max-height: 100px;
+    height: auto;
 }
 .bgcolor.scrolled .navbar-brand img{
     height: 50%;
@@ -472,9 +471,9 @@ ul li a:hover{
         transition: ease .3s;
     }
     .nav-item :hover{
-        display: none;
-    
+        border: none;
     }
+
 }
 
 @media (max-width:768px)

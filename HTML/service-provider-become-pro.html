@@ -4,10 +4,6 @@
         <title>Become a Pro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/3960232895.js"></script>
         <link rel="stylesheet" href="./assests/style1.css">
     </head>
 
@@ -15,9 +11,9 @@
 
         <div class="wrapper">
             <header class="site-header">
-
-                <nav class="navbar navbar-expand-lg fixed-top bgcolor">
-                    <a href="#" class="navbar-brand">
+                
+                <nav class="navbar navbar-expand-lg fixed-top bgcolor" >
+                    <a href="./Homepage.html" class="navbar-brand">
                         <img src="./assests/images/white-logo-transparent-background.png" class="helperhand-logo">
                     </a>
                     <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -34,12 +30,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="./Prices.html" class="nav-link ">
                                 Prices
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="./Homepage.html" class="nav-link">
                                 Our Guarantee
                             </a>
                         </li>
@@ -49,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="./contact-us.html" class="nav-link">
                                 Contact us
                             </a>
                         </li>
@@ -132,9 +128,9 @@
 
             <section class="how-it-works">
                 <div id="howitworks">
-                        <img src="./assests/images/blog-left-bg.png" style="float: left;">
+                    <img src="./assests/images/blog-left-bg.png" class="remove-img" style="position: absolute;">
                     
-                        <img src="./assests/images/blog-right-bg.png" style="float: right;">    
+                    <img src="./assests/images/blog-right-bg.png" class="remove-img" style="position: absolute;right: 0;">  
                         <div class="">
                             <p>How it works</p>
                         </div>
@@ -219,14 +215,17 @@
                         <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
                     </div>
                     </div>
+                    <a href="#top" class="to-top">
+                        <img src="./assests/images/up-aero.png">
+                      </a>
                 </section>
         </main>
         </div>
     </body>
 
-    <script>
-        $(window).scroll(function(){
-            $('nav').toggleClass('scrolled',$(this).scrollTop()>60);
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="./assests/main.js"></script>
 </html>
