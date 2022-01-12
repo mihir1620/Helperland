@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book Service</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assests/style2.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <section class="header">
+                <nav class="navbar navbar-expand-lg fixed-top ">
+                    <a href="#" class="navbar-brand"><img src="./assests/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
+                    <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                        </span>
+                      </button>
+                    
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto text-center">
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="#" class="nav-link">
+                                Book Now
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link Rounded-Rectangle">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="#" class="nav-link">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="#" class="nav-link">
+                                Become a Helper
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+            </section>
+    
+            <sectiion>
+                <img class="img-fluid" src="./assests/images/book-service-banner.jpg" alt="About-banner" style="width:100%;height: auto;"> 
+            </sectiion>
+
+            <section class="few-words-section">
+
+                <div class="container few-word-div">
+                    <p>Set up your cleaning service</p>
+                </div>
+        
+                <div class="faq-pattern">
+                    <hr>
+                    <img src="./assests/images/star.png" style="width: 24px;height: 25px;">
+                    <hr class="hr2">
+                </div>
+            </section>
+
+                
+                    <!-- <div class="container"> -->
+                        <div style="display: flex;justify-content: space-between;margin: 0 50px;">
+                            <div>
+                            <div class="d-flex">
+                                <div class="hover_div">
+                                    <a href="#" class="book-services active btn1" onclick="show1()"><span><img src="./assests/images/setup-service-white.png" ></span>  Setup Service</a>
+                                </div>
+                                <div class="hover_div">
+                                    <a href="#" class="book-services btn2" onclick="show2()"><span><img src="./assests/images/schedule.png" ></span>  Schedule & Plan</a>
+                                </div>
+                                <div class="hover_div">
+                                    <a href="#" class="book-services btn3" onclick="show3()"><span><img src="./assests/images/details.png" ></span>  Your Details</a>
+                                </div>
+                                <div class="hover_div">
+                                    <a href="#" class="book-services btn4" onclick="show4()"><span><img src="./assests/images/payment.png" ></span>  Make Payment</a>
+                                </div>
+                            </div>   
+                                
+                            <div class="form-group mt-4 form-check-inline" id="div1">
+                                <label>Please enter your zip code:</label>
+                                <input type="text" class="form-control w-25" id="zipcode">
+                                <button class="check-zip-btn">Check Availibility</button>
+                            </div> 
+
+                            <div class="mt-4" id="div2">
+                                <h6>Select number of rooms and bath</h6>
+                                <form>
+                                <div class="form-group form-check-inline">
+                                    <select  class="form-control mr-3">
+                                        <option>1 bed</option>
+                                        <option>2 bed</option>
+                                        <option>3 bed</option>
+                                        <option>4 bed</option>
+                                        <option>5 bed</option>
+                                      </select>
+                                      <select  class="form-control pr-2">
+                                        <option>1 bath</option>
+                                        <option>2 bath</option>
+                                        <option>3 bath</option>
+                                      </select>
+                                </div>
+
+                                <hr>
+                             
+                                
+                                    <div class="d-flex justify-content-between">
+                                        <h6>When do you need a cleaner</h6>
+                                        <h6 >How long do you need to a cleaner to stay</h6>
+                                    </div>
+
+                                    <div class="form-group form-check-inline ">
+                                        <div class="input-group date " id="datepicker" style="width: 200px;">
+                                            <span class="input-group-append">
+                                                <span class="input-group-text bg-white">
+                                                    <img src="./assests/images/admin-calendar-blue.png">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control">
+
+                                        </div>
+                                        <select  class="form-control ml-2 " style="width: 200px;">
+                                            <option>9:00 AM</option>
+                                            <option>10:00 AM</option>
+                                            <option>11:00 AM</option>
+                                            <option>12:00 PM</option>
+                                            <option>1:00 PM</option>
+                                            <option>2:00 PM</option>
+                                            <option>3:00 PM</option>
+                                            <option>4:00 PM</option>
+                                            <option>5:00 PM</option>
+                                            </select>
+
+                                                <select  class="form-control w-50 " style="margin-left: 130px;" >
+                                                    <option>9:00 AM</option>
+                                                    <option>10:00 AM</option>
+                                                    <option>11:00 AM</option>
+                                                    <option>12:00 PM</option>
+                                                    <option>1:00 PM</option>
+                                                    <option>2:00 PM</option>
+                                                    <option>3:00 PM</option>
+                                                    <option>4:00 PM</option>
+                                                    <option>5:00 PM</option>
+                                                  </select>
+                                    </div>
+                                </form>
+                                
+                                    <hr>
+                                    <h6>Extra Services</h6>
+                                    <div class="services d-flex justify-content-around align-items-center">
+                                        <div  style="padding: 22px 28px;"  id="ser_1">
+                                            <a href="" onclick="services()"><img src="./assests/images/service_1.png"></a>
+                                        </div>
+                                        <div style="padding: 22px 32px;"> 
+                                            <img src="./assests/images/service_2.png">
+                                        </div>
+                                        <div style="padding: 32px 22px;">
+                                            <img src="./assests/images/service_3.png">
+                                        </div>
+                                        <div class="p-4">
+                                            <img src="./assests/images/service_4.png">
+                                        </div>
+                                        <div class="p-4">
+                                            <img src="./assests/images/service_5.png">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-around align-items-center " >
+                                        <p>inside cabinets</p>
+                                        <p >inside fridge</p>
+                                        <p>inside oven</p>
+                                        <p>Laundry wash & dry</p>
+                                        <p>Interior windows</p>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea3"><h6>Comments</h6></label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                        <label class="custom-control-label" for="defaultUnchecked">I have pets at home</label>
+                                    </div>
+
+                                    <hr>
+
+                                    <button type="button" class="export-btn float-right">Continue</button>
+                            </div> 
+
+                            <div class="form-group mt-4 form-check-inline" id="div3">
+                                hello from div3
+                            </div> 
+
+                            <div class="form-group mt-4 form-check-inline" id="div4">
+                                hello from div4
+                            </div> 
+                                         
+                        </div>
+
+                            <div >
+                                <div class="payment-sum">
+                                    <h6> Payment Summary</h6>
+                                    <p>01/01/2018 <br> @ 4:00 pm 1 bed, 1 bath.</p>
+                                    <p style="font-size: 18px;"><b>Duration</b></p>
+                                    <p>Basic : <span style="padding-left: 190px;">3 Hrs</span></p>
+                                    <p>inside cabinets(extra) : <span style="padding-left: 75px;">30 mins</span></p>
+                                    <hr>
+                                    <p><b>Total Service Time</b> : <span style="padding-left: 95px;">3.5 Hrs</span></p>
+                                    <hr>
+                                    <p>Per cleaning : <span style="padding-left: 140px;">$87 </span></p>
+                                    <p>Discount : <span style="padding-left: 160px;">-$27</span></p>
+                                    <hr>
+                                    <div class="align-items-center">
+                                        <p style="color: #1D7A8C;">Total Payment : <span style="color: #1D7A8C;font-size: 42px;padding-left: 120px;"><b>$63</b></span></p>
+                                        <p>Effective Price : <span style="font-size: 20px;padding-left: 120px;"><b>$50.4</b></span></p>
+                                        <p style="font-size: 14px;">*You will save 20% according to §35a EStG.</p>
+                                        
+                                    </div>
+                                    <div class="paymentsum-foot">
+                                        <span><i class="far fa-smile"></i></span>  See what is always included
+                                    </div>
+
+                                </div>
+                                <div class="payment-que">
+                                    <h6> Questions? </h6>
+
+                                    <p><span><img src="./assests/images/right-arrow-grey.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1"></span> Which Helperland professional will come to my place?</p>
+                                    <p  class="collapse-content" id="demo1" class="collapse show" ></p>
+                                    <p><span><img src="./assests/images/right-arrow-grey.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1"></span> Which Helperland professional will come to my place?</p>
+                                    <p  class="collapse-content" id="demo1" class="collapse show" ></p>
+                                    <p><span><img src="./assests/images/right-arrow-grey.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1"></span> Which Helperland professional will come to my place?</p>
+                                    <p  class="collapse-content" id="demo1" class="collapse show" ></p>
+                                    <p><span><img src="./assests/images/right-arrow-grey.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1"></span> Which Helperland professional will come to my place?</p>
+                                    <p  class="collapse-content" id="demo1" class="collapse show" ></p>
+                                    <p><span><img src="./assests/images/right-arrow-grey.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1"></span> Which Helperland professional will come to my place?</p>
+                                    <p  class="collapse-content" id="demo1" class="collapse show" ></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+
+            <a href="#top" class="to-top">
+                <img src="./assests/images/up-aero.png">
+              </a>
+            <section class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-3 footer-logo">
+                            <a href=#><img src="./assests/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
+                        </div>
+                        <div class="col-sm-6 footer-links">
+                            <p>
+                                <a href="#">HOME</a>   
+                                <a href="#">ABOUT</a>   
+                                <a href="#">TESTIMONIALS</a>   
+                                <a href="#">FAQS</a>  
+                                <a href="#">INSURANCE</a>   
+                                <a href="#">POLICY</a>   
+                                <a href="#">IMPRESSUM</a>     
+                            </p>
+                        </div>
+                        <div class="col-sm-3 social-media-icons">
+                
+                                <a href=#><img src="./assests/images/ic-facebook.png" style="padding-right: 15px;"></a>
+                                <a href=#><img src="./assests/images/ic-instagram.png"></a>
+                        </div>
+                    </div>
+                    <div class="footer-links-2">
+                        <hr style="border: #424242 1px solid;text-align: center;width: 1150px;">
+                    </div>
+                    
+                    <div class="footer-links-2">
+                        <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
+                    </div>
+                    </div>
+                </section>
+    
+        </div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="./assests/main.js"></script>
+</html>

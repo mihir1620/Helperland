@@ -378,6 +378,9 @@ span img{
     transition: all .3s;
   }
   
+  .to-top:hover{
+      background-color: #1D7A8C;
+  }
   .to-top.active {
     bottom:32px;
     pointer-events: auto;
