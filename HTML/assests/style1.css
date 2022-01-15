@@ -34,10 +34,15 @@ nav{
     border: 1px solid #FFFFFF80;
     border-radius: 20px;
 }
+.fa-bars{
+    color: white;font-size: 28px;
+}
 .bgcolor.scrolled{
-    background-color: #73706C;
+    background-color: rgb(44, 43, 43);
     transition: ease .3s;
     height: auto;
+    opacity: 0.8;   
+
 }
 .bgcolor.scrolled .navbar-brand img{
     height: 50%;

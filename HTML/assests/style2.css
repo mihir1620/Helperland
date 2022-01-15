@@ -44,7 +44,21 @@ ul li{
 ul li a:hover{
     color: white;
 }
+.fa-bars{
+    color: white;font-size: 28px;
+}
+.bgcolor.scrolled{
+    background-color: rgb(44, 43, 43);
+    transition: ease .3s;
+    height: auto;
+    opacity: 0.9;   
 
+}
+.bgcolor.scrolled .navbar-brand img{
+    height: 50%;
+    width: 50%;
+    transition: ease .3s;
+} 
 .faq-banner div img{
     width:100%;height: auto;
 }
@@ -511,6 +525,7 @@ div p a:hover{
     font-family: Roboto;
     min-height: 119px;
     padding-top: 38px ;
+    margin-top: 80px;
     
 }
 /* .sidebar{
@@ -1000,9 +1015,15 @@ a.book-services{
 
 }
 
-@media (max-width:768px)
+@media (max-width:991px)
 {
 
+    .payment-sum{
+        display: none;
+    }
+    .payment-que{
+        display: none;
+    }
 }
 
 @media(max-width:991px){
