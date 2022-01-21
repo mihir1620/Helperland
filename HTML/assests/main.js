@@ -47,8 +47,10 @@ function show4(){
   document.getElementById('div4').style.display="flex";
 }
 
-$('#datepicker').datepicker({  
-});  
+
+$(document).ready(function(){
+  $('#datepicker').datepicker(); 
+ });
 
 // function services(){
 //   document.getElementById('ser_1')

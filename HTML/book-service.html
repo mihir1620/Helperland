@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assests/style2.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <link href='bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
+        <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+        
     </head>
 
     <body>
@@ -86,33 +88,172 @@
                 <div class="service-tabs" >
                     <ul class="nav flex-nowrap">
                         <li class="nav-item" role="button">
-                          <button class="nav-link d-flex align-items-center" type="button" >
+                          <button class="nav-link d-flex align-items-center nav-flex" type="button" >
                              <img src="./assests/images/setup-service-white.png"> 
                              <p>Setup Service</p>
                           </button>
                         </li>
 
                         <li class="nav-item" role="button" >
-                          <button class="nav-link d-flex align-items-center" type="button" >
+                          <button class="nav-link d-flex align-items-center nav-flex" type="button" >
                              <img src="./assests/images/schedule-white.png"> 
                              <p>Schedule & Plan</p>
                           </button>
                         </li>
 
                         <li class="nav-item"  role="button">
-                            <button class="nav-link d-flex align-items-center" type="button" >
+                            <button class="nav-link d-flex align-items-center nav-flex" type="button" >
                                <img src="./assests/images/details-white.png"> 
                                <p>Your Details</p>
                             </button>
                           </li>
 
                           <li class="nav-item" role="button" >
-                            <button class="nav-link d-flex align-items-center" type="button" >
+                            <button class="nav-link d-flex align-items-center nav-flex" type="button" >
                                <img src="./assests/images/payment-white.png"> 
                                <p>Make Payment</p>
                             </button>
                           </li>
-                      </ul>
+                        </ul>
+                        <form >
+
+                            <div class=" set-up-service mt-4 ">
+                                <p><b>Please Enter Your Zipcode:</b></p>
+                                <div class="form-check-inline">
+                                <input type="text" class="form-control w-50 zipcode" id="zipcode">
+                                <button class="check-zip-btn">Check Availibility</button>
+                            </div>
+                            </div>
+            
+                            <div class="schedule-plan mt-4">
+                                <div class="row">
+                                    <div class="col form-group ">
+                                        <p><b>Select number of rooms and bath:</b></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <select class="form-control form-check-inline" id="no_of_bed">
+                                        <option selected value="1">1 Bed</option>
+                                        <option value="2">2 Bed</option>
+                                        <option value="3">3 Bed</option>
+                                        <option value="4">4 Bed</option>
+                                        <option value="5">5 Bed</option>
+                                    </select>
+                                    <select class="form-control form-check-inline" id="no_of_bath">
+                                        <option selected value="1">1 Bath</option>
+                                        <option value="2">2 Bath</option>
+                                        <option value="3">3 Bath</option>
+                                        <option value="4">4 Bath</option>
+                                        <option value="5">5 Bath</option>
+                                    </select>
+                                </div>
+
+                                <hr>
+                                        
+                                <div class="row">
+                                    <div class="col-lg-5 form-group ">
+                                        <p><b>When do you need cleaner:</b></p>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-6 form-group ">
+                                        <p><b>How long do you need your cleaner to stay:</b></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <select class="form-control form-check-inline" id="datepicker">
+                                            <option selected value="1">1 Bed</option>
+                                            <option value="2">2 Bed</option>
+                                            <option value="3">3 Bed</option>
+                                            <option value="4">4 Bed</option>
+                                            <option value="5">5 Bed</option>
+                                        </select>
+                                        <div class='container' style='margin-top: 100px;'>
+                                            <input type='text' class="form-control" id='datepicker' style='width: 300px;' > <br>
+                                            <input type='text' class="form-control" data-provide="datepicker" style='width: 300px;' >
+                                           </div>
+                                           
+                                           <!-- Script -->
+
+                                        <select class="form-control form-check-inline" id="scheduled_time">
+                                            <option selected value="1">8:00</option>
+                                            <option value="2">9:00</option>
+                                            <option value="3">10:00</option>
+                                            <option value="4">11:00</option>
+                                            <option value="5">12:00</option>
+                                            <option value="2">13:00</option>
+                                            <option value="3">14:00</option>
+                                            <option value="4">15:00</option>
+                                            <option value="5">16:00</option>
+                                            <option value="4">17:00</option>
+                                            <option value="5">18:00</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <select class="form-control form-check-inline" id="total_hours">
+                                            <option selected value="1">3:00 Hours</option>
+                                            <option value="2">3:30 Hours</option>
+                                            <option value="3">4:00 Hours</option>
+                                            <option value="4">4:30 Hours</option>
+                                            <option value="5">5:00 Hours</option>
+                                            <option value="2">5:30 Hours</option>
+                                            <option value="5">6:00 Hours</option>
+                                            <option value="2">6:30 Hours</option>
+                                            <option value="5">7:00 Hours</option>
+                                            <option value="2">7:30 Hours</option>
+                                            <option value="5">8:00 Hours</option>
+                                            <option value="2">8:30 Hours</option>
+                                            <option value="5">9:00 Hours</option>
+                                            <option value="2">9:30 Hours</option>
+                                            <option value="5">10:00 Hours</option>
+                                            <option value="2">10:30 Hours</option>
+                                            <option value="5">11:00 Hours</option>
+                                            <option value="2">11:30 Hours</option>
+                                            <option value="5">12:00 Hours</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="extra_services">
+                                    <p><b>Extra Services</b></p>
+                                </div>
+
+                                <div class="services-img">
+                                    <div>
+                                        <img src="./assests/images/service_1.png">
+                                    </div>
+                                    <div>
+                                        <img src="./assests/images/service_2.png">
+                                    </div>
+                                    <div>
+                                        <img src="./assests/images/service_3.png">
+                                    </div>
+                                    <div>
+                                        <img src="./assests/images/service_4.png">
+                                    </div>
+                                    <div>
+                                        <img src="./assests/images/service_5.png">
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="commnets">
+                                    <p><b>Comments</b></p>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="comments" rows="3"></textarea>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="pet_chk">
+                                    <label class="form-check-label" for="pets">I have pets at home</label>
+                                </div>
+
+                            </div>
+                        </form>
                 </div>
 
                 <div class="payment-slip" >
@@ -140,18 +281,119 @@
                           <p>Effective Price<span>$50.4</span></p>
                           <!-- <p>You will save 20% according to...</p> -->
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" role="button" data-toggle="modal" data-target="#include">
                             <p><img src="./assests/images/smiley.png"><span>  See What is always include</p></span></p>
                         </div>
                         </div>
-        
-
                     </div>  
                 
             </section>
-                
+
         </section>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary payment-modal-btn" data-toggle="modal" data-target="#exampleModalLong">
+    Payment Summary
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog2 " role="document">
+      <div class="modal-content">
+        <div class="modal-header m-h">
+          <h5 class="modal-title" id="exampleModalLongTitle">                            
+            <p >
+            Payment Summary
+          </p>
+        </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="close-modal"><i class="fas fa-times-circle"></i></span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>01/01/2018 @ 4:00 pm</p>
+            <p>1 bed ,1 bath</p>
+            <p ><b class="sub-title">Duration</b></p>
+            <p>Basic<span>3 Hrs</span></p>
+            <p>Inside cabinets(extra)<span>30 mins</span></p>
+            <hr>
+            <p><b class="sub-title">Total Service Time<span>3.5 Hrs</span></b></p>
+            <hr>
+            <p>Per Cleaning<span>$87</span></p>
+            <p>Discount<span>-$27</span></p>
+            <hr>
+            <p class="total-pay"><b>Total Payment<span class="paymentsub">$63</span></b></p>
+            <br>
+            <p>Effective Price<span>$50.4</span></p>
+        </div>
+        <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">
+            <p><img src="./assests/images/smiley.png"><span>  See What is always include</p></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Include Modal -->
+  <div class="modal fade" id="include"  role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog3 modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="exampleModalLongTitle">                            
+            <p>
+                <b>What cleaning with us includes</b>
+          </p>
+        </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ><i class="fas fa-times-circle"></i></span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p><b>Living rooms and bedrooms</b></p>
+
+                        <p>
+                            Cleaning of mirrors, glass and other surfaces
+                        </p>
+                        <p>
+                            Cleaning of the floors
+                        </p>
+                        <p>
+                            Emptying Recycle Bins
+                        </p>
+                        <p>
+                            Tidy
+                        </p>
+                        <p>
+                            Making beds
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <p><b>Bathroom</b></p>
+                        <p>Cleaning of guard basin, toilet, shower and tub</p>
+                        <p>Cleaning of mirrors, glass and other surfaces</p>
+                        <p>Cleaning of the floors</p>
+                        <p>Emptying of waste containers</p>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <p><b>Kitchen</b></p>
+                        <p>Dust removal on accessible surfaces</p>
+                        <p>Filling the dishwasher or washing the dishes</p>
+                        <p>Cleaning of the floors</p>
+                        <p>Emptying of waste containers</p>
+                        <p>Cleaning of the sink and stove (outside)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
             <a href="#top" class="to-top">
                 <img src="./assests/images/up-aero.png">
               </a>
@@ -195,6 +437,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3960232895.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="./assests/main.js"></script>
+   
+
+
 </html>

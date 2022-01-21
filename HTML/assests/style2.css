@@ -478,7 +478,7 @@ div p a:hover{
     max-height: 48px;
 }
 
-.modal-dialog{
+.modal-dialog1{
     width: 250px;
     position: absolute;
     right: 0;
@@ -966,17 +966,6 @@ a.book-services{
     font-size: 14px;font-family: Roboto;color: #4F4F4F;
 }
 
-.check-zip-btn{
-    background-color: #146371;
-    border-radius: 17px;
-    border: none;
-    min-width: 160px;
-    min-height: 44px;
-    color: white;
-    font-family: Roboto;
-    margin-left: 10px;
-}
-
  #div1{
     display: flex;
 }
@@ -1013,14 +1002,10 @@ a.book-services{
     justify-content: center;
     /* margin-left: 10px !important; */
     /* margin: 0 15px !important; */
-
-
 }
 
 .service-tabs{
-    display: flex;
- justify-content: center;
- margin: 0px 15px;
+    margin: 0px 15px;
 }
 
 .service-tabs ul .nav-item{
@@ -1046,6 +1031,7 @@ a.book-services{
     display: flex;
     justify-content: center;
     margin-right:15px ;
+    box-shadow: 0px 0px 10px #ccc;
 }
 
 .payment-slip .card
@@ -1055,7 +1041,6 @@ a.book-services{
 
 .card-header{
     background-color: #1d7a8c;
-
 }
 .card-title{
     text-align: left;
@@ -1095,9 +1080,84 @@ a.book-services{
     font-family: Roboto;
     font-size: 14px;
 }
+
+.payment-modal-btn{
+    display: none;
+}
+.m-h{
+    background-color: #1d7a8c;
+    text-align: left;
+    font-size: 18px;
+    font-family: Roboto;
+    color: white;
+    align-items: center;
+}
+.close-modal{
+    color: white;font-size: 28px;
+}
+.modal-dialog2{
+    width: auto;
+    
+}
+
+.modal-body{
+    font-family: Roboto;
+    font-size: 16px ;
+    color: #4F4F4F;
+}
+.modal-body span{
+    float: right;
+}
+
+.modal-footer p {
+    color: #8D8D8D;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+.modal-dialog3{
+    width: auto;text-align: left;
+    font-family: Roboto;
+    font-size: 18px;
+    color: #4F4F4F;
+}
+
+.zipcode{
+    margin-left: 10px;
+}
+
+.check-zip-btn{
+    background-color: #1d7a8c;
+    border-radius: 20px;
+    border: none;
+    min-width: 160px;
+    min-height: 44px;
+    color: white;
+    font-family: Roboto;
+    margin-left: 10px;
+}
+
+.schedule-plan select{
+    width: 100px;
+}
+
+.services-img{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.services-img div{
+    border: #4F4F4F 1px solid;
+    border-radius: 50%;
+}
 @media (max-width:915px){
     .payment-slip{
         display: none;
+    }
+    .payment-modal-btn{
+        display: block;
+        margin: auto;
+        margin-top: 15px;
     }
 }
 
@@ -1139,10 +1199,12 @@ a.book-services{
 }
 
 @media(max-width:545px){
-    .service-tabs{
+
+    /* .service-tabs{
         width: 100%;
-        margin: auto;
-    }
+        padding-left: auto !important;
+        padding-right: auto !important;
+    } */
     .service-tabs ul li .nav-link p{
         display: none;
     }
