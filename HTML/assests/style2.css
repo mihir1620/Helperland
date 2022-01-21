@@ -1147,8 +1147,12 @@ a.book-services{
     justify-content: space-between;
 }
 .services-img div{
-    border: #4F4F4F 1px solid;
-    border-radius: 50%;
+    /* border: #4F4F4F 1px solid;
+    border-radius: 50%; */
+}
+
+#datepicker{
+    width: 200px;
 }
 @media (max-width:915px){
     .payment-slip{
