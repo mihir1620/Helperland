@@ -1029,14 +1029,15 @@ a.book-services{
 
 .payment-slip{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-right:15px ;
-    box-shadow: 0px 0px 10px #ccc;
+    
 }
 
 .payment-slip .card
 {
     width: 360px;
+    box-shadow: 0px 0px 10px #ccc;
 }
 
 .card-header{
@@ -1151,8 +1152,22 @@ a.book-services{
     border-radius: 50%; */
 }
 
+.faqs{
+    margin-top: 15px;
+}
 #datepicker{
     width: 200px;
+}
+
+.address{
+    margin-top: 8px;
+    padding: 8px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+}
+
+#AddForm{
+    display: flex;
 }
 @media (max-width:915px){
     .payment-slip{

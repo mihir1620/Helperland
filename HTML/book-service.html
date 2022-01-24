@@ -86,28 +86,28 @@
                 <div class="service-tabs" >
                     <ul class="nav flex-nowrap">
                         <li class="nav-item" role="button">
-                          <button class="nav-link d-flex align-items-center nav-flex" type="button" >
+                          <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show1()">
                              <img src="./assests/images/setup-service-white.png"> 
                              <p>Setup Service</p>
                           </button>
                         </li>
 
                         <li class="nav-item" role="button" >
-                          <button class="nav-link d-flex align-items-center nav-flex" type="button" >
+                          <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show2()">
                              <img src="./assests/images/schedule-white.png"> 
                              <p>Schedule & Plan</p>
                           </button>
                         </li>
 
                         <li class="nav-item"  role="button">
-                            <button class="nav-link d-flex align-items-center nav-flex" type="button" >
+                            <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show3()">
                                <img src="./assests/images/details-white.png"> 
                                <p>Your Details</p>
                             </button>
                           </li>
 
                           <li class="nav-item" role="button" >
-                            <button class="nav-link d-flex align-items-center nav-flex" type="button" >
+                            <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show4()">
                                <img src="./assests/images/payment-white.png"> 
                                <p>Make Payment</p>
                             </button>
@@ -115,15 +115,20 @@
                         </ul>
                         <form >
 
-                            <div class=" set-up-service mt-4 ">
-                                <p><b>Please Enter Your Zipcode:</b></p>
+                            <div class="set-up-service mt-4 " id="div1">
+                                
+                                    <div class="row">
+                                        <div class="col">
+                                            <p><b>Please Enter Your Zipcode:</b></p>
+                                        </div>
+                                    </div>
                                 <div class="form-check-inline">
                                 <input type="text" class="form-control w-50 zipcode" id="zipcode">
-                                <button class="check-zip-btn">Check Availibility</button>
+                                <button class="check-zip-btn" onclick="show2()">Check Availibility</button>
                             </div>
                             </div>
             
-                            <div class="schedule-plan mt-4">
+                            <div class="schedule-plan mt-4" id="div2">
                                 <div class="row">
                                     <div class="col form-group ">
                                         <p><b>Select number of rooms and bath:</b></p>
@@ -239,6 +244,62 @@
                                     <label class="form-check-label" for="pets">I have pets at home</label>
                                 </div>
 
+                                <hr>
+
+                                <button class="check-zip-btn" style="float: right;" >Continue</button>
+                            </div>
+
+                            <div class="details" id="div3">
+                                <div class="container">
+                                    <div class="row address">
+                                        <div class="col-lg-1">
+                                            <label><input type="radio" name="radio" checked></label>
+                                        </div>
+                                        <div class="col-lg-11">
+                                            <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
+                                            <div class="row"> <b>Phone number</b>: 9988556644</div>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="row address">
+                                        <div class="col-lg-1">
+                                            <label><input type="radio" name="radio" ></label>
+                                        </div>
+                                        <div class="col-lg-11">
+                                            <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
+                                            <div class="row"> <b>Phone number</b>: 9988556644</div>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="row address">
+                                        <div class="col-lg-1">
+                                            <label><input type="radio" name="radio" ></label>
+                                        </div>
+                                        <div class="col-lg-11">
+                                            <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
+                                            <div class="row"> <b>Phone number</b>: 9988556644</div>
+                                           
+                                        </div>
+                                    </div>
+
+                                        <button class="check-zip-btn mt-3" onclick="displayAddForm()">+ Add New Address</button>
+
+                                        <div class="row address" id="AddForm">
+                                            <form class="">
+                                                <div class="form-group">
+                                                    <label for="street">Street</label>
+                                                    <input type="text" class="form-control form-check-inline" placeholder="Enter Street" id="street">
+                                                </div>
+                                                <div class="form-group ml-4">
+                                                    <label for="house_no">House Number</label>
+                                                    <input type="text" class="form-control form-check-inline" placeholder="Enter House Number" id="House_no">
+                                                </div>
+                                                
+                                              </form>
+                                        </div>
+                                </div>
                             </div>
                         </form>
                 </div>
@@ -272,8 +333,19 @@
                             <p><img src="./assests/images/smiley.png"><span>  See What is always include</p></span></p>
                         </div>
                         </div>
+
+                        <div class=" faqs">
+                            <!-- <div class="row">
+                                <img src="./assests/images/right-arrow-grey.png" role="button" data-toggle="collapse" data-target="#demo">
+                                <div id="demo" class="collapse">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                                </div>
+                            </div> -->
+
+                        </div>
                     </div>  
                 
+
             </section>
 
         </section>

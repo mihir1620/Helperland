@@ -18,6 +18,7 @@ $(document).ready(function() {
 $('#example').DataTable();
 } );
 
+
 function show1(){
 
   document.getElementById('div1').style="display:flex;";
@@ -47,7 +48,9 @@ function show4(){
   document.getElementById('div4').style.display="flex";
 }
 
-
+function displayAddForm(){
+  document.getElementById('AddForm').style.display="flex";
+}
 $(document).ready(function(){
   var date_input=$('input[name="date"]'); 
   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
