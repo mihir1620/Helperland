@@ -86,30 +86,30 @@
                 <div class="service-tabs" >
                     <ul class="nav flex-nowrap">
                         <li class="nav-item" role="button">
-                          <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show1()">
-                             <img src="./assests/images/setup-service-white.png"> 
-                             <p>Setup Service</p>
+                          <button class="nav-link d-flex align-items-center nav-flex tab1" id="service-tab-1" type="button" onclick="show1()">
+                             <img id="set-up-img" src="./assests/images/setup-service-white.png"> 
+                             <p id="set-p-text">Setup Service</p>
                           </button>
                         </li>
 
                         <li class="nav-item" role="button" >
-                          <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show2()">
-                             <img src="./assests/images/schedule-white.png"> 
-                             <p>Schedule & Plan</p>
+                          <button class="nav-link d-flex align-items-center nav-flex " id="service-tab-2" type="button" onclick="show2()">
+                             <img id="schedule-img" src="./assests/images/schedule.png"> 
+                             <p id="schedule-p-text">Schedule & Plan</p>
                           </button>
                         </li>
 
                         <li class="nav-item"  role="button">
-                            <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show3()">
-                               <img src="./assests/images/details-white.png"> 
-                               <p>Your Details</p>
+                            <button class="nav-link d-flex align-items-center nav-flex" id="service-tab-3" type="button" onclick="show3()">
+                               <img id="your-detail-img" src="./assests/images/details.png"> 
+                               <p id="detail-p-text">Your Details</p>
                             </button>
                           </li>
 
                           <li class="nav-item" role="button" >
-                            <button class="nav-link d-flex align-items-center nav-flex" type="button" onclick="show4()">
-                               <img src="./assests/images/payment-white.png"> 
-                               <p>Make Payment</p>
+                            <button class="nav-link d-flex align-items-center nav-flex" id="service-tab-4" type="button" onclick="show4()">
+                               <img id="payment-img" src="./assests/images/payment.png"> 
+                               <p id="payment-p-text">Make Payment</p>
                             </button>
                           </li>
                         </ul>
@@ -124,7 +124,7 @@
                                     </div>
                                 <div class="form-check-inline">
                                 <input type="text" class="form-control w-50 zipcode" id="zipcode">
-                                <button class="check-zip-btn" onclick="show2()">Check Availibility</button>
+                                <button class="check-zip-btn">Check Availibility</button>
                             </div>
                             </div>
             
@@ -165,7 +165,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
 
-                                        <input  class="form-control form-check-inline" id="datepicker" type="date">
+                                        <input  class="form-control form-check-inline"  id="datepicker" type="date" >
 
                                         <select class="form-control form-check-inline" id="scheduled_time">
                                             <option selected value="1">8:00</option>
@@ -246,7 +246,7 @@
 
                                 <hr>
 
-                                <button class="check-zip-btn" style="float: right;" >Continue</button>
+                                <button  class="check-zip-btn "  style="float: right;" >Continue</button>
                             </div>
 
                             <div class="details" id="div3">
@@ -284,23 +284,136 @@
                                         </div>
                                     </div>
 
-                                        <button class="check-zip-btn mt-3" onclick="displayAddForm()">+ Add New Address</button>
+                                        <button type="button" id="addAdd" class="add-Add-btn mt-3" onclick="displayAddForm()">+ Add New Address</button>
 
                                         <div class="row address" id="AddForm">
-                                            <form class="">
-                                                <div class="form-group">
-                                                    <label for="street">Street</label>
-                                                    <input type="text" class="form-control form-check-inline" placeholder="Enter Street" id="street">
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label>Street Name</label>
+                                                        <input type="text" class="form-control" placeholder="Enter Street Name" id="street">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label>House Number</label>
+                                                        <input type="text" class="form-control" placeholder="Enter House Number" id="house_no">
+                                                    </div>
                                                 </div>
-                                                <div class="form-group ml-4">
-                                                    <label for="house_no">House Number</label>
-                                                    <input type="text" class="form-control form-check-inline" placeholder="Enter House Number" id="House_no">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label>Postal code</label>
+                                                        <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" placeholder="Enter City" id="city">    
+                                                    </div>
                                                 </div>
-                                                
-                                              </form>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label>Phone no</label>
+                                                        <div class="form-group mt-2">
+                                                            <div class="input-group ">
+                                                              <div class="input-group-prepend">
+                                                                <div class="input-group-text">+49</div>
+                                                              </div>
+                                                                <input class="form-control" type="tel" id="MobileNo" name="MobileNo" placeholder="Mobile Number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <input type="button"  value="Save" class="saveAdd">
+                                                    <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
+                                                </div>
                                         </div>
+                                        <hr>
+                                        <p><b>Your Favorite Service Provider</b></p>
+                                        <p>You can Choose your service provider from below list</p>
+                                        <div class="d-flex justify-content-start">
+                                            <div>
+                                                <label class="fav-pro">
+                                                    <img src="./assests/images/cap.png" >
+                                                    
+                                                </label>
+                                                <h6 class="text-left">Sandip Patel</h6>
+                                                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
+                                            </div>
+                                            <div class="ml-2">
+                                                <label class="fav-pro">
+                                                    <img src="./assests/images/cap.png" >
+                                                    
+                                                </label>
+                                                <h6>Sandip Patel</h6>
+                                                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
+                                            </div>
+                                        </div>
+                                        
+                                        <hr>
+                                       
+                                        <button  class="check-zip-btn "  style="float: right;" >Continue</button>
                                 </div>
                             </div>
+
+                            <div class="make_payment mt-4" id="div4">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <p><b>Pay securely on Helperland payment gateway</b></p>
+
+                                        <div class="row form-group">
+                                            <div class="col-lg-10">
+                                                <label class="form-label">Enter card number</label>
+                                                <input type="text"  class="form-control" placeholder="XXXX XXXX XXXX XXXX">
+                                            </div>
+        
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-lg-10 d-flex align-items-center ">
+                                                <div class="">
+                                                    <label class="form-label" >Exp. Date</label>
+                                                    <input type="text" onfocus="(this.type='month')" class="form-control w-75" placeholder="MM/YYYY">
+                                                </div>
+                                                <div class="">
+                                                    <label class="form-label">CVV</label>
+                                                    <input type="text" class="form-control w-75" placeholder="CVV">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col-lg-10 d-flex align-items-center justify-content-end">
+                                                Accepted Cards
+                                            </div>
+                                            <div class="col-lg-10 d-flex align-items-center justify-content-end">
+                                                
+                                                <img src="./assests/images/maestro.svg" style="height: 30px;width: 30px;">
+                                                <img src="./assests/images/mastercard.svg" style="height: 30px;width: 30px;">
+                                                <img src="./assests/images/visa.svg" style="height: 30px;width: 30px;">
+                                            </div>
+                                        </div>
+                                        <div class="row" >
+                                            <div class="col">
+                                                <hr>
+                                                <label class="checkbox-inline">
+                                                <input type="checkbox" class="form-check-inline">
+                                                <span class="terms">I accepted <a href="#"> terms and conditions</a>, the <a href="#">cancellation policy</a> and the <a href="#">privacy policy</a>. 
+                                                    I confirm that Helperland starts to execute the contract before the expiry of the withdrawal period 
+                                                    and I lose my right of withdrawal as a consumer with full performance of the contract.</span>
+                                                </label>
+                                               
+                                                <hr>
+                                            </div>
+
+                                        </div>
+                                        <button  class="check-zip-btn "  style="float: right;" >Complete Booking</button>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                            
                         </form>
                 </div>
 
@@ -413,38 +526,56 @@
                     <div class="col-lg-4">
                         <p><b>Living rooms and bedrooms</b></p>
 
-                        <p>
+                        <p> <img src="./assests/images/included.png">
                             Cleaning of mirrors, glass and other surfaces
                         </p>
-                        <p>
+                        <p> <img src="./assests/images/included.png">
                             Cleaning of the floors
                         </p>
-                        <p>
+                        <p> <img src="./assests/images/included.png">
                             Emptying Recycle Bins
                         </p>
-                        <p>
+                        <p> <img src="./assests/images/included.png">
                             Tidy
                         </p>
-                        <p>
+                        <p> <img src="./assests/images/included.png">
                             Making beds
                         </p>
                     </div>
 
                     <div class="col-lg-4">
                         <p><b>Bathroom</b></p>
-                        <p>Cleaning of guard basin, toilet, shower and tub</p>
-                        <p>Cleaning of mirrors, glass and other surfaces</p>
-                        <p>Cleaning of the floors</p>
-                        <p>Emptying of waste containers</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Cleaning of guard basin, toilet, shower and tub</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Cleaning of mirrors, glass and other surfaces</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Cleaning of the floors</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Emptying of waste containers</p>
                     </div>
 
                     <div class="col-lg-4">
                         <p><b>Kitchen</b></p>
-                        <p>Dust removal on accessible surfaces</p>
-                        <p>Filling the dishwasher or washing the dishes</p>
-                        <p>Cleaning of the floors</p>
-                        <p>Emptying of waste containers</p>
-                        <p>Cleaning of the sink and stove (outside)</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Dust removal on accessible surfaces</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Filling the dishwasher or washing the dishes</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Cleaning of the floors</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Emptying of waste containers</p>
+                        <p>
+                            <img src="./assests/images/included.png">
+                            Cleaning of the sink and stove (outside)</p>
                     </div>
                 </div>
             </div>

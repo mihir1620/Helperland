@@ -1015,16 +1015,29 @@ a.book-services{
 }
 .service-tabs ul li .nav-link{
     border: none;
-    background-color: #1d7a8c;    
+    background-color: #F3F3F3;    
     height: 70px;
     align-items: center;
 }
 
+.tab1{
+    border: none;
+    background-color: #1d7a8c !important;    
+    height: 70px;
+    align-items: center;
+
+}
+.service-tabs ul li .tab1 p{
+    margin:  0px;
+    font-size: 18px;
+    font-family: Roboto;
+    color: #F1F1F1 !important;
+}
 .service-tabs ul li .nav-link p{
     margin:  0px;
     font-size: 18px;
     font-family: Roboto;
-    color: white;
+    color: #4f4f4f;
 }
 
 .payment-slip{
@@ -1165,9 +1178,91 @@ a.book-services{
     border: 1px solid #c8c8c8;
     border-radius: 4px;
 }
+.fav-pro{
+    border: 1px solid #646464;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+}
 
+.fav-pro img{
+    height: 35px;width: 55px;text-align: center;margin-top: 30px;margin-left: 20px;
+}
 #AddForm{
-    display: flex;
+    display: none;
+}
+
+.saveAdd{
+    background-color: #6aa6b2;
+    border: none;
+    width: 110px;
+    border-radius: 24px;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-family: Roboto;
+}
+
+.saveAdd:hover{
+    background-color: #1d7a8c;
+}
+
+.cancelAdd{
+    border: none;
+    background-color: #f8f8f8;
+    width: 110px;
+    border-radius: 24px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: Roboto;
+}
+
+.cancelAdd:hover{
+    border: #1d7a8c 1px solid;
+    color: #1d7a8c;
+}
+
+.add-Add-btn{
+    background-color: white;
+    min-width: 160px;
+    min-height: 44px;
+    border: 1px solid #1d7a8c;
+    border-radius: 20px;
+    font-family: Roboto;
+    color: #1d7a8c;
+}
+
+.add-Add-btn:hover{
+    background-color: #1d7a8c;
+    color: white;
+}
+
+.select-pro-btn{
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    min-width: 120px;
+    min-height: 34px;
+    font-family: Roboto;
+}
+
+.select-pro-btn:hover{
+    background-color: #1d7a8c;
+    color: white;
+}
+
+.make_payment{
+    max-width: 700px;
+}
+
+.terms a{
+    text-decoration: none;
+    color: #29626D;
+}
+
+.terms a:hover{
+    color: #1d7a8c;
 }
 @media (max-width:915px){
     .payment-slip{
