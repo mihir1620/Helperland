@@ -3,46 +3,111 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HelperLand</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] | HelperLand</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="~/images/white-logo-transparent-background-copy-4.png" type="image/icon type">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HelperLand</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <header class="site-header">
+
+        <nav class="navbar nav navbar-expand-lg fixed-top bgcolor">
+            <a href="./Homepage.html" class="navbar-brand">
+                <img src="~/images/white-logo-transparent-background.png" class="helperhand-logo">
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto text-center">
+                    <li class="nav-item Rounded-Rectangle">
+                        <a href="#" class="nav-link">
+                            Book a Cleaner
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Price", "Price")" class="nav-link ">
+                            Prices
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            Our Guarantee
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Contact", "Contact")" class="nav-link">
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="nav-item Rounded-Rectangle">
+                        <a href="#" class="nav-link">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item Rounded-Rectangle">
+                        <a href="#" class="nav-link">
+                            Become a Helper
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="wrapper">
+
+        @RenderBody()
+
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - HelperLand - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <section class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 footer-logo">
+                    <a href=#><img src="~/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
+                </div>
+                <div class="col-sm-6 footer-links">
+                    <p>
+                        <a href="@Url.Action("Index", "Home")">HOME</a>
+                        <a href="@Url.Action("About", "About")">ABOUT</a>
+                        <a href="#">TESTIMONIALS</a>
+                        <a href="@Url.Action("FAQ", "FAQ")">FAQS</a>
+                        <a href="#">INSURANCE-POLICY</a>
+                        <a href="#">IMPRESSUM</a>
+                    </p>
+                </div>
+                <div class="col-sm-3 social-media-icons">
+
+                    <a href=#><img src="~/images/ic-facebook.png" style="padding-right: 15px;"></a>
+                    <a href=#><img src="~/images/ic-instagram.png"></a>
+                </div>
+            </div>
+            <div class="footer-links-2">
+                <hr style="border: #424242 1px solid;text-align: center;width: 1150px;">
+            </div>
+
+            <div class="footer-links-2">
+                <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </section>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

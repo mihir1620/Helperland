@@ -1,0 +1,111 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewData["Title"] = "FAQ";
+}
+
+<section class="faq-banner">
+    <div>
+        <img class="img-fluid" src="~/images/faq-banner.png" alt="faq" asp-append-version="true">
+    </div>
+</section>
+
+<section class="faq-header">
+    <div class="container">
+        <p>FAQs</p>
+    </div>
+
+    <div class="faq-pattern">
+        <hr>
+        <img src="~/images/star.png" style="width: 24px;height: 25px;">
+        <hr class="hr2">
+    </div>
+</section>
+
+<div class="container1">
+    <p>Whether you are Customer or Service provider, <br>We have tried our best to solve all your queries and questions.</p>
+</div>
+
+<section class="faqs">
+    <div class="container">
+        <div class="row faq-title">
+            <div class="col-1"></div>
+            <div class="col-5 Rectangle-21-copy-3" id="cust" type="button" onclick="customer_faq()">FOR CUSTOMERS</div>
+            <div class="col-5 Rectangle-21" id="pro" type="button" onclick="pro_faq()"> SERVICE PROVIDERS</div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 48px;" id="faq-customer">
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo1" aria-expanded="false" aria-controls="demo1" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">What's included in a cleaning?</div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo1">Bedroom, Living Room & Common Areas,Bathrooms,Kitchen,Extras</div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo2" role="button" data-toggle="collapse" data-target="#demo2" aria-expanded="false" aria-controls="demo2" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">Which Helperland professional will come to my place?</div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo2">Helperland has a vast network of experienced, top-rated cleaners. Based on the time and date of your request, we work to assign the best professional available.Like working with a specific pro? Add them to your Pro Team from the mobile app and they'll be requested first for all future bookings.You will receive an email with details about your professional prior to your appointment.</div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo3" role="button" data-toggle="collapse" data-target="#demo3" aria-expanded="false" aria-controls="demo3" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">Can I skip or reschedule bookings?</div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo3">You can reschedule any booking for free at least 24 hours in advance of the scheduled start time. If you need to skip a booking within the minimum commitment, we’ll credit the value of the booking to your account. You can use this credit on future cleanings and other Helperland services.</div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo4" role="button" data-toggle="collapse" data-target="#demo4" aria-expanded="false" aria-controls="demo4" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">Do I need to be home for the booking?</div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo4">We strongly recommend that you are home for the first clean of your booking to show your cleaner around. Some customers choose to give a spare key to their cleaner, but this decision is based on individual preferences.</div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 48px;" id="faq-pro">
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo5" role="button" data-toggle="collapse" data-target="#demo5" aria-expanded="false" aria-controls="demo5" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">How much do service providers earn? </div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo5">
+                The self-employed service providers working with Helperland set their own payouts, this means that
+                they decide how much they earn per hour.
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 0px;"><img src="~/images/vector-smart-object.png" href="#demo6" role="button" data-toggle="collapse" data-target="#demo6" aria-expanded="false" aria-controls="demo6" id="right-arrow" onclick="transformArrow(this)"></div>
+            <div class="col-10 collapse-title">Which Helperland professional will come to my place?</div>
+            <div class="col-1"></div>
+            <div class="col-0" style="margin-right: 20px;"></div>
+            <div class="col-10 collapse-content collapse" id="demo6">Helperland has a vast network of experienced, top-rated cleaners. Based on the time and date of your request, we work to assign the best professional available.Like working with a specific pro? Add them to your Pro Team from the mobile app and they'll be requested first for all future bookings.You will receive an email with details about your professional prior to your appointment.</div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <a href="#top" class="to-top">
+        <img src="~/images/up-aero.png">
+    </a>
+</section>
+

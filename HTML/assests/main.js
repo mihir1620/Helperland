@@ -13,6 +13,23 @@ $(window).scroll(function(){
     $('nav').toggleClass('scrolled',$(this).scrollTop()>60);
 });
 
+function transformArrow(arrow){
+  arrow.classList.toggle('rotate-arrow');
+}
+
+function customer_faq(){
+  document.getElementById('faq-customer').style="display:block;margin-top:40px";
+  document.getElementById('faq-pro').style="display:none";
+  document.getElementById('cust').style="background-color: #1d7a8c;color:white";
+  document.getElementById('pro').style="background-color: #f6f6f6;color:#4F4F4F;transition: ease-in 0.3s;";
+}
+
+function pro_faq(){
+  document.getElementById('faq-customer').style="display:none";
+  document.getElementById('faq-pro').style="display:block;margin-top:40px";
+  document.getElementById('pro').style="background-color: #1d7a8c;color:white";
+  document.getElementById('cust').style="background-color: #f6f6f6;color:#4F4F4F;transition:  ease-in 0.3s;";
+}
 
 $(document).ready(function() {
 $('#example').DataTable();

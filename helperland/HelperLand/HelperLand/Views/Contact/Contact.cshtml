@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+}
+
+
+<sectiion class="contact-banner">
+    <img class="img-fluid" src="~/images/group-16_2.png" alt="Contact-banner">
+</sectiion>
+
+<section class="contact-section">
+
+    <div class="container contact-title">
+        <p>Contact us</p>
+    </div>
+
+    <div class="faq-pattern">
+        <hr>
+        <img src="~/images/star.png" style="width: 24px;height: 25px;">
+        <hr class="hr2">
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm text-center">
+                <img src="~/images/forma-1_2.png" class="contact-img">
+                <p>1111 Lorem ipsum text 100,<br> Lorem ipsum AB</p>
+            </div>
+            <div class="col-lg-4 col-sm text-center">
+                <img src="~/images/phone-call.png" class="contact-img">
+                <p>
+                    +49 (40) 123 56 7890 <br>+49 (40) 987 56 0000
+                </p>
+            </div>
+            <div class="col-lg-4 col-sm text-center">
+                <img src="~/images/mail-logo.png" class="contact-img">
+                <p style="padding-top: 10px;">info@helperland.com</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="container">
+    <hr class="hr1">
+</div>
+
+<section class="form-section">
+    <div class="container get-in-touch">
+
+        <p>Get in touch with us</p>
+
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="fname" name="firstname" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="lname" name="lasttname" placeholder="Last Name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6 col" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+49</div>
+                            </div>
+                            <input class="form-control" type="tel" id="MobileNo" name="MobileNo" placeholder="Mobile Number">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="form-group">
+                        <input class="form-control" type="email" id="email" name="email" placeholder="Email address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12  col">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option value="" hidden>Subject</option>
+                            <option value="Service">Service</option>
+                            <option value="Contact">Contact</option>
+                            <option value="Inquiry">Inquiry</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12  col">
+                    <textarea class="form-control" style="height: 146px;" type="text" id="message" name="message" placeholder="Message"></textarea>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12  col">
+                    <label for="exampleFormControlFile1">Attachment</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" style="border: none;">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12 col form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="form-check-inline" style="margin-bottom: 0px;height: auto;">
+                        <span class="terms">Our current ones apply <a href="#">privacy policy</a>. I hereby agree that my data entered into the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be withdrawn at any time pursuant to Art. 7 (3) GDPR by informal notification (eg by e-mail).</span>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="text-center">
+                <div class="row justify-content-center">
+                    <button class="form-btn">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<section class="map-section">
+    <div>
+        <img class="img-fluid map" src="~/images/group-16.png" alt="map">
+        <!-- <img class="pin" src="~/images/pin.png" alt="pin"> -->
+    </div>
+</section>
+
+
+<a href="#top" class="to-top">
+    <img src="~/images/up-aero.png">
+</a>
+

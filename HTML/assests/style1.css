@@ -290,7 +290,14 @@ span img{
 .footer-links p{
     word-spacing: 15px;color: #f1f1f1;
 }
+.footer-links p a:hover{
+    color: #1D7A8C;
+    transition: ease 0.3s;
+}
 
+.footer-links p a{
+    text-decoration: none;
+}
 .social-media-icons{
    display: flex;justify-content: center;align-items: center;
 }
