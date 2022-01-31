@@ -13,6 +13,7 @@ namespace HelperLand.Models
         [Required]
         public string Name { get; set; }
 
+        //[Required]
         //public string LastName { get; set; }
 
         [Required]
@@ -21,7 +22,7 @@ namespace HelperLand.Models
         public string Email { get; set; }
         public string Subject { get; set; }
 
-        [Required]
+        [Required, MinLength(10, ErrorMessage = "Phone Number should be 10 characters"), MaxLength(10, ErrorMessage = "Phone Number cannot exceed 10 characters")]
         public string PhoneNumber { get; set; }
 
         [Required]

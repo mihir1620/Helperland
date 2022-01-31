@@ -12,7 +12,7 @@
 <body>
     <section class="header">
         <nav class="navbar navbar-expand-lg fixed-top bgcolor">
-            <a href="Homepage.html" class="navbar-brand"><img src="~/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img src="~/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon">
                     <i class="fas fa-bars"></i>
@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
-                        <a href="#" class="nav-link">
+                        <a href="@Url.Action("BecomeHelper","BecomeHelper")" class="nav-link">
                             Become a Helper
                         </a>
                     </li>
@@ -104,5 +104,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3960232895.js"></script>
     <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

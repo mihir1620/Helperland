@@ -1,0 +1,112 @@
+﻿@model HelperLand.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<section class="few-words-section">
+
+    <div class="container few-word-div">
+        <p>Create an account</p>
+    </div>
+
+    <div class="faq-pattern">
+        <hr>
+        <img src="~/images/star.png" style="width: 24px;height: 25px;">
+        <hr class="hr2">
+    </div>
+
+</section>
+
+<section >
+    <form method="post" class="form-section">
+        <div class="container">
+            <div class="row justify-content-center form-group">
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="">
+                        <input class="form-control" type="text" id="fname" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="lname" placeholder="Last Name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center form-group">
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="">
+                        <input class="form-control" type="email" id="email" placeholder="Email address">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col" style="margin-top: 15px;">
+                    <div class="">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+49</div>
+                            </div>
+                            <input class="form-control" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center form-group">
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="">
+                        <input class="form-control" type="password" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col">
+                    <div class="form-group">
+                        <input class="form-control" type="password" id="confirm_pswd" placeholder="Confirm Password">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12 col form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <span class="terms">Yes, I would like to subscribe to the newsletter of Helperland GmbH with vouchers, trends, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in the customer account itself.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12 col form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <span class="terms">I agree with the <a href="">terms and conditions</a> of Helperland GmbH.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12 col form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <span class="terms">I have read the <a href="">privacy policy</a> .</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="text-center">
+                <div class="row justify-content-center">
+                    <button type="submit" value="Submit" class="form-btn" formmethod="post">Register</button>
+                </div>
+            </div>
+            <div class="text-center mt-3 mb-5">
+                Already registrered?  <a href="">Login now</a>
+            </div>
+        </div>
+    </form>
+</section>
+
+<a href="#top" class="to-top">
+    <img src="~/images/up-aero.png">
+</a>
+
+

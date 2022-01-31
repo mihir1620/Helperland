@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assests/style1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -64,11 +65,28 @@
                 </nav>
             </header>
 
-            <section class="become-pro-background">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
+
+            <section class="become-pro-background" id="top">
+            
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-4 sp-form-left" style="padding-top: 200px;">
+                                <h1 style="margin-top: 100px;">
+                                    Do not feel like housework?
+                                </h1>
+                                <div class="sp-div-ul">
+                                    <ul>
+                                        <li class="sp-form-ul"><img src="./assests/images/forma-1-copy-10.png">open time-management</li>
+                                        <li class="sp-form-ul"><img src="./assests/images/forma-1-copy-10.png">only accept suitable requests</li>
+                                        <li class="sp-form-ul"><img src="./assests/images/forma-1-copy-10.png">fair and fixed hourly wage</li>
+                                        <li class="sp-form-ul" ><img src="./assests/images/forma-1-copy-10.png">ideal part time job</li>
+                                        <li class="sp-form-ul" ><img src="./assests/images/forma-1-copy-10.png">personal contact person</li>
+                                    </ul>
+                                </div>
+                        </div>    
+
+                        <div class="d-flex col-lg-4 col-md-6 col-sm-10 justify-content-center sp-register" >
                             <form class="become-pro-form"> 
                                 <p class="register-now">Register Now!</p>
                                 <div class="form-group">
@@ -96,12 +114,12 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="Password2" placeholder="Confirm Password">
                                 </div>
-                                <div class="form-check">
+                                <!-- <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="Check1">
                                     <label class="form-check-label" for="defaultCheck1">
-                                        Send me newsletters from Helperland
+                                        Yes, I want the newsletter from the Subscribe to Helperland GmbH with vouchers, trends, information, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in the customer account.
                                     </label>
-                                  </div>
+                                  </div> -->
                                   <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="Check2">
                                     <label class="form-check-label" for="defaultCheck1">
@@ -117,7 +135,8 @@
                                   </div>
                               </form>
                         </div>
-                    </div>                    
+                    </div>   
+             
                 </div>
 
                 <div class="downarrow">            
@@ -126,63 +145,60 @@
                 </div>
         </section>
 
+
+
+
             <section class="how-it-works">
                 <div id="howitworks">
                     <img src="./assests/images/blog-left-bg.png" class="remove-img" style="position: absolute;">
                     
                     <img src="./assests/images/blog-right-bg.png" class="remove-img" style="position: absolute;right: 0;">  
-                        <div class="">
+                        <div class="how-it-works-title">
                             <p>How it works</p>
                         </div>
                 </div>
-            </section>
-
-            <section class="how-it-works-services">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-6 align-items-center">
-                            <p class="how-it-works-services-title">Register yourself</p>
-                            <p class="how-it-works-services-content">Provide your basic information to register
-                                yourself as a service provider.</p>
-                            <p class="how-it-works-services-content">Read More <a href=# ><img src="./assests/images/shape-2.png" ></a>
-                            </p>
-                        </div>
-                        <div class="col-lg-4">
-                            <img src="./assests/images/register-img.png" style="margin-bottom: 40px;">
+                        <div class="register-yourself">
+                            <div class="register-yourself-left">
+                                <p class="how-it-works-services-title">Register yourself</p>
+                                <p class="how-it-works-services-content">Provide your basic information to register yourself as a service provider.</p>
+                            </div>
+                            <div class="register-yourself-right">
+                                <img class="register-img" src="./assests/images/register-img.png">
+                            </div>
                         </div>
                     </div>
-
+                    
                     <div class="row justify-content-center">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-6">
-                            <img src="./assests/images/service-req-img.png" style="margin-bottom: 40px;">
-                        </div>
-                        <div class="col-lg-4">
-                            <p class="how-it-works-services-title">Get service requests</p>
-                            <p class="how-it-works-services-content">You will get service requests from
-                                customes depend on service area and profile.</p>
-                            <p class="how-it-works-services-content">Read More <a href=# ><img src="./assests/images/shape-2.png" ></a>
-                            </p>
+                        <div class="get-request">
+                            <div class="get-request-left">
+                                <img class="register-img" src="./assests/images/service-req-img.png">
+                            </div>
+                            <div class="get-request-right">
+                                <p class="how-it-works-services-title">Get service requests</p>
+                                <p class="how-it-works-services-content">You will get service requests from customes depend on service area and profile.</p>
+                            </div>
+                            
                         </div>
                     </div>
-
+                    
                     <div class="row justify-content-center">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-6">
-                            <p class="how-it-works-services-title">Complete service</p>
-                            <p class="how-it-works-services-content">Accept service requests from your customers
-                                and complete your work.</p>
-                            <p class="how-it-works-services-content">Read More <a href=# ><img src="./assests/images/shape-2.png" ></a>
-                            </p>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <img src="./assests/images/complete-service-img.png">
+                        <div class="complete-service">
+                            <div class="complete-service-left">
+                                <p class="how-it-works-services-title">Complete service</p>
+                                <p class="how-it-works-services-content">Accept service requests from your customers and just complete your work.</p>
+                            </div>
+                            <div class="complete-service-right">
+                                <img class="register-img" src="./assests/images/complete-service-img.png">
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+            
+
+            
 
             <section class="footer">
                 <div class="container-fluid">
@@ -217,13 +233,13 @@
                     </div>
                     <a href="#top" class="to-top">
                         <img src="./assests/images/up-aero.png">
-                      </a>
+                    </a>
                 </section>
-        </main>
+        
         </div>
     </body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3960232895.js"></script>

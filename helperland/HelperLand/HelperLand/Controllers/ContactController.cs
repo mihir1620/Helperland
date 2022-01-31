@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HelperLand.Controllers
 {
@@ -26,9 +27,9 @@ namespace HelperLand.Controllers
 
 
 
-        public IActionResult Contact(bool IsSuccess=false)
+        public IActionResult Contact(bool IsSuccess = false)
         {
-            ViewBag.isSuccess = IsSuccess;
+            ViewBag.isSuccess = IsSuccess; 
             return View();
         }
 
@@ -58,10 +59,9 @@ namespace HelperLand.Controllers
                 _helperlandContext.Add(newContact);
                 //_helperlandContext.ContactUs.Add(contactus);
                 _helperlandContext.SaveChanges();
+
             }
-
-
-            return RedirectToAction("Contact", new { IsSuccess = true} );
+            return RedirectToAction("Contact", new { IsSuccess = true});
         }
     }
 }

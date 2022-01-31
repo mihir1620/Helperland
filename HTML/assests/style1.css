@@ -20,9 +20,9 @@ h3, .h3 { font-size: 30px; font-weight: 700; color: #565656; line-height: 1.2; }
     background-image: url(./images/group-35.png);
     position: relative;
     width: 100%;
-    height: auto;
-    background-size: contain;
-    background-repeat: repeat;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 nav{
@@ -311,24 +311,24 @@ span img{
 
 .become-pro-background {
     background-image: url(./images/become-a-pro-banner.png);
-    position: center;
+    position: relative;
     width: 100%;
-    height: auto;
-    background-size: contain;
-    background-repeat: repeat;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .become-pro-section{
     margin-top: 67px;
 }
 
+.sp-register{
+    padding-top: 200px;
+}
 .become-pro-form{
     background-color: white;
-    margin-top: 170px;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding: 20px 25px;
     border-radius: 2px;
-    padding-bottom: 19px;
 }
 
 .register-now{
@@ -339,6 +339,42 @@ span img{
     text-align: center;
     padding-top: 19px;
     padding-bottom: 24px;
+}
+
+.register-yourself{
+    display: flex;
+    margin-bottom: 30px;
+    column-gap: 30px;
+}
+
+.register-yourself-left{
+    padding: 50px 0px;
+    max-width: 450px;
+}
+.register-img{
+    transition: transform .2s;
+}
+.register-img:hover{
+    transform: scale(1.1); 
+}
+.get-request{
+    display: flex;
+    margin-bottom: 30px;
+    column-gap: 30px;
+}
+
+.get-request-right{
+    max-width: 450px;
+    padding: 50px 0px;
+}
+.complete-service{
+    display: flex;
+    margin-bottom: 30px;
+    column-gap: 30px;
+}
+.complete-service-left{
+    padding: 50px 0px;
+    max-width: 450px;
 }
 
 .form-btn{
@@ -387,9 +423,10 @@ span img{
     justify-content: center;
     opacity:0;
     pointer-events: none;
-    transition: all .3s;
+    transition: ease-in-out .8s;
   }
   
+
   .to-top:hover{
       background-color: #1D7A8C;
   }
@@ -398,7 +435,7 @@ span img{
     pointer-events: auto;
     opacity:1;
   }
-.how-it-works div p{
+.how-it-works-title{
     position: relative;
     color: #4f4f4f;
     font-size: 40px;
@@ -409,10 +446,7 @@ span img{
     margin-bottom: 73px;
 }
 
-/* .how-it-works-services-title{
-    margin-top: auto;
-    margin-bottom: auto;
-} */
+
 
 .how-it-works-services-title{
     font-weight: bold;
@@ -435,8 +469,15 @@ div p a:hover{
     color: white;
 }
 
+.sp-form-ul{
+    list-style: none;
+    text-align: left ;
+    margin-right: 8px;
+}
 
-
+.sp-form-ul img{
+    margin-right: 8px;
+}
 
 
 @media (max-width:1200px)
@@ -488,12 +529,70 @@ ul li a:hover{
     .nav-item :hover{
         border: none;
     }
+    .sp-form-left{
+        padding-top: 0px !important;
+        margin: auto;
+        text-align: center;
+    }
+    .sp-register{
+        padding-top: 20px;
+        margin: auto;
 
+    }
+    .sp-div-ul{
+       display: flex;
+       justify-content: center;
+  
+    }
+    
+    
 }
 
 @media (max-width:768px)
 {
-
+    .register-yourself{
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .register-yourself-right{
+        display: flex;
+        margin: auto;
+        justify-content: center;
+    }
+    .register-yourself-left{
+        flex:auto;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .get-request{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .get-request-right{
+        text-align: center;
+    }
+    .complete-service{
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .complete-service-right{
+        display: flex;
+        margin: auto;
+        justify-content: center;
+    }
+    .complete-service-left{
+        flex:auto;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
 }
 
@@ -505,20 +604,21 @@ ul li a:hover{
         margin-left: auto;
         margin-right: auto;
     }
-}
-
-
-
-@media (max-width:540px){
-
     .three-img{
         margin-left: 120px;
         height: 160px;
         width: 200px;
     }
 }
+
 /* @media(max-width:991px){
     .navbar-nav .remove{
         display: none;
     }
 } */
+
+
+@media(max-width:860px) {
+    
+
+}

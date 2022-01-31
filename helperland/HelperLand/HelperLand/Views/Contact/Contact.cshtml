@@ -1,4 +1,5 @@
-﻿@model ContactViewModel
+﻿
+@model ContactViewModel
 
 @{
     ViewData["Title"] = "Contact";
@@ -9,6 +10,7 @@
 <sectiion class="contact-banner">
     <img class="img-fluid" src="~/images/group-16_2.png" alt="Contact-banner">
 </sectiion>
+
 
 <section class="contact-section">
 
@@ -47,9 +49,10 @@
     <hr class="hr1">
 </div>
 
+
+
 <section class="form-section">
     <div class="container get-in-touch">
-
         @if (ViewBag.isSuccess)
         {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -60,47 +63,47 @@
             </div>
         }
 
-
         <p>Get in touch with us</p>
 
-        <form enctype="multipart/form-data" asp-controller="Contact" asp-action="Contact" method="post">
-            <div class="row justify-content-center">
+        <form enctype="multipart/form-data" method="post">
+            <div class="row justify-content-center form-group">
                 <div class="col-lg-3 col-sm-6 col">
-                    <div class="form-group">
-                        <input class="form-control" required asp-for="Name" type="text" id="fname" name="Name" placeholder="First Name">
-                        <span asp-validation-for="Name"></span>
+                    <div class="">
+                        <input class="form-control" asp-for="Name" type="text" id="fname" placeholder="First Name" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="form-group">
-                        <input class="form-control" asp-for="LastName" required type="text" id="lname" name="lasttname" placeholder="Last Name">
+                        <input class="form-control" required asp-for="LastName" type="text" id="lname" placeholder="Last Name">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center form-group">
                 <div class="col-lg-3 col-sm-6 col" style="margin-top: 15px;">
-                    <div class="form-group">
+                    <div class="">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input class="form-control" required asp-for="PhoneNumber"  pattern="[1-9]{1}[0-9]{9}" maxlength="10" type="tel" id="MobileNo" name="PhoneNumber" placeholder="Mobile Number">
-                            <span asp-validation-for="PhoneNumber"></span>
+                            <input class="form-control" required asp-for="PhoneNumber" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col">
-                    <div class="form-group">
-                        <input class="form-control" required asp-for="Email" type="email" id="email" name="Email" placeholder="Email address">
-                        <span asp-validation-for="Email"></span>
+                    <div class="">
+                        <input class="form-control" required asp-for="Email" type="email" id="email" placeholder="Email address">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center form-group">
                 <div class="col-lg-6 col-md-12  col">
-                    <div class="form-group">
+                    <div class="">
                         <select class="form-control" asp-for="Subject">
                             <option value="" hidden>Subject</option>
                             <option value="Service">Service</option>
@@ -111,17 +114,17 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center form-group">
                 <div class="col-lg-6 col-md-12  col">
-                    <textarea class="form-control" required style="height: 146px;" type="text" asp-for="Message" id="message" name="Message" placeholder="Message"></textarea>
-                    <span asp-validation-for="Message"></span>
+                    <textarea class="form-control" style="height: 146px;" type="text" required asp-for="Message" id="message" placeholder="Message"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-12  col">
-                    <label asp-for="File" class="attachment">Attachment</label>
                     <input asp-for="File" type="file" class="form-control-file" id="exampleFormControlFile1" style="border: none;">
+                    <span asp-validation-for="File"></span>
                 </div>
             </div>
 
@@ -157,3 +160,6 @@
     <img src="~/images/up-aero.png">
 </a>
 
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
