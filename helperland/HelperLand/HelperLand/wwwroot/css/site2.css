@@ -47,6 +47,10 @@ ul li {
         color: white;
     }
 
+.dropdown-toggle::after {
+    content: none;
+}
+
 .fa-bars {
     color: white;
     font-size: 28px;
@@ -59,11 +63,58 @@ ul li {
     opacity: 0.9;
 }
 
-    .bgcolor.scrolled .navbar-brand img {
-        height: 50%;
-        width: 50%;
-        transition: ease .3s;
-    }
+.bgcolor.scrolled .navbar-brand img {
+    height: 50%;
+    width: 50%;
+    transition: ease .3s;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+#loginModal {
+    justify-content: center;
+    position: absolute;
+    font-family: Roboto;
+    color: #4F4F4F;
+}
+
+#forgotModal {
+    justify-content: center;
+    position: absolute;
+    font-family: Roboto;
+    color: #4F4F4F;
+}
+
+.login-btn {
+    border: none; 
+    font-family: Roboto;
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+    border-radius: 23px;
+    background-color: #1D7A8C; 
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.login-modal-body a {
+    font-size: 16px !important;
+    font-family: Roboto;
+    color: black ;
+    
+}
+
+.login-modal-body a:hover {
+    color: #1D7A8C;
+}
+
+.afterLogin {
+    display: none;
+}
 
 .faq-banner div img {
     width: 100%;
@@ -709,13 +760,13 @@ div p a {
     display: block;
 }
 
-    .modal-body a.active {
-        color: #1D7A8C;
-    }
+.modal-body a.active {
+    color: #1D7A8C;
+}
 
-    .modal-body a:hover {
-        color: #1D7A8C;
-    }
+.modal-body a:hover {
+    color: #1D7A8C;
+}
 
 .modal-footer a {
     font-size: 15px;
@@ -725,13 +776,13 @@ div p a {
     display: block;
 }
 
-    .modal-footer a.active {
-        color: #1D7A8C;
-    }
+.modal-footer a.active {
+    color: #1D7A8C;
+}
 
-    .modal-footer a:hover {
-        color: #1D7A8C;
-    }
+.modal-footer a:hover {
+    color: #1D7A8C;
+}
 
 .name-container div {
     text-align: center;
@@ -1392,9 +1443,9 @@ a.book-services {
     color: #4F4F4F;
 }
 
-    .modal-body span {
-        float: right;
-    }
+.modal-body span {
+    float: right;
+}
 
 .modal-footer p {
     color: #8D8D8D;
@@ -1561,7 +1612,7 @@ a.book-services {
 }
 
 
-@media(max-width:991px) {
+@media(max-width:992px) {
 
 
     .navbar-nav .remove {
@@ -1600,6 +1651,12 @@ a.book-services {
     .best-img-div-left {
         text-align: center !important;
     }
+
+    .afterLogin {
+        display: block !important;
+    }
+
+
 }
 
 @media(max-width:1187px) {

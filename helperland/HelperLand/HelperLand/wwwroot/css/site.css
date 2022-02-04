@@ -55,9 +55,8 @@ nav {
     height: 200px;
 }
 
-.nav-item :hover {
-    border: 1px solid #FFFFFF80;
-    border-radius: 20px;
+.dropdown-toggle::after {
+    content: none;
 }
 
 .fa-bars {
@@ -89,16 +88,13 @@ ul li {
     font-family: Roboto;
     font-size: 17px;
     font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.41;
-    letter-spacing: normal;
     text-align: right;
     color: white;
     margin-bottom: 2px;
 }
 
     ul li a:hover {
+
         color: white;
     }
 
@@ -113,8 +109,10 @@ ul li {
     }
 
     .Rounded-Rectangle a:hover {
-        color: black;
+
+        color: #1D7A8C ;
     }
+
 #loginModal{
     justify-content:center;
     position:absolute;
@@ -129,20 +127,35 @@ ul li {
     color: #4F4F4F;
 }
 
+.login-modal-body a {
+    font-size: 16px !important;
+    font-family: Roboto;
+    color: black;
+    text-decoration:none;
+}
+
+    .login-modal-body a:hover {
+        color: #1D7A8C;
+    }
+
+.dropdown-menu{
+    
+
+
+}
 
 .login-btn {
     border: none;
     font-family: Roboto;
-    font-weight:bold;
+    font-weight: bold;
     color: white;
-    font-size:24px;
+    font-size: 24px;
     border-radius: 23px;
     background-color: #1D7A8C;
-    width:100%;
-    height:45px;
-    justify-content:center;
-    margin-bottom:15px;
-
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    margin-bottom: 15px;
 }
 .banner-section {
     padding-top: 170px;
@@ -419,7 +432,7 @@ span img {
 }
 
 .register-img {
-    transition: transform .2s;
+    transition: 0.5s all ease-in-out;
 }
 
     .register-img:hover {
@@ -549,8 +562,9 @@ div p a {
         color: white;
     }
 
-
-
+.afterLogin{
+    display :none !important;
+}
 
 
 @media (max-width:1200px) {
@@ -623,6 +637,10 @@ div p a {
     .sp-div-ul {
         display: flex;
         justify-content: center;
+    }
+
+    .afterLogin{
+        display:block !important;
     }
 }
 

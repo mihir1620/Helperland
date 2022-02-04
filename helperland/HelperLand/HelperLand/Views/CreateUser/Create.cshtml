@@ -1,6 +1,7 @@
-﻿@model HelperLand.Models.User
+﻿@model UserViewModel
 
 @{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
     ViewData["Title"] = "Create";
 }
 
@@ -25,12 +26,14 @@
             <div class="row justify-content-center form-group">
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="">
-                        <input class="form-control" type="text" id="fname" placeholder="First Name">
+                        <input class="form-control" asp-for="FirstName" type="text" id="fname" placeholder="First Name">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="form-group">
-                        <input class="form-control" type="text" id="lname" placeholder="Last Name">
+                        <input class="form-control" asp-for="LastName" type="text" id="lname" placeholder="Last Name">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -38,7 +41,8 @@
             <div class="row justify-content-center form-group">
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="">
-                        <input class="form-control" type="email" id="email" placeholder="Email address">
+                        <input class="form-control" asp-for="Email" type="email" id="email" placeholder="Email address">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col" style="margin-top: 15px;">
@@ -47,7 +51,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input class="form-control" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number">
+                            <input class="form-control" asp-for="Mobile" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number">
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -56,12 +61,14 @@
             <div class="row justify-content-center form-group">
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="">
-                        <input class="form-control" type="password" id="password" placeholder="Password">
+                        <input class="form-control" asp-for="Password"  id="password" placeholder="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col">
                     <div class="form-group">
-                        <input class="form-control" type="password" id="confirm_pswd" placeholder="Confirm Password">
+                        <input class="form-control" asp-for="ConfirmPassword"  id="confirm_pswd" placeholder="Confirm Password">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -70,32 +77,35 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-12 col form-group">
                     <label class="checkbox-inline">
-                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <input type="checkbox" asp-for="isChecked" class="form-check-inline" required style="margin-bottom: 0px;height: auto;" />
                         <span class="terms">Yes, I would like to subscribe to the newsletter of Helperland GmbH with vouchers, trends, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in the customer account itself.</span>
                     </label>
+                    <span asp-validation-for="isChecked" class="text-danger"></span>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-12 col form-group">
                     <label class="checkbox-inline">
-                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <input type="checkbox" asp-for="isChecked" class="form-check-inline" required style="margin-bottom: 0px;height: auto;" />
                         <span class="terms">I agree with the <a href="">terms and conditions</a> of Helperland GmbH.</span>
                     </label>
+                    <br /><span asp-validation-for="isChecked" class="text-danger"></span>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-12 col form-group">
                     <label class="checkbox-inline">
-                        <input type="checkbox" class="form-check-inline" required style="margin-bottom: 0px;height: auto;">
+                        <input type="checkbox" asp-for="isChecked" class="form-check-inline" required style="margin-bottom: 0px;height: auto;" />
                         <span class="terms">I have read the <a href="">privacy policy</a> .</span>
                     </label>
+                    <br /><span asp-validation-for="isChecked" class="text-danger" ></span>
                 </div>
             </div>
 
 
             <div class="text-center">
                 <div class="row justify-content-center">
-                    <button type="submit" value="Submit" class="form-btn" formmethod="post">Register</button>
+                    <button type="submit" class="form-btn" formmethod="post">Register</button>
                 </div>
             </div>
             <div class="text-center mt-3 mb-5">

@@ -3,9 +3,12 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <section class="background" id="top">
+
     <section class="banner-section">
-        <div >
+
+        <div>
             <h1 class="mt-5">
                 Do not feel like housework?
             </h1>
@@ -36,6 +39,16 @@
             </div>
         </div>
     </section>
+
+    @*@if (ViewBag.msg != null)
+    {
+        <div class="alert alert-success m-auto text-center w-50" role="alert">
+            
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }*@
 
     <section class="btn-section btn-wrapper text-center ">
         <button class="blue-btn">Let's Book  Cleaner</button>
@@ -138,11 +151,15 @@
                         if it's not dusting off, our friendly helpers will free you from this burden - do not worry anymore about
                         spending valuable time doing housework, but savor life,
                     </p>
-                    <p> you're well worth your time with beautiful
+                    <p>
+                        you're well worth your time with beautiful
                         experiences. Free yourself and enjoy the gained time: Go celebrate, relax, play with your children, meet
-                        friends or dare to jump on the bungee.</p>
-                    <p>Other leisure ideas and exclusive events can be found in our blog
-                        - guaranteed free from dust and cleaning tips!</p>
+                        friends or dare to jump on the bungee.
+                    </p>
+                    <p>
+                        Other leisure ideas and exclusive events can be found in our blog
+                        - guaranteed free from dust and cleaning tips!
+                    </p>
                 </div>
                 <div class="col-lg-3 zoom-in">
                     <img src="~/images/group-36.png" class="three-img img-responsive">
@@ -196,7 +213,7 @@
     <p class="why-helperland-title">What Our Customers Say</p>
 
     <div class="container">
-        <div class="row justify-content-center customer-feedback" >
+        <div class="row justify-content-center customer-feedback">
             <div class="col-lg-4 review-card justify-content-center">
                 <div class="row customer">
                     <div class="col-lg-3">

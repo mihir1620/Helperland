@@ -7,13 +7,13 @@ using HelperLand.Models;
 
 namespace HelperLand.Data
 {
-    public partial class HelperlandContext : DbContext
+    public partial class HelperLandContext : DbContext
     {
-        public HelperlandContext()
+        public HelperLandContext()
         {
         }
 
-        public HelperlandContext(DbContextOptions<HelperlandContext> options)
+        public HelperLandContext(DbContextOptions<HelperLandContext> options)
             : base(options)
         {
         }
@@ -36,7 +36,7 @@ namespace HelperLand.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source = LAPTOP-4QQQK9OS; initial catalog = Helperland; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-4QQQK9OS;Database=HelperLand; Trusted_Connection=True;");
             }
         }
 
@@ -85,7 +85,7 @@ namespace HelperLand.Data
 
                 entity.Property(e => e.Subject).HasMaxLength(500);
 
-                //entity.Property(e => e.UploadFileName).HasMaxLength(100);
+                entity.Property(e => e.UploadFileName).HasMaxLength(100);
             });
 
             modelBuilder.Entity<FavoriteAndBlocked>(entity =>
@@ -276,6 +276,10 @@ namespace HelperLand.Data
                 entity.Property(e => e.Password).HasMaxLength(100);
 
                 entity.Property(e => e.PaymentGatewayUserRef).HasMaxLength(200);
+
+                entity.Property(e => e.ReserPasswordLink)
+                    .HasMaxLength(100)
+                    .IsFixedLength(true);
 
                 entity.Property(e => e.TaxNo).HasMaxLength(50);
 

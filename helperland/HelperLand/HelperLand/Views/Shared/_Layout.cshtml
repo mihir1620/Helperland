@@ -1,15 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@model UserViewModel
+
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] | HelperLand</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" href="~/images/white-logo-transparent-background-copy-4.png" type="image/icon type">
+    <link rel="icon" href="~/images/favicon_img.png" type="image/icon type">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header class="site-header">
+
 
         <nav class="navbar nav navbar-expand-lg fixed-top bgcolor">
             <a href="@Url.Action("Index", "Home")" class="navbar-brand">
@@ -23,72 +31,148 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto text-center">
-                    <li class="nav-item Rounded-Rectangle">
-                        <a href="#" class="nav-link">
-                            Book a Cleaner
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Price", "Price")" class="nav-link ">
-                            Prices
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            Our Guarantee
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            Blog
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Contact", "Contact")" class="nav-link">
-                            Contact us
-                        </a>
-                    </li>
-                    <li class="nav-item Rounded-Rectangle">
-                        <a href="" class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">
-                            Login
-                        </a>
-                    </li>
-                    <li class="nav-item Rounded-Rectangle">
-                        <a href="@Url.Action("BecomeHelper","BecomeHelper")" class="nav-link">
-                            Become a Helper
-                        </a>
-                    </li>
+                    @if (Context.Session.GetString("username") == null)
+                    {
+                        <li class="nav-item Rounded-Rectangle">
+                            <a href="#" class="nav-link">
+                                Book a Cleaner
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                                Prices
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                Our Guarantee
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact us
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle">
+                            <a href="" class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle">
+                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link">
+                                Become a Helper
+                            </a>
+                        </li>
+                    }
+                    @if (Context.Session.GetString("username") != null)
+                    {
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                Book a Cleaner
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                                Prices
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                Our Guarantee
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact us
+                            </a>
+                        </li>
+
+                        <li class="nav-item afterLogin">
+                            <a href="#" class="nav-link">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="#" class="nav-link">
+                                My Setting
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("logout", "Home")" class="nav-link">
+                                Logout
+                            </a>
+                        </li>
+                        @*<li class="vertical-line remove"></li>*@
+                        <li class="nav-item remove">
+                            <a href="" class="nav-link" type="button">
+                                <div>
+                                    <img src="~/images/icon-notification.png">
+                                </div>
+
+                            </a>
+                        </li>
+                        @*<li class="vertical-line remove"></li>*@
+                        <li class="nav-item dropdown remove">
+                            <a href="#" type="button " class="nav-link dropdown-toggle" data-toggle="dropdown">
+
+                                <img src="~/images/user.png">
+                                <img src="~/images/keyboard-right-arrow-button.png" onclick="transformArrow(this)">
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-item-text">
+                                        Welcome @Context.Session.GetString("username")
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Dashboard </a>
+                                    <a class="dropdown-item" href="#">My Setting</a>
+                                    <a class="dropdown-item" href="@Url.Action("logout","home")">Logout</a>
+                                </div>
+                            </a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </nav>
     </header>
-    <!-- The Modal -->
-    <div class="modal fade" id="loginModal">
+
+    <!-- The Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
             <div class="modal-content">
 
-                <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title"><b>Login to your account</b></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="post">
+                <div class="modal-body login-modal-body">
+                    <form asp-controller="account" asp-action="login" method="post">
                         <div class="form-group ">
-                            <input class="form-control" type="email" placeholder="Email" />
+                            <input class="form-control" required type="text" name="email" placeholder="Email" />
                         </div>
                         <div class="form-group ">
-                            <input class="form-control" type="password" placeholder="Password" />
+                            <input class="form-control" required type="password" name="password" placeholder="Password" />
                         </div>
                         <div class="form-group ">
-                            <input type="checkbox" />
-                            <label>Remember me</label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="form-check-inline" />
+                                <span class="terms"> Remember me</span>
+                            </label>
                         </div>
 
                         <div class="form-group">
-                            <button class="login-btn">Login</button>
+                            <button type="submit" class="login-btn">Login</button>
                         </div>
                     </form>
                     <div class="text-center">
@@ -103,22 +187,24 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="forgotModal">
+    <!-- The Login Modal Ends-->
+    <!-- The Forgot Modal -->
+    <div class="modal fade" id="forgotModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
             <div class="modal-content">
 
-                <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title"><b>Forgot password</b></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="post">
+     
+                    <form asp-action="ForgotPassword" asp-controller="Account" method="post">
+
                         <div class="form-group ">
-                            <input class="form-control" type="email" placeholder="Email" />
+                            <input class="form-control" asp-for="Email" required type="email" placeholder="Email" />
+
                         </div>
 
                         <div class="form-group">
@@ -130,11 +216,11 @@
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     </div>
+    <!-- The Forgot Modal Ends-->
+
     <div class="wrapper">
 
         @RenderBody()
@@ -151,9 +237,9 @@
                 <div class="col-sm-6 footer-links">
                     <p>
                         <a href="@Url.Action("Index", "Home")">HOME</a>
-                        <a href="@Url.Action("About", "About")">ABOUT</a>
+                        <a href="@Url.Action("About", "Home")">ABOUT</a>
                         <a href="#">TESTIMONIALS</a>
-                        <a href="@Url.Action("FAQ", "FAQ")">FAQS</a>
+                        <a href="@Url.Action("FAQ", "Home")">FAQS</a>
                         <a href="#">INSURANCE-POLICY</a>
                         <a href="#">IMPRESSUM</a>
                     </p>
