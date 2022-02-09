@@ -40,18 +40,18 @@
         </div>
     </section>
 
-    @*@if (ViewBag.msg != null)
+    @if (TempData["emailSent"] != null)
     {
-        <div class="alert alert-success m-auto text-center w-50" role="alert">
-            
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6">
+                <button type="button" class="close" data-dismiss="alert" >&times;</button>
+                <strong>Email sent Successfully!</strong>
+            </div>
         </div>
-    }*@
+    }
 
     <section class="btn-section btn-wrapper text-center ">
-        <button class="blue-btn">Let's Book  Cleaner</button>
+        <button type="button" onclick="location.href='@Url.Action("Service", "Service")'" class="blue-btn">Let's Book  Cleaner</button>
     </section>
 
     <section class="process-section">

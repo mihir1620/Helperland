@@ -28,23 +28,24 @@ namespace HelperLand.Controllers
         [HttpPost]
         public IActionResult Login(UserViewModel model)
         {
-            //bool pswd = Crypto.VerifyHashedPassword(model.Password,);
             
-            User user = db.Users.Where(u => u.Email == model.Email && u.Password ==  model.Password).FirstOrDefault();
+           
+            User user = db.Users.Where(u => u.Email == model.Email && (string.Compare(Hash.HashPass(model.Password), u.Password) == 0)).FirstOrDefault();
 
-            //var userLoggedIn = db.Users.SingleOrDefault(x => model.email == user.Email && model.password == user.Password);
-            //if (email != null && password != null && email.Equals("acc1") && password.Equals("123"))
-            if(user != null)
-            {
-                HttpContext.Session.SetString("username", model.Email);
+            if (user != null)
+                {
+                    HttpContext.Session.SetString("username", model.Email);
 
-                return View("~/Views/Home/Index.cshtml");
-            }
+                    return View("~/Views/Home/Index.cshtml");
+                }
+            
+
             else
             {
                 ViewBag.error = "Invalid Account";
                 return View("logout");
             }
+
         }
 
         [HttpGet]
@@ -64,7 +65,7 @@ namespace HelperLand.Controllers
 
                 MimeMessage message = new MimeMessage();
 
-                message.From.Add(new MailboxAddress("Sender", "helperlandservice@gmail.com"));
+                message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
 
                 message.To.Add(MailboxAddress.Parse(model.Email));
 
@@ -73,9 +74,9 @@ namespace HelperLand.Controllers
                 var lnkHref = "<a href= \"http://localhost:64175" + Url.Action("ResetPassword", "Account") + "/" + resetlink  +  " \" >Reset Password</a>";
                 message.Body = new TextPart("html")
                 {
+
+                    Text = "Click this link to reset your password <a href=" + lnkHref + "</a>"
                    
-                
-                    Text = "<a href=" + lnkHref + ">Reset Password</a>"
                 };
 
                 SmtpClient smtp = new SmtpClient();
@@ -84,7 +85,7 @@ namespace HelperLand.Controllers
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
                     smtp.Send(message);
-                    Console.WriteLine("Email Sent");
+                    TempData["emailSent"] = "Registered Successfully";
                 }
                 catch (Exception er)
                 {
@@ -162,28 +163,23 @@ namespace HelperLand.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public  IActionResult ResetPassword(ResetPasswordViewModel model )
+        public  IActionResult ResetPassword(ResetPasswordViewModel model)
         {
-            var msg = "";
-
+            
                 var user = db.Users.Where(a => a.ReserPasswordLink == model.resetlink).FirstOrDefault();
                 if(user != null)
                 {
-                    user.Password = model.newPassword;
+                    user.Password = Hash.HashPass(model.newPassword);
                     user.ReserPasswordLink = " ";
                     db.Users.Update(user);
                     db.SaveChanges();
+                    TempData["pswdReset"] = "New Password Updated Successfully";
                 
-                    msg = "New Password Updated Successfully";
                 }
-            
-            else
-            {
-                msg = "Invalid Credential";
-            }
-            ViewBag.Message = msg;
+
             return View();
         }
+
+
     }
 }

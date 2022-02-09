@@ -164,10 +164,12 @@ D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Vie
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Account\logout.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Account\success.cshtml.g.cs
-D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\WebMatrix.Data.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\WebMatrix.WebData.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\MailKit.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Service\Service.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Schedule.cshtml.g.cs

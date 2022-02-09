@@ -1,5 +1,9 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -259,6 +263,7 @@ ul li {
         bottom: 32px;
         pointer-events: auto;
         opacity: 1;
+        
     }
 
 .footer {
@@ -1462,7 +1467,11 @@ a.book-services {
 }
 
 .zipcode {
-    margin-left: 10px;
+    max-width:200px;
+}
+
+.zip-span{
+    max-width:200px;
 }
 
 .check-zip-btn {
@@ -1484,16 +1493,85 @@ a.book-services {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-    .services-img div {
-        /* border: #4F4F4F 1px solid;
-    border-radius: 50%; */
     }
 
+    .services-img div {
+        text-align:center;
+        width:105px;
+    }
+
+input[type="checkbox"][id^="mycheckbox"] {
+    display: none;
+}
+
+.check-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #C8C8C8;
+    border-radius: 50%;
+    width: 105px;
+    height: 105px;
+}
+
+.check-label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid #1d7a8c;
+    position: absolute;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+}
+
+.check-label img {
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
+:checked + .check-label {
+    border: 2px solid #1d7a8c;
+}
+
+:checked + .check-label img {
+    box-shadow: 0 0 5px #646464;
+    z-index: -1;
+}
+
 .faqs {
-    margin-top: 15px;
+    margin-top:15px;
     min-height: 600px;
+}
+.service-faqs{
+    max-width:400px;
+}
+
+.service-faqs div{
+    font-size: 16px !important;
+}
+
+.service-faq-title{
+    font-family:Roboto;
+    font-size:22px;
+    margin-left:120px;
+    color:#4F4F4F;
+}
+
+
+
+.redirect-faq {
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 18px;
+}
+
+.redirect-faq a{
+    text-decoration:none;
 }
 
 #datepicker {

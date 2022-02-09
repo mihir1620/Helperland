@@ -34,7 +34,7 @@
                     @if (Context.Session.GetString("username") == null)
                     {
                         <li class="nav-item Rounded-Rectangle">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Service", "Service")" class="nav-link">
                                 Book a Cleaner
                             </a>
                         </li>
@@ -72,7 +72,7 @@
                     @if (Context.Session.GetString("username") != null)
                     {
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Service", "Service")" class="nav-link">
                                 Book a Cleaner
                             </a>
                         </li>

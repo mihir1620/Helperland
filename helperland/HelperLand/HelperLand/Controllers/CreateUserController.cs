@@ -14,15 +14,14 @@ namespace HelperLand.Controllers
    
     public class CreateUserController : Controller
     {
-        //private readonly UserManager<IdentityUser> userManager;
-        //private readonly SignInManager<IdentityUser> signInManager;
+
+        HelperLandContext db = new HelperLandContext();
+
         private readonly HelperLandContext _helperlandContext = null;
 
         public CreateUserController(HelperLandContext helperlandContext)
         {
             _helperlandContext = helperlandContext;
-            //this.userManager = userManager;
-            //this.signInManager = signInManager;
 
         }
         public IActionResult Create()
@@ -33,16 +32,30 @@ namespace HelperLand.Controllers
         [HttpPost]
         public IActionResult Create(UserViewModel model)
         {
+           
             if (ModelState.IsValid)
             {
+                var isPhone = isMobileExist(model.Mobile);
+                var isEmail = isEmailExist(model.Email);
+                if(isEmail)
+                {
+                    ModelState.AddModelError("EmailExist", "Email already exist");
+                    return View();
+                }
+
+                if (isPhone)
+                {
+                    ModelState.AddModelError("MobileExist", "Mobile number already exist");
+                    return View();
+                }
                 User newUser = new User
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
                     Mobile = model.Mobile,
-                    Password = model.Password,
-                    //Password = Crypto.HashPassword(model.Password),
+                    Password = Hash.HashPass(model.Password),
+                    //Password = Crypto.SHA256(model.Password),
                     //var verified = Crypto.VerifyHashedPassword(hash, "foo");
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
@@ -55,31 +68,27 @@ namespace HelperLand.Controllers
                     UserTypeId = 1
             };
 
-                //var result = await userManager.CreateAsync(newUser, model.Password);
-
-                //if (result.Succeeded)
-                //{
-                //    await signInManager.SignInAsync(newUser, isPersistent: false);
-                //    return RedirectToAction("Index", "Home");
-                //}
-
-                //foreach (var error in result.Errors)
-                //{
-                //    ModelState.AddModelError(string.Empty, error.Description);
-                //}
-
-
+                TempData["Message"] = "Registered Successfully";
                 _helperlandContext.Add(newUser);
                 _helperlandContext.SaveChanges();
                 return RedirectToAction("Create");
-                //_helperlandContext.Users.Add(model);
-                //_helperlandContext.SaveChanges();
-                //return RedirectToAction("Create");
 
             }
             return View();
         }
 
-       
+        [NonAction]
+        public bool isEmailExist(string email)
+        {
+            var e = db.Users.Where(e => e.Email == email).FirstOrDefault();
+            return e != null;
+        }
+
+        [NonAction]
+        public bool isMobileExist(string mobile)
+        {
+            var e = db.Users.Where(e => e.Mobile == mobile).FirstOrDefault();
+            return e != null;
+        }
     }
 }

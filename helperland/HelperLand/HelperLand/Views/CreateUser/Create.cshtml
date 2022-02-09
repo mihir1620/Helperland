@@ -8,6 +8,8 @@
 
 <section class="few-words-section">
 
+
+
     <div class="container few-word-div">
         <p>Create an account</p>
     </div>
@@ -18,7 +20,18 @@
         <hr class="hr2">
     </div>
 
+    @if (TempData["Message"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Account Created Successfull!</strong>
+            </div>
+        </div>
+    }
+
 </section>
+
 
 <section >
     <form method="post" class="form-section">
@@ -43,6 +56,7 @@
                     <div class="">
                         <input class="form-control" asp-for="Email" type="email" id="email" placeholder="Email address">
                         <span asp-validation-for="Email" class="text-danger"></span>
+                        @Html.ValidationMessage("EmailExist", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col" style="margin-top: 15px;">
@@ -53,6 +67,7 @@
                             </div>
                             <input class="form-control" asp-for="Mobile" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number">
                             <span asp-validation-for="Mobile" class="text-danger"></span>
+                            @Html.ValidationMessage("MobileExist", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
