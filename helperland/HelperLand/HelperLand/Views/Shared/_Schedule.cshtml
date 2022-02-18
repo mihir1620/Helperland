@@ -1,0 +1,112 @@
+﻿@{ 
+    Layout = null;
+}
+@model HelperLand.ViewModels.ServiceViewModel
+<div class="schedule-plan mt-4" id="div2">
+
+    <div class="row">
+        <div class="col-lg-5 form-group ">
+            <p><b>When do you need cleaner:</b></p>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-6 form-group">
+            <p><b>How long do you need your cleaner to stay:</b></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+
+            <input class="form-control form-check-inline" id="datepicker" onchange="S_Date()" asp-for="ServiceStartDate" type="date">
+
+            <select class="form-control form-check-inline" id="scheduled_time" onchange="Time()" asp-for="ServiceTime">
+                <option selected value="8:00">8:00</option>
+                <option value="9:00">9:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <select class="form-control form-check-inline" id="total_hours" onchange="Hours()" asp-for="ServiceHours">
+                <option value="3">3:00 Hours</option>
+                <option value="3.5">3:30 Hours</option>
+                <option value="4">4:00 Hours</option>
+                <option value="4.5">4:30 Hours</option>
+                <option value="5">5:00 Hours</option>
+                <option value="5.5">5:30 Hours</option>
+                <option value="6">6:00 Hours</option>
+                <option value="6.5">6:30 Hours</option>
+                <option value="7">7:00 Hours</option>
+                <option value="7.5">7:30 Hours</option>
+                <option value="8">8:00 Hours</option>
+                <option value="8.5">8:30 Hours</option>
+                <option value="9">9:00 Hours</option>
+                <option value="9.5">9:30 Hours</option>
+                <option value="10">10:00 Hours</option>
+                <option value="10.5">10:30 Hours</option>
+                <option value="11">11:00 Hours</option>
+                <option value="11.5">11:30 Hours</option>
+                <option value="12">12:00 Hours</option>
+            </select>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="extra_services">
+        <p><b>Extra Services</b></p>
+    </div>
+
+    <div class="services-img">
+        <input id="count" value="0" type="hidden" asp-for="ExtraHours" />
+        <div>
+            <input type="checkbox" id="mycheckbox1" onclick="cabinet()" />
+            <label for="mycheckbox1" onclick="cabinet()" class="check-label"><img src="~/images/service_1.png" id="cabinetimg"></label>
+            <p>Inside cabinets</p>
+        </div>
+        <div>
+            <input type="checkbox" id="mycheckbox2" onclick="fridge()" />
+            <label for="mycheckbox2" onclick="fridge()" class="check-label"><img src="~/images/service_2.png" id="fridgeimg"></label>
+            <p>Inside fridge</p>
+        </div>
+        <div>
+            <input type="checkbox" id="mycheckbox3" onclick="oven()" />
+            <label for="mycheckbox3" onclick="oven()" class="check-label"><img src="~/images/service_3.png" id="ovenimg"></label>
+            <p>Inside oven</p>
+        </div>
+        <div>
+            <input type="checkbox" id="mycheckbox4" onclick="laundry()" />
+            <label for="mycheckbox4" onclick="laundry()" class="check-label"><img src="~/images/service_4.png" id="laundryimg"></label>
+            <p>Laundry wash & dry</p>
+        </div>
+        <div>
+            <input type="checkbox" id="mycheckbox5" onclick="windows()" />
+            <label for="mycheckbox5" onclick="windows()" class="check-label"><img src="~/images/service_5.png" id="windowimg"></label>
+            <p>Interior windows</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="commnets">
+        <p><b>Comments</b></p>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" id="comments" asp-for="Comments" rows="3"></textarea>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" asp-for="HasPets" class="form-check-input" id="pet_chk">
+        <label class="form-check-label" for="pets">I have pets at home</label>
+    </div>
+
+    <hr>
+    <button type="submit" formmethod="post" class="check-zip-btn" style="float: right;">Continue</button>
+</div>

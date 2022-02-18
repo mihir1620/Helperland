@@ -1,10 +1,6 @@
 ﻿@model UserViewModel
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +9,7 @@
     <title>@ViewData["Title"] | HelperLand</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="~/images/favicon_img.png" type="image/icon type">
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
 <body>
     <header class="site-header">
@@ -33,38 +29,38 @@
                 <ul class="navbar-nav ml-auto text-center">
                     @if (Context.Session.GetString("username") == null)
                     {
-                        <li class="nav-item Rounded-Rectangle">
-                            <a href="@Url.Action("Service", "Service")" class="nav-link">
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link Rounded-Rectangle" type="button" data-toggle="modal" data-target="#loginModal">
                                 Book a Cleaner
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
-                                Prices
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link Rounded-Rectangle1">
+                                Prices & Services
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="" class="nav-link Rounded-Rectangle1">
                                 Our Guarantee
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link Rounded-Rectangle1">
                                 Blog
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
-                                Contact us
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link Rounded-Rectangle1">
+                                Contact
                             </a>
                         </li>
-                        <li class="nav-item Rounded-Rectangle">
-                            <a href="" class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">
+                        <li class="nav-item ">
+                            <a href="" class="nav-link Rounded-Rectangle" type="button" data-toggle="modal" data-target="#loginModal">
                                 Login
                             </a>
                         </li>
-                        <li class="nav-item Rounded-Rectangle">
-                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link">
+                        <li class="nav-item ">
+                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link Rounded-Rectangle">
                                 Become a Helper
                             </a>
                         </li>
@@ -72,28 +68,28 @@
                     @if (Context.Session.GetString("username") != null)
                     {
                         <li class="nav-item ">
-                            <a href="@Url.Action("Service", "Service")" class="nav-link">
+                            <a href="@Url.Action("Service", "Service")" class="nav-link Rounded-Rectangle">
                                 Book a Cleaner
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
-                                Prices
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link Rounded-Rectangle1">
+                                Prices & Services
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <li class="nav-item ">
+                            <a href="" class="nav-link Rounded-Rectangle1">
                                 Our Guarantee
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link Rounded-Rectangle1">
                                 Blog
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
-                                Contact us
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link Rounded-Rectangle1">
+                                Contact
                             </a>
                         </li>
 

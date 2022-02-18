@@ -25,8 +25,13 @@ namespace HelperLand
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
             services.AddDbContext<HelperLandContext>();
-            services.AddSession();
+            services.AddSession(options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromMinutes(1);
+                    
+            }) ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

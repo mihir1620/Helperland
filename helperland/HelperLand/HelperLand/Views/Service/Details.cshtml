@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.UserAddress>
+
+    @foreach (var item in Model)
+    {
+
+        <label class="row address">
+            <span class="col-lg-1">
+                <input type="radio" name="Address_radio" checked value="@item.AddressId">
+
+            </span>
+            <span class="col-lg-11">
+                <span class="row"> <b>Address</b>: @item.AddressLine1 @item.AddressLine2 @item.PostalCode</span>
+                <span class="row"> <b>Phone number</b>:@item.Mobile</span>
+            </span>
+        </label>
+    }
+
+    <div id="address">
+
+    </div>
+
+
+
+    <button type="button" id="addAdd" class="add-Add-btn mt-3"  onclick="displayAddForm()">+ Add New Address</button>
+
+
+    @*<hr>
+        <p><b>Your Favorite Service Provider</b></p>
+        <p>You can Choose your service provider from below list</p>
+        <div class="d-flex justify-content-start">
+            <div>
+                <label class="fav-pro">
+                    <img src="~/images/cap.png">
+
+                </label>
+                <h6 class="text-left">Sandip Patel</h6>
+                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
+            </div>
+            <div class="ml-2">
+                <label class="fav-pro">
+                    <img src="~/images/cap.png">
+
+                </label>
+                <h6>Sandip Patel</h6>
+                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
+            </div>
+        </div>*@
+
+    <hr>
+    <button type="submit" formmethod="post" class="check-zip-btn " name="action" value="addSerAdd" style="float: right;">Continue</button>

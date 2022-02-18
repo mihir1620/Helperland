@@ -70,11 +70,11 @@ nav {
     opacity: 0.8;
 }
 
-    .bgcolor.scrolled .navbar-brand img {
-        height: 50%;
-        width: 50%;
-        transition: ease .3s;
-    }
+.bgcolor.scrolled .navbar-brand img {
+    height: 50%;
+    width: 50%;
+    transition: ease .3s;
+}
 
 .nav-link {
     color: white;
@@ -92,10 +92,9 @@ ul li {
     margin-bottom: 2px;
 }
 
-    ul li a:hover {
-
-        color: white;
-    }
+ul li a:hover {
+    color: white;
+}
 
 .Rounded-Rectangle {
     border: 1px solid #FFFFFF80;
@@ -103,14 +102,21 @@ ul li {
     /* padding-left: 5px; */
 }
 
-    .Rounded-Rectangle:hover {
-        background-color: white;
-    }
+.Rounded-Rectangle:hover {
+    background-color: white;
+    color: #1D7A8C
+}
 
-    .Rounded-Rectangle a:hover {
 
-        color: #1D7A8C ;
-    }
+.Rounded-Rectangle1:hover {
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    
+}
+.Rounded-Rectangle a:hover {
+
+    color: #1D7A8C ;
+}
 
 #loginModal{
     justify-content:center;
@@ -605,6 +611,7 @@ div p a {
         border: none;
     }
 
+
     .Rounded-Rectangle:hover {
         background-color: transparent;
         color: white;
@@ -612,6 +619,10 @@ div p a {
 
     .Rounded-Rectangle a:hover {
         color: white;
+    }
+
+    .Rounded-Rectangle1:hover {
+        border: none;
     }
 
     .remove {

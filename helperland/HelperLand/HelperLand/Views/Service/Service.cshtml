@@ -1,4 +1,5 @@
-﻿@model Zipcode
+﻿@model ServiceViewModel
+
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
     ViewData["Title"] = "Service";
@@ -25,30 +26,30 @@
     <section class="book-service-section">
 
         <div class="service-tabs">
-            <ul class="nav flex-nowrap">
+            <ul class="nav flex-nowrap d-flex justify-content-center">
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center nav-flex tab1" id="service-tab-1" type="button" onclick="show1()">
+                    <button class="nav-link d-flex align-items-center justify-content-center  tab1" id="service-tab-1" type="button" onclick="show1()">
                         <img id="set-up-img" src="~/images/setup-service-white.png" asp-append-version="true">
                         <p id="set-p-text">Setup Service</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center nav-flex " id="service-tab-2" type="button" onclick="show2()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex " id="service-tab-2" type="button" onclick="show2()">
                         <img id="schedule-img" src="~/images/schedule.png" asp-append-version="true">
                         <p id="schedule-p-text">Schedule & Plan</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center nav-flex" id="service-tab-3" type="button" onclick="show3()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-3" type="button" onclick="show3()">
                         <img id="your-detail-img" src="~/images/details.png" asp-append-version="true">
                         <p id="detail-p-text">Your Details</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center nav-flex" id="service-tab-4" type="button" onclick="show4()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-4" type="button" onclick="show4();displayMsg()">
                         <img id="payment-img" src="~/images/payment.png" asp-append-version="true">
                         <p id="payment-p-text">Make Payment</p>
                     </button>
@@ -84,7 +85,7 @@
                             </div>
 
                             <div>
-                                <button type="submit" formmethod="post" class="check-zip-btn">Check Availibility</button>
+                                <button type="submit" formmethod="post" class="check-zip-btn" href="@Url.Action("Schedule")">Check Availibility</button>
                             </div>
                         </div>
                     </div>
@@ -107,44 +108,44 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <input class="form-control form-check-inline" id="datepicker" type="date">
+                            <input class="form-control form-check-inline" id="datepicker" onchange="S_Date()" asp-for="ServiceStartDate" type="date">
 
-                            <select class="form-control form-check-inline" id="scheduled_time">
-                                <option selected value="1">8:00</option>
-                                <option value="2">9:00</option>
-                                <option value="3">10:00</option>
-                                <option value="4">11:00</option>
-                                <option value="5">12:00</option>
-                                <option value="2">13:00</option>
-                                <option value="3">14:00</option>
-                                <option value="4">15:00</option>
-                                <option value="5">16:00</option>
-                                <option value="4">17:00</option>
-                                <option value="5">18:00</option>
+                            <select class="form-control form-check-inline" id="scheduled_time" onchange="Time()" asp-for="ServiceTime">
+                                <option selected value="8:00">8:00</option>
+                                <option value="9:00">9:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
                             </select>
                         </div>
 
                         <div class="col-lg-3">
-                            <select class="form-control form-check-inline" id="total_hours">
-                                <option selected value="1">3:00 Hours</option>
-                                <option value="2">3:30 Hours</option>
-                                <option value="3">4:00 Hours</option>
-                                <option value="4">4:30 Hours</option>
+                            <select class="form-control form-check-inline" id="total_hours" onchange="Hours()" asp-for="ServiceHours">
+                                <option value="3">3:00 Hours</option>
+                                <option value="3.5">3:30 Hours</option>
+                                <option value="4">4:00 Hours</option>
+                                <option value="4.5">4:30 Hours</option>
                                 <option value="5">5:00 Hours</option>
-                                <option value="2">5:30 Hours</option>
-                                <option value="5">6:00 Hours</option>
-                                <option value="2">6:30 Hours</option>
-                                <option value="5">7:00 Hours</option>
-                                <option value="2">7:30 Hours</option>
-                                <option value="5">8:00 Hours</option>
-                                <option value="2">8:30 Hours</option>
-                                <option value="5">9:00 Hours</option>
-                                <option value="2">9:30 Hours</option>
-                                <option value="5">10:00 Hours</option>
-                                <option value="2">10:30 Hours</option>
-                                <option value="5">11:00 Hours</option>
-                                <option value="2">11:30 Hours</option>
-                                <option value="5">12:00 Hours</option>
+                                <option value="5.5">5:30 Hours</option>
+                                <option value="6">6:00 Hours</option>
+                                <option value="6.5">6:30 Hours</option>
+                                <option value="7">7:00 Hours</option>
+                                <option value="7.5">7:30 Hours</option>
+                                <option value="8">8:00 Hours</option>
+                                <option value="8.5">8:30 Hours</option>
+                                <option value="9">9:00 Hours</option>
+                                <option value="9.5">9:30 Hours</option>
+                                <option value="10">10:00 Hours</option>
+                                <option value="10.5">10:30 Hours</option>
+                                <option value="11">11:00 Hours</option>
+                                <option value="11.5">11:30 Hours</option>
+                                <option value="12">12:00 Hours</option>
                             </select>
                         </div>
                     </div>
@@ -156,7 +157,7 @@
                     </div>
 
                     <div class="services-img">
-
+                        <input id="count" value="0" type="hidden" asp-for="ExtraHours" />
                         <div>
                             <input type="checkbox" id="mycheckbox1" onclick="cabinet()" />
                             <label for="mycheckbox1" onclick="cabinet()" class="check-label"><img src="~/images/service_1.png" id="cabinetimg"></label>
@@ -191,126 +192,68 @@
                         <p><b>Comments</b></p>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="comments" rows="3"></textarea>
+                        <textarea class="form-control" id="comments" asp-for="Comments" rows="3"></textarea>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="pet_chk">
+                        <input type="checkbox" asp-for="HasPets" class="form-check-input" id="pet_chk">
                         <label class="form-check-label" for="pets">I have pets at home</label>
                     </div>
 
                     <hr>
-
-                    <button class="check-zip-btn " style="float: right;">Continue</button>
+                    <button type="submit" formmethod="post" class="check-zip-btn" style="float: right;" onclick="completedSchedule">Continue</button>
                 </div>
 
             </form>
 
-            <form>
+            <form method="post" action="@Url.Action("Details")">
                 <div class="details" id="div3">
-                    <div class="container">
-                        <div class="row address">
-                            <div class="col-lg-1">
-                                <label><input type="radio" name="radio" checked></label>
-                            </div>
-                            <div class="col-lg-11">
-                                <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
-                                <div class="row"> <b>Phone number</b>: 9988556644</div>
 
-                            </div>
-                        </div>
+                    <div id="address_div" class="container" method="post" action="@Url.Action("Details")">
 
-                        <div class="row address">
-                            <div class="col-lg-1">
-                                <label><input type="radio" name="radio"></label>
-                            </div>
-                            <div class="col-lg-11">
-                                <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
-                                <div class="row"> <b>Phone number</b>: 9988556644</div>
-
-                            </div>
-                        </div>
-
-                        <div class="row address">
-                            <div class="col-lg-1">
-                                <label><input type="radio" name="radio"></label>
-                            </div>
-                            <div class="col-lg-11">
-                                <div class="row"> <b>Address</b>: Test1 65, Bonn 53225</div>
-                                <div class="row"> <b>Phone number</b>: 9988556644</div>
-
-                            </div>
-                        </div>
-
-                        <button type="button" id="addAdd" class="add-Add-btn mt-3" onclick="displayAddForm()">+ Add New Address</button>
-
-                        <div class="row address" id="AddForm">
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label>Street Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Street Name" id="street">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>House Number</label>
-                                    <input type="text" class="form-control" placeholder="Enter House Number" id="house_no">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label>Postal code</label>
-                                    <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" placeholder="Enter City" id="city">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label>Phone no</label>
-                                    <div class="form-group mt-2">
-                                        <div class="input-group ">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">+49</div>
-                                            </div>
-                                            <input class="form-control" type="tel" id="MobileNo" name="MobileNo" placeholder="Mobile Number">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="button" value="Save" class="saveAdd">
-                                <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
-                            </div>
-                        </div>
-                        <hr>
-                        <p><b>Your Favorite Service Provider</b></p>
-                        <p>You can Choose your service provider from below list</p>
-                        <div class="d-flex justify-content-start">
-                            <div>
-                                <label class="fav-pro">
-                                    <img src="~/images/cap.png">
-
-                                </label>
-                                <h6 class="text-left">Sandip Patel</h6>
-                                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
-                            </div>
-                            <div class="ml-2">
-                                <label class="fav-pro">
-                                    <img src="~/images/cap.png">
-
-                                </label>
-                                <h6>Sandip Patel</h6>
-                                <input type="button" class="select-pro-btn" placeholder="Select" value="Select">
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <button class="check-zip-btn " style="float: right;">Continue</button>
                     </div>
+
                 </div>
 
+                <div class="row address" id="AddForm">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Street Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Street Name" id="street" asp-for="AddressLine1">
+                        </div>
+                        <div class="col-lg-6">
+                            <label>House Number</label>
+                            <input type="text" class="form-control" placeholder="Enter House Number" id="house_no" asp-for="AddressLine2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Postal code</label>
+                            <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode" asp-for="PostalCode">
+                        </div>
+                        <div class="col-lg-6">
+                            <label>City</label>
+                            <input type="text" class="form-control" placeholder="Enter City" id="city" asp-for="City">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Phone no</label>
+                            <div class="form-group mt-2">
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">+49</div>
+                                    </div>
+                                    <input class="form-control" type="tel" id="MobileNo" placeholder="Mobile Number" asp-for="Mobile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="saveAdd" formmethod="post" value="saveAdd" name="action">Save</button>
+                        <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
+                    </div>
+                </div>
             </form>
 
 
@@ -390,24 +333,37 @@
                 </div>
 
                 <div class="card-body">
-                    <p>01/01/2018 &#64; 4:00 pm</p>
-                    <p>1 bed ,1 bath</p>
-                    <p><b class="sub-title">Duration</b></p>
-                    <p>Basic<span>3 Hrs</span></p>
-                    <p>Inside cabinets(extra)<span>30 mins</span></p>
+                    <div class="d-flex justify-content-between">
+                        <p id="date">2022-02-02</p>
+                        <p id="time">8:00 AM</p>
+                    </div>
+                    <div>
+                        <p><b class="sub-title">Duration</b></p>
+                    </div>
+
+                    <div class="duration">
+                        <p>Basic<span id="basic_hours"> 3 Hrs</span></p>
+                        <p></p>
+                    </div>
+
+                    <p><b class="sub-title">Extras</b></p>
+
+                    <p class="d-none" id="1_extra">Inside cabinets(extra)<span>30 mins</span></p>
+                    <p class="d-none" id="2_extra">Inside fridg(extra)<span>30 mins</span></p>
+                    <p class="d-none" id="3_extra">Inside oven(extra)<span>30 mins</span></p>
+                    <p class="d-none" id="4_extra">Laundry wash and dry(extra)<span>30 mins</span></p>
+                    <p class="d-none" id="5_extra">Interior windows(extra)<span>30 mins</span></p>
                     <hr>
-                    <p><b class="sub-title">Total Service Time<span>3.5 Hrs</span></b></p>
+                    <p><b class="sub-title">Total Service Time<span id="total_time">3 Hrs</span></b></p>
+                    @*<p><b class="sub-title">Extra Service Time<span id="extra_time">0 Hrs</span></b></p>*@
                     <hr>
-                    <p>Per Cleaning<span>$87</span></p>
-                    <p>Discount<span>-$27</span></p>
-                    <hr>
-                    <p class="total-pay"><b>Total Payment<span class="paymentsub">$63</span></b></p>
+
+                    <p class="total-pay"><b>Total Payment<span class="paymentsub" id="subtotal">60₹</span></b></p>
                     <br>
-                    <p>Effective Price<span>$50.4</span></p>
-                    <!-- <p>You will save 20% according to...</p> -->
+
                 </div>
                 <div class="card-footer" role="button" data-toggle="modal" data-target="#include">
-                    <p><img src="~/images/smiley.png"><span>  See What is always include</p></span></p>
+                    <p><img src="~/images/smiley.png"><span>  See What is always include</span></p>
                 </div>
             </div>
 
@@ -434,7 +390,6 @@
                 <div class="row">
                     <div class="col-0 redirect-faq"><a href="@Url.Action("FAQ","Home")">For more help</a></div>
                 </div>
-
 
             </div>
         </div>
@@ -464,25 +419,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>01/01/2018 &#64; 4:00 pm</p>
-                <p>1 bed ,1 bath</p>
+                <div class="d-flex justify-content-between">
+                    <p id="date1">2022-02-02</p>
+                    <p id="time1">8:00 AM</p>
+                </div>
                 <p><b class="sub-title">Duration</b></p>
-                <p>Basic<span>3 Hrs</span></p>
-                <p>Inside cabinets(extra)<span>30 mins</span></p>
+                <div class="duration">
+                    <p>Basic<span id="basic_hours1"> 3 Hrs</span></p>
+                    <p></p>
+                </div>
+                <p><b class="sub-title">Extras</b></p>
+
+                <p class="d-none" id="1_extra1">Inside cabinets(extra)<span>30 mins</span></p>
+                <p class="d-none" id="2_extra2">Inside fridg(extra)<span>30 mins</span></p>
+                <p class="d-none" id="3_extra3">Inside oven(extra)<span>30 mins</span></p>
+                <p class="d-none" id="4_extra4">Laundry wash and dry(extra)<span>30 mins</span></p>
+                <p class="d-none" id="5_extra5">Interior windows(extra)<span>30 mins</span></p>
                 <hr>
-                <p><b class="sub-title">Total Service Time<span>3.5 Hrs</span></b></p>
+                <p><b class="sub-title">Total Service Time<span id="total_time1">3 Hrs</span></b></p>
+                @*<p><b class="sub-title">Extra Service Time<span id="extra_time">0 Hrs</span></b></p>*@
                 <hr>
-                <p>Per Cleaning<span>$87</span></p>
-                <p>Discount<span>-$27</span></p>
-                <hr>
-                <p class="total-pay"><b>Total Payment<span class="paymentsub">$63</span></b></p>
+
+                <p class="total-pay"><b>Total Payment<span class="paymentsub" id="subtotal1">60₹</span></b></p>
                 <br>
-                <p>Effective Price<span>$50.4</span></p>
             </div>
-            <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">
-                <p><img src="~/images/smiley.png"><span>  See What is always include</p></span></p>
+                <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">
+                    <p><img src="~/images/smiley.png"> <span>  See What is always include </span></p>
+                </div>
             </div>
-        </div>
     </div>
 </div>
 
@@ -583,46 +547,14 @@
     <img src="~/images/up-aero.png">
 </a>
 
-<!-- <style>
-    input[type="checkbox"][id^="mycheckbox"] {
-        display: none;
-    }
 
-    .check-label {
-        display: flex;
-        justify-content:center;
-        align-items:center;
-        cursor:pointer;
-        border: 1px solid #C8C8C8;
-        border-radius: 50%;
-        width:100px;
-        height:100px;
-    }
+@if (ViewBag.Msg != null)
+{
+    <script type="text/javascript">
 
-    .check-label:before {
-        background-color: white;
-        color: white;
-        content: " ";
-        display: block;
-        border-radius: 50%;
-        border: 1px solid #1d7a8c;
-        position: absolute;
-        text-align: center;
-        line-height: 28px;
-        transition-duration: 0.4s;
-        transform: scale(0);
-    }
+            function displayMsg() {
+                alert("Booking Completed with Reference ID: @ViewBag.Msg");
+            };
+    </script>
 
-    .check-label img {
-        transition-duration: 0.2s;
-        transform-origin: 50% 50%;
-    }
-    :checked + .check-label {
-        border: 3px solid #1d7a8c;
-    }
-        :checked + .check-label img {
-            transform: scale(0.9);
-            box-shadow: 0 0 5px #333;
-            z-index: -1;
-        }
-</style>-->
+}  

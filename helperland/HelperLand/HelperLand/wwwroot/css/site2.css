@@ -61,7 +61,7 @@ ul li {
 }
 
 .bgcolor.scrolled {
-    background-color: rgb(44, 43, 43);
+    background-color: #525252;
     transition: ease .3s;
     height: auto;
     opacity: 0.9;
@@ -163,6 +163,12 @@ ul li {
     border-radius: 20px;
     text-align: center;
     background-color: #29626D;
+}
+
+.Rounded-Rectangle1  {
+    border: 1px solid white;
+    border-radius: 20px;
+    text-align: center;
 }
 
 .container1 {
@@ -575,7 +581,7 @@ div p a {
 
 .map-section {
     margin-top: 92px;
-    ;
+    
 }
 
 .map-section {
@@ -1330,6 +1336,7 @@ a.book-services {
 
 .service-tabs {
     margin: 0px 15px;
+    justify-content:center;
 }
 
     .service-tabs ul .nav-item {
@@ -1344,6 +1351,9 @@ a.book-services {
         align-items: center;
     }
 
+    .service-tabs ul li img {
+        margin-right: 5px
+    }
 .tab1 {
     border: none;
     background-color: #1d7a8c !important;
@@ -1356,6 +1366,10 @@ a.book-services {
     font-size: 18px;
     font-family: Roboto;
     color: #F1F1F1 !important;
+}
+
+.service-tabs ul li :focus{
+    outline : none !important;
 }
 
 .service-tabs ul li .nav-link p {
@@ -1400,8 +1414,14 @@ a.book-services {
 
 .sub-title {
     font-size: 18px;
+    
 }
 
+.duration{
+    
+   
+    
+}
 .total-pay {
     color: #1D7A8C;
     font-family: Roboto;
@@ -1538,10 +1558,10 @@ input[type="checkbox"][id^="mycheckbox"] {
     border: 2px solid #1d7a8c;
 }
 
-:checked + .check-label img {
+/*:checked + .check-label img {
     box-shadow: 0 0 5px #646464;
     z-index: -1;
-}
+}*/
 
 .faqs {
     margin-top:15px;
@@ -1549,6 +1569,7 @@ input[type="checkbox"][id^="mycheckbox"] {
 }
 .service-faqs{
     max-width:400px;
+    margin-left:30px
 }
 
 .service-faqs div{
@@ -1734,7 +1755,6 @@ input[type="checkbox"][id^="mycheckbox"] {
         display: block !important;
     }
 
-
 }
 
 @media(max-width:1187px) {
@@ -1758,4 +1778,8 @@ input[type="checkbox"][id^="mycheckbox"] {
     .service-tabs ul li button {
         padding: 0px 20px;
     }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url(../images/admin-calendar-blue.png) center/80% no-repeat;
 }

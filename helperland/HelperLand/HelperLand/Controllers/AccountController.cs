@@ -28,7 +28,6 @@ namespace HelperLand.Controllers
         [HttpPost]
         public IActionResult Login(UserViewModel model)
         {
-            
            
             User user = db.Users.Where(u => u.Email == model.Email && (string.Compare(Hash.HashPass(model.Password), u.Password) == 0)).FirstOrDefault();
 
@@ -71,11 +70,13 @@ namespace HelperLand.Controllers
 
                 message.Subject = "Reset Password";
 
-                var lnkHref = "<a href= \"http://localhost:64175" + Url.Action("ResetPassword", "Account") + "/" + resetlink  +  " \" >Reset Password</a>";
+                string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+                string lnkHref = host + Url.Action("ResetPassword", "Account") + "/" + resetlink + " \" >Reset Password</a>"; ;
+                //var lnkHref = "<a href= \"http://localhost:64175" + Url.Action("ResetPassword", "Account") + "/" + resetlink  +  " \" >Reset Password</a>";
                 message.Body = new TextPart("html")
                 {
 
-                    Text = "Click this link to reset your password <a href=" + lnkHref + "</a>"
+                    Text = "Click this link to reset your password <a href=" + lnkHref + " </a>"
                    
                 };
 
