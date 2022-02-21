@@ -35,21 +35,21 @@
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex " id="service-tab-2" type="button" onclick="show2()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex "  id="service-tab-2" type="button" onclick="show2()">
                         <img id="schedule-img" src="~/images/schedule.png" asp-append-version="true">
                         <p id="schedule-p-text">Schedule & Plan</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-3" type="button" onclick="show3()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex"  id="service-tab-3" type="button" onclick="show3()">
                         <img id="your-detail-img" src="~/images/details.png" asp-append-version="true">
                         <p id="detail-p-text">Your Details</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-4" type="button" onclick="show4();displayMsg()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex"  id="service-tab-4" type="button" onclick="show4();displayMsg()">
                         <img id="payment-img" src="~/images/payment.png" asp-append-version="true">
                         <p id="payment-p-text">Make Payment</p>
                     </button>
@@ -59,7 +59,7 @@
 
 
 
-            <form action="@Url.Action("Check")" method="post">
+            <form action="@Url.Action("Check")" method="post" >
                 <div class="set-up-service mt-4 " id="div1">
 
                     <div class="d-flex flex-column">
@@ -85,14 +85,15 @@
                             </div>
 
                             <div>
-                                <button type="submit" formmethod="post" class="check-zip-btn" href="@Url.Action("Schedule")">Check Availibility</button>
+                                <button type="submit" formmethod="post" class="check-zip-btn" >Check Availibility</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
 
-            <form action="@Url.Action("Schedule")" method="post">
+
+            <form method="post" action="@Url.Action("Schedule")">
 
                 <div class="schedule-plan mt-4" id="div2">
 
@@ -200,7 +201,7 @@
                     </div>
 
                     <hr>
-                    <button type="submit" formmethod="post" class="check-zip-btn" style="float: right;" onclick="completedSchedule">Continue</button>
+                    <button type="submit" formmethod="post" class="check-zip-btn" style="float: right;" onclick="alert('Schedule and Plan Submitted Successfully Please move to Your Details tab to further booking')">Continue</button>
                 </div>
 
             </form>
@@ -250,7 +251,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="submit" class="saveAdd" formmethod="post" value="saveAdd" name="action">Save</button>
+                        <button type="submit" class="saveAdd" formmethod="post" value="saveAdd" name="action" onclick="alert('Your address saved successfully please select your address from Your Details tab to further booking')">Save</button>
                         <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
                     </div>
                 </div>
@@ -355,10 +356,9 @@
                     <p class="d-none" id="5_extra">Interior windows(extra)<span>30 mins</span></p>
                     <hr>
                     <p><b class="sub-title">Total Service Time<span id="total_time">3 Hrs</span></b></p>
-                    @*<p><b class="sub-title">Extra Service Time<span id="extra_time">0 Hrs</span></b></p>*@
                     <hr>
-
-                    <p class="total-pay"><b>Total Payment<span class="paymentsub" id="subtotal">60₹</span></b></p>
+                    <p><b class="sub-title">Sub total(for extra services)<span id="sub_total">00₹</span></b></p>
+                    <p class="total-pay"><b>Total Payment<span class="paymentsub" id="total">60₹</span></b></p>
                     <br>
 
                 </div>
@@ -437,10 +437,9 @@
                 <p class="d-none" id="5_extra5">Interior windows(extra)<span>30 mins</span></p>
                 <hr>
                 <p><b class="sub-title">Total Service Time<span id="total_time1">3 Hrs</span></b></p>
-                @*<p><b class="sub-title">Extra Service Time<span id="extra_time">0 Hrs</span></b></p>*@
                 <hr>
-
-                <p class="total-pay"><b>Total Payment<span class="paymentsub" id="subtotal1">60₹</span></b></p>
+                <p><b class="sub-title">Sub total(for extra services)<span id="sub_total1">00₹</span></b></p>
+                <p class="total-pay"><b>Total Payment<span class="paymentsub" id="total1">60₹</span></b></p>
                 <br>
             </div>
                 <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">

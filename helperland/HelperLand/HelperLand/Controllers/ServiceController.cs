@@ -52,6 +52,7 @@ namespace HelperLand.Controllers
             {
                 ViewBag.zipmsg = "Service Provider is available in your area Please move to next tab to further booking";
                 return View("Service");
+                
             }
             else
             {
@@ -67,10 +68,7 @@ namespace HelperLand.Controllers
             return View("Service");
         }
 
-
-
         [HttpPost]
-
         public IActionResult Schedule(ServiceViewModel model)
         {
             var u_name = HttpContext.Session.GetString("username");
@@ -81,9 +79,10 @@ namespace HelperLand.Controllers
                 .FirstOrDefault();
 
             var postalcode = _helperlandContext.UserAddresses
-                .Where(a => a.Email == u_name)
+                .Where(a => a.UserId == id)
                 .Select(a => a.PostalCode)
                 .FirstOrDefault();
+
             ViewBag.name = id;
 
             var extra_hrs = (model.ExtraHours) / 2;
@@ -105,15 +104,14 @@ namespace HelperLand.Controllers
             _helperlandContext.Add(newRequest);
             _helperlandContext.SaveChanges();
 
-
             return View("Service");
         }
 
         [HttpGet]
         public IActionResult Details()
         {
-            
-            var u_name = HttpContext.Session.GetString("username");
+
+          var u_name = HttpContext.Session.GetString("username");
            
             var id = _helperlandContext.Users
                 .Where(a => a.Email == u_name)
@@ -140,15 +138,13 @@ namespace HelperLand.Controllers
 
             var serviceReqId = _helperlandContext.ServiceRequests
                    .Where(a => a.UserId == id)
-                   //.OrderByDescending(a=>a)
+                   .OrderByDescending(a=>a)
                    .Select(a => a.ServiceRequestId)
                    .FirstOrDefault();
 
             if (action == "addSerAdd")
             {
                 int Address_id = int.Parse(Address_radio);
-
-
 
                 UserAddress newUserAdd = _helperlandContext.UserAddresses
                                          .Where(a => a.AddressId == Address_id)

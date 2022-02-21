@@ -1,10 +1,12 @@
 ﻿const toTop = document.querySelector(".to-top");
 var hrs = document.getElementById("total_hours");
 
+
 window.addEventListener("scroll", () => {
     if (window.pageYOffset > 100) {
         toTop.classList.add("active");
-    } else {
+    }
+    else {
         toTop.classList.remove("active");
     }
 })
@@ -23,25 +25,23 @@ var chk2 = document.getElementById("mycheckbox2");
 var chk3 = document.getElementById("mycheckbox3");
 var chk4 = document.getElementById("mycheckbox4");
 var chk5 = document.getElementById("mycheckbox5");
-var rs = parseInt(document.getElementById("subtotal").innerHTML);
+var rs = parseInt(document.getElementById("total").innerHTML);
 
 
 function cabinet() {
 
-    if (chk1.checked) {
+    if (chk1.checked)
+    {
         document.getElementById("cabinetimg").src = "../images/1-green.png";
         document.getElementById("1_extra").style = "display:block !important";
         document.getElementById("1_extra1").style = "display:block !important";
-
-        //var ext_time1 = ext_time + 0.5;
-
-        //document.getElementById("extra_time").innerHTML = ext_time1 + " Hrs";
-
     }
-    else {
+    else
+    {
         document.getElementById("cabinetimg").src = "../images/service_1.png";
         document.getElementById("1_extra").style = "display:none !important";
         document.getElementById("1_extra1").style = "display:none !important";
+
     }
 }
 
@@ -183,7 +183,7 @@ function show4() {
 }
 
 function completedSchedule() {
-    alert("Schedule and Plan Submitted Successfully Please move to next tab to further booking")
+    alert("Schedule and Plan Submitted Successfully Please move to next tab to further booking");
 }
 
 function displayAddForm() {
@@ -211,14 +211,50 @@ function Hours() {
     h1 = hrs.value;
     document.getElementById("basic_hours").innerHTML = h1 + " Hrs";
     document.getElementById("basic_hours1").innerHTML = h1 + " Hrs";
-    //$('#total_time').html(h1 + service_time + " Hrs")
     document.getElementById("total_time").innerHTML = h1 + " Hrs";
     document.getElementById("total_time1").innerHTML = h1 + " Hrs";
+   
     price = h1 * 20;
-    document.getElementById("subtotal").innerHTML = price + "₹";
-    document.getElementById("subtotal1").innerHTML = price + "₹";
-    //document.getElementById("subtotal1").innerHTML = price;
+    document.getElementById("total").innerHTML = (price) + "₹";
 }
+
+var countInput = document.getElementById('count');
+var checkboxes = document.querySelectorAll('input[type="checkbox"][id^="mycheckbox"]');
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].onchange = countCheckboxes;
+}
+
+function countCheckboxes() {
+    var count = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked)
+            count++;
+    }
+    countInput.value = count;
+
+    h1 = hrs.value;
+    var extra_hrs = parseInt(h1) + (parseInt(countInput.value)*0.5);
+    document.getElementById("total_time").innerHTML = extra_hrs + " Hrs";
+
+    var p = countInput.value * 10;
+    document.getElementById("sub_total").innerHTML = (p) + "₹";
+    document.getElementById("sub_total1").innerHTML = (p) + "₹";
+
+    total_pay = (h1*20) + p;
+    document.getElementById("total").innerHTML = total_pay + "₹";
+    document.getElementById("total1").innerHTML = total_pay + "₹";
+}
+countCheckboxes();
+
+function myFunction() {
+    //if (document.getElementById('postalcode').value != null) {
+        document.getElementById('address').innerHTML = '<label class="row address"> <span class="col-lg-1"> <input type="radio" name="radio" checked> </span> <span class="col-lg-11"> <span class="row"> <b>Address</b>: ' + street.value + '  ' + house_no.value + '  ' + postalcode.value + '  ' + city.value + '</span> <span class="row"> <b>Phone number</b>:' + MobileNo.value + '</span> </span> </label>'
+
+    //}
+}
+
+
+
 // $(document).ready(function(){
 //   var date_input=$('input[name="date"]'); 
 //   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
@@ -235,25 +271,7 @@ function Hours() {
 //    $('#example').DataTable();
 //});
 
-var countInput = document.getElementById('count');
-var checkboxes = document.querySelectorAll('input[type="checkbox"][id^="mycheckbox"]');
-for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].onchange = countCheckboxes;
-}
 
-function countCheckboxes() {
-    var count = 0;
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked)
-            count++;
-    }
-    countInput.value = count;
-}
-countCheckboxes();
 
-function myFunction() {
-    //if (document.getElementById('postalcode').value != null) {
-        document.getElementById('address').innerHTML = '<label class="row address"> <span class="col-lg-1"> <input type="radio" name="radio" checked> </span> <span class="col-lg-11"> <span class="row"> <b>Address</b>: ' + street.value + '  ' + house_no.value + '  ' + postalcode.value + '  ' + city.value + '</span> <span class="row"> <b>Phone number</b>:' + MobileNo.value + '</span> </span> </label>'
 
-    //}
-}
+
