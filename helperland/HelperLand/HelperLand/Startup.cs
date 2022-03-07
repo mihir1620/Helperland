@@ -29,7 +29,7 @@ namespace HelperLand
             services.AddDbContext<HelperLandContext>();
             services.AddSession(options =>
                 {
-                    options.IdleTimeout = TimeSpan.FromMinutes(1);
+                    options.IdleTimeout = TimeSpan.FromMinutes(30);
                     
             }) ;
         }

@@ -7,6 +7,7 @@ html {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    
 }
 
 body {
@@ -64,7 +65,7 @@ nav {
 }
 
 .bgcolor.scrolled {
-    background-color: rgb(44, 43, 43);
+    background-color: #525252;
     transition: ease .3s;
     height: auto;
     opacity: 0.8;
@@ -267,11 +268,11 @@ span img {
     margin-top: 120px;
 }
 
-    .blog-section div {
-        font-family: Roboto;
-        font-size: 18px;
-        color: #565656;
-    }
+.blog-section div {
+    font-family: Roboto;
+    font-size: 18px;
+    color: #565656;
+}
 
 .three-img-title {
     margin-top: 30px;
@@ -316,6 +317,7 @@ span img {
     margin-right: 20px;
     
 }
+
 
 .customer {
     padding-left: 30px;
@@ -380,7 +382,11 @@ span img {
     justify-content: center;
     align-items: center;
 }
-
+/*
+.social-media-icons a:hover {
+    background-color:#1D7A8C;
+    padding:5px;
+}*/
 .footer-links-2 {
     text-align: center;
     display: flex;
@@ -724,7 +730,9 @@ div p a {
     }
 
     .three-img {
-        margin-left: 120px;
+        margin-left:auto;
+        margin-right:auto;
+        display:block;
         height: 160px;
         width: 200px;
     }

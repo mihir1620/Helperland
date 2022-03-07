@@ -1,6 +1,7 @@
 ﻿using HelperLand.Data;
 using HelperLand.Models;
 using HelperLand.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,8 +40,9 @@ namespace HelperLand.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("username");
-            return View("~/Views/Home/Index.cshtml");
+            return RedirectToAction("Index","Home");
         }
+
         public IActionResult FAQ()
         {
             return View();

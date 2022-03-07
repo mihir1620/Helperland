@@ -16,6 +16,7 @@ namespace HelperLand.ViewModels
         public string ZipcodeValue { get; set; }
         public int CityId { get; set; }
         public string s_checkbox { get; set; }
+        [Required]
         public string City { get; set; }
         public ServiceRequest service { get; set; }
         public int ServiceRequestId { get; set; }
@@ -52,10 +53,17 @@ namespace HelperLand.ViewModels
         public bool? PaymentDone { get; set; }
         public Guid? RecordVersion { get; set; }
         public int AddressId { get; set; }
+        [Required]
         public string AddressLine1 { get; set; }
+        [Required]
         public string AddressLine2 { get; set; }
+        [Required]
         public string State { get; set; }
+        [Required]
         public string PostalCode { get; set; }
+        [Required]
         public string Mobile { get; set; }
+
+        public int ServiceExtraId { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace HelperLand.Controllers
                 {
                     HttpContext.Session.SetString("username", model.Email);
 
-                    return View("~/Views/Home/Index.cshtml");
+                    return RedirectToAction("Dashboard","Customer");
                 }
             
 

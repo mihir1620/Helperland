@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+@model UserViewModel
+
+
+<form method="post" action="@Url.Action("User_pswd")">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label> Old Password</label>
+                <input class="form-control" type="password" placeholder="Current Password" asp-for="OldPassword">
+                <span asp-validation-for="OldPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label> New Password</label>
+                <input class="form-control" type="password" placeholder="New Password" asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label> Confirm Password</label>
+                <input class="form-control" type="password" placeholder="Confirm Password" asp-for="ConfirmPassword">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mt-2">
+            <button type="submit" class="check-zip-btn" formmethod="post" value="saveAdd">Save</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/site.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

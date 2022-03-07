@@ -21,6 +21,11 @@ namespace HelperLand.ViewModels
         [Required]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Current Password is required.")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Must contain at least 8 characters(at least 1 uppercase letter, 1 lowercase letter, and 1 number)")]
+        public string OldPassword { get; set; }
+
         [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Must contain at least 8 characters(at least 1 uppercase letter, 1 lowercase letter, and 1 number)")]

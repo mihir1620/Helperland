@@ -1,4 +1,4 @@
-﻿@model UserViewModel
+﻿@model User
 
 <!DOCTYPE html>
 
@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="~/images/favicon_img.png" type="image/icon type">
     <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>@ViewData["Title"] | HelperLand</title>
 </head>
 <body>
@@ -65,7 +68,7 @@
 
                     @if (Context.Session.GetString("username") != null)
                     {
-                        <li class="nav-item " >
+                        <li class="nav-item ">
                             <a href="@Url.Action("Service", "Service")" class="nav-link Rounded-Rectangle">
                                 Book Now
                             </a>
@@ -96,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item afterLogin">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Mysetting", "Customer")" class="nav-link">
                                 My Setting
                             </a>
                         </li>
@@ -124,8 +127,8 @@
                                         Welcome @Context.Session.GetString("username")
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Dashboard </a>
-                                    <a class="dropdown-item" href="#">My Setting</a>
+                                    <a class="dropdown-item" href="@Url.Action("Dashboard", "Customer")">Dashboard </a>
+                                    <a class="dropdown-item" href="@Url.Action("Mysetting", "Customer")">My Setting</a>
                                     <a class="dropdown-item" href="@Url.Action("logout","home")">Logout</a>
                                 </div>
 
@@ -179,7 +182,6 @@
         </div>
     </div>
     <!-- The Login Modal Ends-->
-
     <!-- The Forgot Modal -->
     <div class="modal fade" id="forgotModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
@@ -191,7 +193,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form  asp-action="ForgotPassword" asp-controller="Account" method="post">
+                    <form asp-action="ForgotPassword" asp-controller="Account" method="post">
                         <div class="form-group ">
                             <input class="form-control" asp-for="Email" required type="email" placeholder="Email" />
                         </div>
@@ -214,7 +216,7 @@
         @RenderBody()
     </div>
 
-    <section class="footer" >
+    <section class="footer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 footer-logo">
@@ -246,12 +248,11 @@
         </div>
     </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3960232895.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     @RenderSection("Scripts", required: false)

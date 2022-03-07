@@ -31,6 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "HelperLand/1.0.0": {
         "dependencies": {
+          "ClosedXML": "0.70.0",
           "MailKit": "2.0.0",
           "Microsoft.AspNet.WebPages.WebData": "2.0.20505",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
@@ -310,6 +311,31 @@
         },
         "compile": {
           "HelperLand.dll": {}
+        }
+      },
+      "ClosedXML/0.70.0": {
+        "dependencies": {
+          "DocumentFormat.OpenXml": "1.0.0"
+        },
+        "runtime": {
+          "lib/net40-client/ClosedXML.dll": {
+            "assemblyVersion": "0.70.0.0",
+            "fileVersion": "0.70.0.0"
+          }
+        },
+        "compile": {
+          "lib/net40-client/ClosedXML.dll": {}
+        }
+      },
+      "DocumentFormat.OpenXml/1.0.0": {
+        "runtime": {
+          "lib/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "2.0.5022.0",
+            "fileVersion": "2.0.5022.0"
+          }
+        },
+        "compile": {
+          "lib/DocumentFormat.OpenXml.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -4081,6 +4107,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ClosedXML/0.70.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vRG9oeJQkbGUbcyNUq9GzCbAGvsKQXhQxLaNBwr6rUCUU0cRAeHcsYT3DA35piRcwyQl66mtuVu2ZefP57Wj+g==",
+      "path": "closedxml/0.70.0",
+      "hashPath": "closedxml.0.70.0.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wiY41wsdbBm883kTJtQFKJU24krRQn5Y/9ouSWJ5+iF+FmUN1cgMuTmE/L0xvRlzeHTpZLM/jVEZI17jfpzGKg==",
+      "path": "documentformat.openxml/1.0.0",
+      "hashPath": "documentformat.openxml.1.0.0.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

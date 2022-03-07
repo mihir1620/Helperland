@@ -1,0 +1,104 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    ViewData["Title"] = "ServiceHistory";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<section class="name-container text-align-center">
+    <div class="container-fluid ">
+        <h1>Welcome <b>@ViewBag.name</b></h1>
+    </div>
+</section>
+
+<!--<div class="container modal-menu">-->
+<!-- The Modal -->
+<!--<div class="modal fade" id="collapsiblemodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">-->
+<!-- Modal Header -->
+<!--<div class="modal-header">
+    <div class="container">
+        <div>
+            <h5 class="modal-title">Welcome</h5>
+        </div>
+        <div>
+            <p class="modal-title">User!</p>
+        </div>
+    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+    <div class="container">
+
+        <a href="#">Dashboard</a>
+        <a href="#">New Service Request</a>
+        <a href="#" class="active">Upcoming Service</a>
+        <a href="#">Service Schedule</a>
+        <a href="#">Service History</a>
+        <a href="#">My Rating</a>
+        <a href="#">Block Customer</a>
+        <a href="#">My Setting</a>
+        <a href="#"></a>
+
+    </div>
+</div>-->
+<!-- Modal footer -->
+<!--<div class="modal-footer">
+                    <div class="container">
+                        <a href="#">Prices & Services</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Content</a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="container" style="display: flex;margin: auto;justify-content: space-around;">
+                        <a href="#"><img src="~/images/ic-facebook.png"></a>
+                        <a href="#"><img src="~/images/ic-instagram.png"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>-->
+
+<section class="left-side-menu">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3 table-responsive menu service-tabs"> -->
+            <div class="col-lg-3 menu remove">
+
+                <a href="@Url.Action("Dashboard","Customer")">Dashboard</a>
+
+                <a href="@Url.Action("Servicehistory","Customer")" class="active">Service History</a>
+
+
+                <a href="#">Favorite Pros</a>
+
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                </div>
+                <input class="export-btn float-right excel" type="button" value="Export">
+                <div id="loadServiceHistoryTable">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#top" class="to-top">
+        <img src="~/images/up-aero.png">
+    </a>
+</section>
+

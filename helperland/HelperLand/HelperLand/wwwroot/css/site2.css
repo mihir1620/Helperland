@@ -829,6 +829,7 @@ div p a {
 
 .left-side-menu {
     margin-top: 30px;
+    margin-left:20px;
 }
 
 .menu {
@@ -843,25 +844,25 @@ div p a {
     /* padding: 0; */
 }
 
-    .menu a {
-        padding: 16px;
-        font-size: 18px;
-        font-family: var(--font-family);
-        display: block;
-        color: white;
-        text-decoration: none;
-        border-bottom: 1px solid white;
-    }
+.menu a {
+    padding: 16px;
+    font-size: 18px;
+    font-family: var(--font-family);
+    display: block;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+}
 
-        .menu a:hover:not(.active) {
-            background-color: #146371;
-            color: white;
-        }
+.menu a:hover:not(.active) {
+    background-color: #146371;
+    color: white;
+}
 
-        .menu a.active {
-            background-color: #146371;
-            color: white;
-        }
+.menu a.active {
+    background-color: #146371;
+    color: white;
+}
 
 .service-table {
     font-family: var(--font-family);
@@ -884,8 +885,7 @@ div p a {
     background-color: #146371;
     border-radius: 17px;
     border: none;
-    min-width: 70px;
-    min-height: 34px;
+    padding:5px;
     color: white;
     font-family: Roboto;
 }
@@ -932,6 +932,26 @@ div p a {
     font-family: Roboto;
     font-size: 14px;
     border: none;
+}
+.rescheule-btn {
+    background-color: #146371;
+    border-radius: 17px;
+    color: white;
+    font-family: Roboto;
+    font-size: 14px;
+    border: none;
+    padding: 5px;
+    outline: none !important;
+}
+.cancel-ser-btn {
+    background-color: #ff6b6b;
+    border-radius: 17px;
+    color: white;
+    font-family: Roboto;
+    font-size: 14px;
+    border: none;
+    padding: 5px;
+    outline:none !important;
 }
 
 .entry-btn {
@@ -1417,6 +1437,9 @@ a.book-services {
     
 }
 
+.faq-hr{
+    max-width:330px;
+}
 .duration{
     
    
@@ -1472,6 +1495,18 @@ a.book-services {
     float: right;
 }
 
+
+.service-details-modal-body div{
+    font-family:Roboto;
+    color:#4F4F4F;
+    font-size:18px;
+}
+.service-details-modal-body div p {
+    margin-bottom:3px!important;
+}
+.service-details-modal-body div p:nth-child(2) {
+    margin-left: 3px !important;
+}
 .modal-footer p {
     color: #8D8D8D;
     font-family: Roboto;
@@ -1637,9 +1672,25 @@ input[type="checkbox"][id^="mycheckbox"] {
     font-family: Roboto;
 }
 
-    .saveAdd:hover {
-        background-color: #1d7a8c;
-    }
+.saveAdd1 {
+    background-color: #6aa6b2;
+    border: none;
+    width: 100%;
+    border-radius: 24px;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-family: Roboto;
+    margin: 0px 5px;
+}
+
+.saveAdd:hover {
+    background-color: #1d7a8c;
+}
+.saveAdd1:hover {
+    background-color: #1d7a8c;
+}
+
 
 .cancelAdd {
     border: none;
@@ -1664,6 +1715,7 @@ input[type="checkbox"][id^="mycheckbox"] {
     border-radius: 20px;
     font-family: Roboto;
     color: #1d7a8c;
+    outline:none !important;
 }
 
     .add-Add-btn:hover {
@@ -1694,9 +1746,73 @@ input[type="checkbox"][id^="mycheckbox"] {
     color: #29626D;
 }
 
-    .terms a:hover {
-        color: #1d7a8c;
-    }
+.terms a:hover {
+    color: #1d7a8c;
+}
+
+#mydetails{
+    display: block;
+}
+
+#my-details-p {
+    color: #1d7a8c;
+    font-weight: bold;
+}
+
+#myaddress {
+    display: none;
+}
+
+#mypassword {
+    display: none;
+}
+
+.mysetting .nav-item .nav-link{
+    padding:0 !important;
+}
+
+.mysetting {
+    margin-bottom:1rem;
+    border-bottom:solid 4px #F9F9F9;
+}
+
+#reschedule_date{
+    height:38px;
+}
+
+#service_details{
+    cursor:pointer;
+}
+
+.mysetting li a {
+    text-decoration: none;
+    color: black !important;
+}
+
+.mysetting li a p{
+    margin-bottom: 0.5rem;
+}
+
+.address-modal{
+    min-width:600px;
+}
+
+.address-modal-body span {
+    float: left;
+}
+
+.details div div button{
+    outline:none;
+    border:none;
+}
+
+.edit-img:hover {
+    cursor: pointer;
+}
+
+.delete-img:hover {
+    cursor: pointer;
+}
 
 @media (max-width:915px) {
     .payment-slip {

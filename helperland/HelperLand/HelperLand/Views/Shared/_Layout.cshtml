@@ -1,6 +1,5 @@
 ﻿@model UserViewModel
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +29,9 @@
                     @if (Context.Session.GetString("username") == null)
                     {
                         <li class="nav-item ">
-                            <a href="@Url.Action("Service", "Service")" class="nav-link Rounded-Rectangle">
+                            <a href="#" class="nav-link Rounded-Rectangle" type="button" data-toggle="modal" data-target="#loginModal">
                                 Book a Cleaner
-                                @*type="button" data-toggle="modal" data-target="#loginModal"*@
+                                
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -100,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item afterLogin">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Mysetting", "Customer")" class="nav-link">
                                 My Setting
                             </a>
                         </li>
@@ -130,8 +129,8 @@
                                         Welcome @Context.Session.GetString("username")
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Dashboard </a>
-                                    <a class="dropdown-item" href="#">My Setting</a>
+                                    <a class="dropdown-item" href="@Url.Action("Dashboard", "Customer")">Dashboard </a>
+                                    <a class="dropdown-item" href="@Url.Action("Mysetting", "Customer")">My Setting</a>
                                     <a class="dropdown-item" href="@Url.Action("logout","home")">Logout</a>
                                 </div>
                             </a>

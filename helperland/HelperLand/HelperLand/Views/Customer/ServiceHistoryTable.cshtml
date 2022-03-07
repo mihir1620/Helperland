@@ -1,0 +1,175 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.ServiceRequest>
+
+
+<table class="table service-table table-hover table-responsive-xl" id="example">
+    <thead>
+        <tr>
+            <th class="table-heading">Service ID </th>
+            <th class="table-heading">Date </th>
+            <th class="table-heading">Service Provider  </th>
+            <th class="table-heading">Payment  </th>
+            <th class="table-heading">Status  </th>
+            <th class="table-heading">Rate SP</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Status == 0 || item.Status == 1)
+            {
+                var total_time = item.ServiceHours + item.ExtraHours;
+                decimal t = (decimal)total_time;
+                TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
+                var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+                <tr>
+                    <td>
+                        @item.ServiceRequestId
+                    </td>
+                    <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
+                        <div>
+                            <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
+                        </div>
+                        <div>
+                            <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span><img src="~/images/cap.png"></span>  Lyum Watson
+                        </div>
+                        <div>
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/grey-small-star.png"> <span>4</span>
+                        </div>
+                    </td>
+
+                    <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
+
+                    <td>
+                        @if (item.Status == 0)
+                        {
+                            <button class="cancelled-btn">Cancelled</button>
+                        }
+                        @if (item.Status == 1)
+                        {
+                            <button class="completed-btn">Completed</button>
+                        }
+
+                    </td>
+                    <td>
+                        <button class="rate-sp-btn" data-toggle="modal" data-target="#rateSpModal"> Rate SP</button>
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="servicedetails" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:#646464"><b>Service Details</b></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body service-details-modal-body">
+
+                    <div class="d-flex justify-content-around">
+                        <h3 id="serviceDate" class="font-weight-bold"></h3>
+                        <h3 id="servicetime" class="font-weight-bold ml"></h3>
+                    </div>
+
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Duration: </p>
+                        <p id="serviceduration"></p>
+                        <p>Hrs</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Service Id: </p>
+                        <p id="Service_id"></p>
+                    </div>
+                    @*<span class="font-weight-bold">Extra: </span>  <p id="extra_id"></p>*@
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Net amount:</p>
+                        <p id="net_amount"></p>
+                        <p>₹</p>
+                    </div>
+
+                    <hr>
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Service Address: </p>
+                        <p id="Service_address"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Billing Address:</p>
+                        <p id="billing_address">Same as service address</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Phone: </p>
+                        <p id="phone"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="font-weight-bold">Comments: </p>
+                        <p id="comments"></p>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="rateSpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Rate Service Provider</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body service-details-modal-body">
+
+             
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function getServiceDetails(serviceId) {
+        $.post("/Customer/getService", { Id: parseInt(serviceId) },
+            function (data) {
+                $('#serviceDate').html(data.serviceDate);
+                $('#servicetime').html(data.serviceTime);
+                $('#serviceduration').html(data.duration);
+                $('#Service_id').html(data.serviceId);
+                $('#net_amount').html(data.netAmount);
+                $('#phone').html(data.phone);
+                $('#email').html(data.email);
+                $('#Service_address').html(data.serviceAddress);
+                $('#comments').html(data.comments);
+                $("#servicedetails").modal('show');
+            });
+
+    }
+
+
+</script>
+

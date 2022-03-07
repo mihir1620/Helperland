@@ -1,6 +1,12 @@
 ﻿const toTop = document.querySelector(".to-top");
 var hrs = document.getElementById("total_hours");
 
+$(document).ready(function () {
+    $('#example').DataTable();
+});
+
+$('#loadDashboard').load('/Customer/DashboardTable');
+$('#loadServiceHistoryTable').load('/Customer/ServiceHistoryTable');
 
 window.addEventListener("scroll", () => {
     if (window.pageYOffset > 100) {
@@ -16,6 +22,18 @@ $(window).scroll(function () {
     $('nav').toggleClass('scrolled', $(this).scrollTop() > 60);
 });
 
+window.setTimeout(function () {
+    $(".alert1").fadeTo(300, 0).slideUp(300, function () {
+        $(this).remove();
+    });
+}, 3000);
+
+window.setTimeout(function () {
+    $(".bookalert").fadeTo(500, 0).slideUp(500, function () {
+        $(this).remove();
+    });
+}, 5000);
+
 function transformArrow(arrow) {
     arrow.classList.toggle('rotate-arrow');
 }
@@ -25,7 +43,7 @@ var chk2 = document.getElementById("mycheckbox2");
 var chk3 = document.getElementById("mycheckbox3");
 var chk4 = document.getElementById("mycheckbox4");
 var chk5 = document.getElementById("mycheckbox5");
-var rs = parseInt(document.getElementById("total").innerHTML);
+/*var rs = parseInt(document.getElementById("total").innerHTML);*/
 
 
 function cabinet() {
@@ -133,11 +151,17 @@ function show1() {
     document.getElementById('service-tab-4').style = "background-color: #f3f3f3;color:#4f4f4f";
     document.getElementById('payment-img').src = "../images/payment.png";
     document.getElementById('payment-p-text').style = "color:#4f4f4f";
+ 
+   
 
-    document.getElementById('div1').style = "display:flex;";
-    document.getElementById('div2').style.display = "none";
-    document.getElementById('div3').style.display = "none";
-    document.getElementById('div4').style.display = "none";
+    $('#div1').show();
+    $('#div2').hide();
+    $('#div3').hide();
+    $('#div4').hide();
+    //document.getElementById('div1').style = "display:flex;";
+    //document.getElementById('div2').style.display = "none";
+    //document.getElementById('div3').style.display = "none";
+    //document.getElementById('div4').style.display = "none";
 }
 
 function show2() {
@@ -152,10 +176,19 @@ function show2() {
     document.getElementById('service-tab-4').style = "background-color: #f3f3f3;color:#4f4f4f";
     document.getElementById('payment-img').src = "../images/payment.png";
     document.getElementById('payment-p-text').style = "color:#4f4f4f";
-    document.getElementById('div1').style.display = "none";
-    document.getElementById('div2').style.display = "block";
-    document.getElementById('div3').style.display = "none";
-    document.getElementById('div4').style.display = "none";
+
+    $('#div1').hide();
+    $('#div2').show();
+    $('#div3').hide();
+    $('#div4').hide();
+    //document.getElementById("service-tab-1").disabled = true;
+    //document.getElementById("service-tab-2").disabled = false;
+    //document.getElementById("service-tab-3").disabled = true;
+    //document.getElementById("service-tab-4").disabled = true;
+    //document.getElementById('div1').style.display = "none";
+    //document.getElementById('div2').style.display = "block";
+    //document.getElementById('div3').style.display = "none";
+    //document.getElementById('div4').style.display = "none";
 }
 
 function show3() {
@@ -165,10 +198,19 @@ function show3() {
     document.getElementById('service-tab-4').style = "background-color: #f3f3f3;";
     document.getElementById('payment-img').src = "../images/payment.png";
     document.getElementById('payment-p-text').style = "color:#4f4f4f";
-    document.getElementById('div1').style.display = "none";
-    document.getElementById('div2').style.display = "none";
-    document.getElementById('div3').style.display = "flex";
-    document.getElementById('div4').style.display = "none";
+
+    $('#div1').hide();
+    $('#div2').hide();
+    $('#div3').show();
+    $('#div4').hide();
+    //document.getElementById("service-tab-1").disabled = true;
+    //document.getElementById("service-tab-2").disabled = true;
+    //document.getElementById("service-tab-3").disabled = false;
+    //document.getElementById("service-tab-4").disabled = true;
+    //document.getElementById('div1').style.display = "none";
+    //document.getElementById('div2').style.display = "none";
+    //document.getElementById('div3').style.display = "flex";
+    //document.getElementById('div4').style.display = "none";
     $("#address_div").load('/Service/Details');
 }
 
@@ -176,10 +218,19 @@ function show4() {
     document.getElementById('service-tab-4').style = "background-color: #1d7a8c;color:white";
     document.getElementById('payment-img').src = "../images/payment-white.png";
     document.getElementById('payment-p-text').style = "color:white";
-    document.getElementById('div1').style.display = "none";
-    document.getElementById('div2').style.display = "none";
-    document.getElementById('div3').style.display = "none";
-    document.getElementById('div4').style.display = "flex";
+
+    $('#div1').hide();
+    $('#div2').hide();
+    $('#div3').hide();
+    $('#div4').show();
+    //document.getElementById("service-tab-1").disabled = true;
+    //document.getElementById("service-tab-2").disabled = true;
+    //document.getElementById("service-tab-3").disabled = true;
+    //document.getElementById("service-tab-4").disabled = false;
+    //document.getElementById('div1').style.display = "none";
+    //document.getElementById('div2').style.display = "none";
+    //document.getElementById('div3').style.display = "none";
+    //document.getElementById('div4').style.display = "flex";
 }
 
 function completedSchedule() {
@@ -267,11 +318,41 @@ function myFunction() {
 //   date_input.datepicker(options);
 // })
 
-//$(document).ready(function () {
-//    $('#example').DataTable();
-//});
 
+function myDetails() {
 
+    $('#mydetails').show();
+    $('#myaddress').hide();
+    $('#mypassword').hide();
+    document.getElementById("my-details-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("my-password-p").style = "color:#646464;";
+    document.getElementById("my-address-p").style = "color:#646464;";
+    
+    //document.getElementById("myaddress").style = "display:none";
+    //document.getElementById("mypassword").style = "display:none";
+    //document.getElementById("mydetails").style = "display:block";
+}
 
+function myAddress() {
 
+    $('#mypassword').hide();
+    $('#mydetails').hide();
+    $('#myaddress').show();
+    $("#loadAdd").load('/Customer/User_Address');
+    $("#loadAddPopup").load('/Customer/AddressPopup');
+    document.getElementById("my-address-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("my-password-p").style = "color:#646464;";
+    document.getElementById("my-details-p").style = "color:#646464;font-weight:normal";
+}
 
+function myPassword() {
+    $('#myaddress').hide();
+    $('#mydetails').hide();
+    $('#mypassword').show();
+    $("#loadpasswd").load('/Customer/User_pswd');
+    document.getElementById("my-password-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("my-address-p").style = "color:#646464;";
+    document.getElementById("my-details-p").style = "color:#646464;font-weight:normal";
+}
+
+//$("#loadDashboard").load('/Customer/DashboardTable');

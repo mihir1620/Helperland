@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "ClosedXML/0.70.0": {
+        "type": "package",
+        "dependencies": {
+          "DocumentFormat.OpenXml": "[1.0.0]"
+        },
+        "compile": {
+          "lib/net40-client/ClosedXML.dll": {}
+        },
+        "runtime": {
+          "lib/net40-client/ClosedXML.dll": {}
+        }
+      },
+      "DocumentFormat.OpenXml/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/DocumentFormat.OpenXml.dll": {}
+        },
+        "runtime": {
+          "lib/DocumentFormat.OpenXml.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -2958,6 +2979,33 @@
     }
   },
   "libraries": {
+    "ClosedXML/0.70.0": {
+      "sha512": "vRG9oeJQkbGUbcyNUq9GzCbAGvsKQXhQxLaNBwr6rUCUU0cRAeHcsYT3DA35piRcwyQl66mtuVu2ZefP57Wj+g==",
+      "type": "package",
+      "path": "closedxml/0.70.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "closedxml.0.70.0.nupkg.sha512",
+        "closedxml.nuspec",
+        "lib/net35-client/ClosedXML.XML",
+        "lib/net35-client/ClosedXML.dll",
+        "lib/net40-client/ClosedXML.XML",
+        "lib/net40-client/ClosedXML.dll"
+      ]
+    },
+    "DocumentFormat.OpenXml/1.0.0": {
+      "sha512": "wiY41wsdbBm883kTJtQFKJU24krRQn5Y/9ouSWJ5+iF+FmUN1cgMuTmE/L0xvRlzeHTpZLM/jVEZI17jfpzGKg==",
+      "type": "package",
+      "path": "documentformat.openxml/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "documentformat.openxml.1.0.0.nupkg.sha512",
+        "documentformat.openxml.nuspec",
+        "lib/DocumentFormat.OpenXml.dll"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -9538,6 +9586,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "ClosedXML >= 0.70.0",
       "MailKit >= 2.0.0",
       "Microsoft.AspNet.WebPages.WebData >= 2.0.20505",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.0",
@@ -9586,6 +9635,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "ClosedXML": {
+            "target": "Package",
+            "version": "[0.70.0, )"
+          },
           "MailKit": {
             "target": "Package",
             "version": "[2.0.0, )"
@@ -9640,6 +9693,26 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'ClosedXML 0.70.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "ClosedXML",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DocumentFormat.OpenXml 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "DocumentFormat.OpenXml",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

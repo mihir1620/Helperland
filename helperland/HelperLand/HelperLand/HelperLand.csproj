@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.70.0" />
     <PackageReference Include="MailKit" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebPages.WebData" Version="2.0.20505" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />

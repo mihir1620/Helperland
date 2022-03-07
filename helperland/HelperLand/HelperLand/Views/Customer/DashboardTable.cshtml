@@ -1,0 +1,273 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.ServiceRequest>
+
+
+<table class="table service-table table-hover table-responsive-xl" id="example">
+    <thead>
+        <tr>
+            <th class="table-heading">Service Id </th>
+            <th class="table-heading">Service Date </th>
+            <th class="table-heading">Service Provider  </th>
+            <th class="table-heading">Payment  </th>
+            <th class="table-heading">Actions  </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Status == null)
+            {
+                var total_time = item.ServiceHours + item.ExtraHours;
+                decimal t = (decimal)total_time;
+                TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
+                var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+                <tr>
+                    <td>
+                        @item.ServiceRequestId
+                    </td>
+                    <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
+                        <div>
+                            <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
+                        </div>
+                        <div>
+                            <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                        </div>
+                    </td>
+                    
+                    <td>
+                        <div>
+                           @item.ServiceProviderId
+                        </div>
+                        @*<div>
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/star1.png">
+                            <img src="~/images/grey-small-star.png"> <span>4</span>
+                        </div>*@
+                    </td>
+                    <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
+
+                    <td class="d-flex justify-content-around">
+                        <button class="rescheule-btn" id="reschedule_btn_val" data-toggle="modal" data-target="#rescheduleReqModal" value="@item.ServiceRequestId">Reschedule</button>
+                        <button class="cancel-ser-btn"  onclick="CancelService(@item.ServiceRequestId)" >Cancel</button>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="servicedetails" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Service Details</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body service-details-modal-body">
+
+                <div class="d-flex justify-content-around">
+                    <h3 id="serviceDate" class="font-weight-bold"></h3>
+                    <h3 id="servicetime" class="font-weight-bold ml"></h3>
+                </div>
+                
+                <div class="d-flex">
+                    <p class="font-weight-bold">Duration: </p>
+                    <p id="serviceduration"></p>
+                    <p >Hrs</p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Service Id: </p>
+                    <p id="Service_id"></p>
+                </div>
+                @*<span class="font-weight-bold">Extra: </span>  <p id="extra_id"></p>*@
+                <div class="d-flex">
+                    <p class="font-weight-bold">Net amount:</p>
+                    <p id="net_amount"></p>
+                    <p>₹</p>
+                </div>
+
+                <hr>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Service Address: </p>
+                    <p id="Service_address"></p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Billing Address:</p>
+                    <p id="billing_address">Same as service address</p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Phone: </p>
+                    <p id="phone"></p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Comments: </p>  
+                    <p id="comments"></p>
+                </div>
+                <hr>
+                    <div class="d-flex justify-content-around">
+                        <button class="rescheule-btn" id="reschedule_btn" data-toggle="modal" data-target="#rescheduleReqModal">Reschedule</button>
+                        <button class="cancel-ser-btn" id="cancel_btn" data-toggle="modal" data-target="#cancelReqModal">Cancel</button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelReqModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Cancel Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                       Your Request cancelled successfully
+                    </div>
+                    <div >
+                           <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px"/>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="resheduleModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b></b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        Your Request Resheduled successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="rescheduleReqModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Reschedule Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section">
+                    <div>
+                        Select new date and time
+                    </div>
+
+                    <div class="d-flex justify-content-between m-2">
+                        <input class="form-control form-check-inline" type="date" id="reschedule_date">
+
+                        <select class="form-control form-check-inline" id="reschedule_time">
+                            <option selected value="8:00">8:00</option>
+                            <option value="8:30">8:30</option>
+                            <option value="9:00">9:00</option>
+                            <option value="9:30">9:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                        </select>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <button class="saveAdd1" id="reschedule_btn" onclick="RescheduleService($('#reschedule_btn_val').val(), $('#reschedule_date').val(), $('#reschedule_time').val())">Update</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function getServiceDetails(serviceId) {
+        $.post("/Customer/getService", { Id: parseInt(serviceId) },
+            function (data) {
+                $('#serviceDate').html(data.serviceDate);
+                $('#servicetime').html(data.serviceTime);
+                $('#serviceduration').html(data.duration);
+                $('#Service_id').html(data.serviceId);
+                $('#net_amount').html(data.netAmount);
+                $('#phone').html(data.phone);
+                $('#email').html(data.email);
+                $('#Service_address').html(data.serviceAddress);
+                $('#comments').html(data.comments);
+                $("#servicedetails").modal('show');
+            });
+
+    }
+    function CancelService(serviceId) {
+        $.post("/Customer/CancelService", { Id: parseInt(serviceId) },
+            function (data) {
+                $("#cancelReqModal").modal('show');
+            });
+    }
+    function RescheduleService(Id, date, time) {
+        $.post("/Customer/RescheduleService", { Id: parseInt(Id), ServiceDate: date, ServiceTime:time },
+            function (data) {
+                $("#resheduleModal").modal('show');
+            });
+    }
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+
+</script>
+

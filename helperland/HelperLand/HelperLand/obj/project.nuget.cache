@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nwQELYLDcA0Lc8xYm8FFeKJ9sJvaskGUUEPuGfLU97qToeP8FZIbGCPPykE/UATEUegXY9R0+Kd6XA2iwliqtA==",
+  "dgSpecHash": "wvAVB4cqeM9OOpkEqDmc9PETFYWqMWuNI07ClKVuGLcugRb54ecSgCFKXEkKugB96Ks+ugPhwAxBY2OFHyxFcg==",
   "success": true,
   "projectFilePath": "D:\\Helperland\\helperland\\HelperLand\\HelperLand\\HelperLand.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MIHIR\\.nuget\\packages\\closedxml\\0.70.0\\closedxml.0.70.0.nupkg.sha512",
+    "C:\\Users\\MIHIR\\.nuget\\packages\\documentformat.openxml\\1.0.0\\documentformat.openxml.1.0.0.nupkg.sha512",
     "C:\\Users\\MIHIR\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\MIHIR\\.nuget\\packages\\mailkit\\2.0.0\\mailkit.2.0.0.nupkg.sha512",
     "C:\\Users\\MIHIR\\.nuget\\packages\\microsoft.aspnet.webpages.data\\2.0.20505\\microsoft.aspnet.webpages.data.2.0.20505.nupkg.sha512",
@@ -183,6 +185,26 @@
     "C:\\Users\\MIHIR\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'ClosedXML 0.70.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "ClosedXML",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DocumentFormat.OpenXml 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "DocumentFormat.OpenXml",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

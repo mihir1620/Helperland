@@ -9,6 +9,22 @@
     <img class="img-fluid" src="~/images/book-service-banner.jpg" alt="About-banner" style="width:100%;height: auto;">
 </sectiion>
 
+<section >
+    <div class="container mt-2 text-center ">
+        @if (ViewBag.bookId != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show bookalert" role="alert">
+                <h4><strong>Congratulation!</strong> Your booking completed successfully.</h4>
+                <h2>Booking Id : @ViewBag.bookId</h2>
+                <h6>Please save id for future reference</h6>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
 <section class="few-words-section">
 
     <div class="container few-word-div">
@@ -28,28 +44,28 @@
         <div class="service-tabs">
             <ul class="nav flex-nowrap d-flex justify-content-center">
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center  tab1" id="service-tab-1" type="button" onclick="show1()">
+                    <button class="nav-link d-flex align-items-center justify-content-center  tab1" id="service-tab-1" type="button" onclick="show1()" >
                         <img id="set-up-img" src="~/images/setup-service-white.png" asp-append-version="true">
                         <p id="set-p-text">Setup Service</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex "  id="service-tab-2" type="button" onclick="show2()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex " id="service-tab-2" type="button" onclick="show2()" disabled >
                         <img id="schedule-img" src="~/images/schedule.png" asp-append-version="true">
                         <p id="schedule-p-text">Schedule & Plan</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex"  id="service-tab-3" type="button" onclick="show3()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-3" type="button" onclick="show3()" disabled >
                         <img id="your-detail-img" src="~/images/details.png" asp-append-version="true">
                         <p id="detail-p-text">Your Details</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex"  id="service-tab-4" type="button" onclick="show4();displayMsg()">
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-4" type="button" onclick="show4();" disabled >
                         <img id="payment-img" src="~/images/payment.png" asp-append-version="true">
                         <p id="payment-p-text">Make Payment</p>
                     </button>
@@ -59,7 +75,7 @@
 
 
 
-            <form action="@Url.Action("Check")" method="post" >
+            <form>
                 <div class="set-up-service mt-4 " id="div1">
 
                     <div class="d-flex flex-column">
@@ -79,21 +95,42 @@
                                 @if (ViewBag.zipmsg == null)
                                 {
                                     <div asp-validation-for="ZipcodeValue" class="zip-span">
-                                        <p class="text-danger">@ViewBag.zipmsg2</p>
+                                        <p class="text-danger" id="zipcode-error">@ViewBag.zipmsg2</p>
                                     </div>
                                 }
                             </div>
 
                             <div>
-                                <button type="submit" formmethod="post" class="check-zip-btn" >Check Availibility</button>
+                                <button id="zip-btn" class="check-zip-btn">Check Availibility</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
 
+            <script type="text/javascript">
+                $('#zip-btn').click(function (data) {
+                    data.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Service/Check",
+                        dataType: "json",
+                        data: { zipcodeValue: $('#zipcode').val() },
+                        success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                return show2();
+                            }
+                            else {
+                                $('#zipcode-error').text("We are not providing service in this area. We will notify you if any helper would start working near your area");
+                            }
+                        }
+                    });
+                });
+            </script>
 
-            <form method="post" action="@Url.Action("Schedule")">
+
+            <form>
 
                 <div class="schedule-plan mt-4" id="div2">
 
@@ -113,15 +150,25 @@
 
                             <select class="form-control form-check-inline" id="scheduled_time" onchange="Time()" asp-for="ServiceTime">
                                 <option selected value="8:00">8:00</option>
+                                <option value="8:30">8:30</option>
                                 <option value="9:00">9:00</option>
+                                <option value="9:30">9:30</option>
                                 <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
                                 <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
                                 <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
                                 <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
                                 <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
                                 <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
                                 <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
                                 <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
                                 <option value="18:00">18:00</option>
                             </select>
                         </div>
@@ -160,7 +207,7 @@
                     <div class="services-img">
                         <input id="count" value="0" type="hidden" asp-for="ExtraHours" />
                         <div>
-                            <input type="checkbox" id="mycheckbox1" onclick="cabinet()" />
+                            <input type="checkbox" id="mycheckbox1" onclick="cabinet()"/>
                             <label for="mycheckbox1" onclick="cabinet()" class="check-label"><img src="~/images/service_1.png" id="cabinetimg"></label>
                             <p>Inside cabinets</p>
                         </div>
@@ -200,65 +247,155 @@
                         <label class="form-check-label" for="pets">I have pets at home</label>
                     </div>
 
+                    <div class="zip-span">
+                        <p class="text-danger" id="schedule-error"></p>
+                    </div>
+
                     <hr>
-                    <button type="submit" formmethod="post" class="check-zip-btn" style="float: right;" onclick="alert('Schedule and Plan Submitted Successfully Please move to Your Details tab to further booking')">Continue</button>
+                    <button id="schedule-btn" class="check-zip-btn" style="float: right;">Continue</button>
                 </div>
 
             </form>
 
-            <form method="post" action="@Url.Action("Details")">
+            <script type="text/javascript">
+                $('#schedule-btn').click(function (data) {
+                    data.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Service/Schedule",
+                        dataType: "json",
+                        data: { ServiceStartDate: $('#datepicker').val(), ServiceTime: $('#scheduled_time').val(), ServiceHours: $('#total_hours').val(), ExtraHours: $('#count').val(), Comments: $('#comments').val(), HasPets: $('#pet_chk:checked').val()},
+                        /* ServiceExtraId: $('mycheckbox1:checked').val(), ServiceExtraId: $('mycheckbox2:checked').val(), ServiceExtraId: $('mycheckbox3:checked').val(), ServiceExtraId: $('mycheckbox4:checked').val(), ServiceExtraId: $('mycheckbox5:checked').val()
+                           var extraSerArr[] = [$('mycheckbox1:checked').val(), $('mycheckbox2:checked').val(), $('mycheckbox3:checked').val(), $('mycheckbox4:checked').val(), $('mycheckbox5:checked').val()];
+                         */
+
+                        success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                return show3();
+                            }
+                            else {
+                                $('#schedule-error').text("Something went wrong");
+                            }
+
+                        }
+                    });
+                });
+            </script>
+
+
+
+
+
+
+            <form>
                 <div class="details" id="div3">
 
                     <div id="address_div" class="container" method="post" action="@Url.Action("Details")">
 
                     </div>
+                    <div class="row address " id="AddForm">
 
-                </div>
-
-                <div class="row address" id="AddForm">
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Street Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Street Name" id="street" asp-for="AddressLine1">
-                        </div>
-                        <div class="col-lg-6">
-                            <label>House Number</label>
-                            <input type="text" class="form-control" placeholder="Enter House Number" id="house_no" asp-for="AddressLine2">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Postal code</label>
-                            <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode" asp-for="PostalCode">
-                        </div>
-                        <div class="col-lg-6">
-                            <label>City</label>
-                            <input type="text" class="form-control" placeholder="Enter City" id="city" asp-for="City">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Phone no</label>
-                            <div class="form-group mt-2">
-                                <div class="input-group ">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">+49</div>
-                                    </div>
-                                    <input class="form-control" type="tel" id="MobileNo" placeholder="Mobile Number" asp-for="Mobile">
-                                </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Street Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Street Name" id="street" asp-for="AddressLine1">
+                                <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>House Number</label>
+                                <input type="text" class="form-control" placeholder="Enter House Number" id="house_no" asp-for="AddressLine2">
+                                <span asp-validation-for="AddressLine2" class="text-danger"></span>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Postal code</label>
+                                <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode" asp-for="PostalCode">
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>City</label>
+                                <input type="text" class="form-control" placeholder="Enter City" id="city" asp-for="City">
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Phone no</label>
+                                <div class="form-group mt-2">
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+49</div>
+                                        </div>
+                                        <input class="form-control" type="tel" id="MobileNo" placeholder="Mobile Number" asp-for="Mobile">
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Mobile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="saveAdd" value="saveAdd" name="action" id="addNewAddress">Save</button>
+                            <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
+                        </div>
                     </div>
-                    <div>
-                        <button type="submit" class="saveAdd" formmethod="post" value="saveAdd" name="action" onclick="alert('Your address saved successfully please select your address from Your Details tab to further booking')">Save</button>
-                        <input type="button" value="Cancel" class="cancelAdd" onclick="cancelAdd()">
+
+                    <div class="zip-span">
+                        <p class="text-danger" id="details-error"></p>
                     </div>
+
+                    <button class="check-zip-btn " name="action" value="addSerAdd" style="float: right;" id="details-btn">Continue</button>
+                    
                 </div>
+
             </form>
+            <script type="text/javascript">
+                $('#addNewAddress').click(function (data) {
+                    data.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Service/Details",
+                        dataType: "json",
+                        data: { AddressLine1: $('#street').val(), AddressLine2: $('#house_no').val(), City: $('#city').val(), PostalCode: $('#postalcode').val(), Mobile: $('#MobileNo').val(), action: $('#addNewAddress').val() },
 
+                        success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                return show3();
+                            }
+                            else {
+                                $('#details-error').text("Something went wrong");
+                            }
 
-            <form>
+                        }
+                    });
+                });
+
+               
+                $('#details-btn').click(function (data) {
+                    data.preventDefault();
+                $.ajax({
+                    type: "POST",
+                url: "/Service/Details",
+                dataType: "json",
+                data: {Address_radio: $('#checked_add:checked').val(), action: $('#details-btn').val() },
+
+                success: function (data) {
+                    console.log(data);
+                if (data) {
+                            return show4();
+                        }
+                else {
+                    $('#details-error').text("Something went wrong");
+                        }
+
+                    }
+                });
+            });
+        </script>
+            
+
+            <form method="post" action="@Url.Action("payment")">
 
                 <div class="make_payment mt-4" id="div4">
 
@@ -286,6 +423,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
 
                             <hr>
                             <div class="row form-group">
@@ -315,14 +453,15 @@
                                 </div>
 
                             </div>
-                            <button class="check-zip-btn " style="float: right;">Complete Booking</button>
+                            <button formmethod="post" class="check-zip-btn " style="float: right;">Complete Booking</button>
+
                         </div>
 
                     </div>
-
                 </div>
 
             </form>
+
         </div>
 
         <div class="payment-slip">
@@ -374,19 +513,19 @@
                     <div class="col-10 collapse-title">What's included in a cleaning?</div>
                     <div class="col-10 collapse-content collapse" id="demo1">Bedroom, Living Room & Common Areas,Bathrooms,Kitchen,Extras</div>
                 </div>
-                <hr>
+                <hr class="faq-hr">
                 <div class="row">
                     <div class="col-0"><img src="~/images/vector-smart-object.png" href="#demo1" role="button" data-toggle="collapse" data-target="#demo2" aria-expanded="false" aria-controls="demo2" id="right-arrow" onclick="transformArrow(this)"></div>
                     <div class="col-10 collapse-title">Which Helperland professional will come to my place?</div>
                     <div class="col-10 collapse-content collapse" id="demo2">Helperland has a vast network of experienced, top-rated cleaners. Based on the time and date of your request, we work to assign the best professional available.Like working with a specific pro? Add them to your Pro Team from the mobile app and they'll be requested first for all future bookings.You will receive an email with details about your professional prior to your appointment.</div>
                 </div>
-                <hr>
+                <hr class="faq-hr">
                 <div class="row">
                     <div class="col-0"><img src="~/images/vector-smart-object.png" href="#demo3" role="button" data-toggle="collapse" data-target="#demo3" aria-expanded="false" aria-controls="demo2" id="right-arrow" onclick="transformArrow(this)"></div>
                     <div class="col-10 collapse-title">Can I skip or reschedule bookings?</div>
                     <div class="col-10 collapse-content collapse" id="demo3">You can reschedule any booking for free at least 24 hours in advance of the scheduled start time. If you need to skip a booking within the minimum commitment, we’ll credit the value of the booking to your account. You can use this credit on future cleanings and other Helperland services.</div>
                 </div>
-                <hr>
+                <hr class="faq-hr">
                 <div class="row">
                     <div class="col-0 redirect-faq"><a href="@Url.Action("FAQ","Home")">For more help</a></div>
                 </div>
