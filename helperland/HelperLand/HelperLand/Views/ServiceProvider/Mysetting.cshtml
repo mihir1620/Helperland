@@ -1,0 +1,314 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "My Setting";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<section class="name-container text-align-center">
+    <div class="container-fluid ">
+        <h1>Welcome <b>@ViewBag.name</b></h1>
+    </div>
+</section>
+
+<section>
+    @if (TempData["pswdError"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-danger col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["pswdError"]</strong>
+            </div>
+        </div>
+    }
+
+    @if (TempData["pswdReset"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["pswdReset"]</strong>
+            </div>
+        </div>
+    }
+
+    @if (TempData["spDetail"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["spDetail"]</strong>
+            </div>
+        </div>
+    }
+
+    @if (TempData["spAdd"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["spAdd"]</strong>
+            </div>
+        </div>
+    }
+
+    @if (TempData["spNewAdd"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["spNewAdd"]</strong>
+            </div>
+        </div>
+    }
+</section>
+<!--<div class="container modal-menu">-->
+<!-- The Modal -->
+<!--<div class="modal fade" id="collapsiblemodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">-->
+<!-- Modal Header -->
+<!--<div class="modal-header">
+    <div class="container">
+        <div>
+            <h5 class="modal-title">Welcome</h5>
+        </div>
+        <div>
+            <p class="modal-title">User!</p>
+        </div>
+    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+    <div class="container">
+
+        <a href="#">Dashboard</a>
+        <a href="#">New Service Request</a>
+        <a href="#" class="active">Upcoming Service</a>
+        <a href="#">Service Schedule</a>
+        <a href="#">Service History</a>
+        <a href="#">My Rating</a>
+        <a href="#">Block Customer</a>
+        <a href="#">My Setting</a>
+        <a href="#"></a>
+
+    </div>
+</div>-->
+<!-- Modal footer -->
+<!--<div class="modal-footer">
+                    <div class="container">
+                        <a href="#">Prices & Services</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Content</a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="container" style="display: flex;margin: auto;justify-content: space-around;">
+                        <a href="#"><img src="~/images/ic-facebook.png"></a>
+                        <a href="#"><img src="~/images/ic-instagram.png"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>-->
+
+<section class="left-side-menu">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3 table-responsive menu service-tabs"> -->
+            <div class="col-lg-3 menu remove" style="min-height:500px">
+
+                <a href="@Url.Action("Dashboard","ServiceProvider")">New Service Request</a>
+
+                <a href="@Url.Action("Dashboard","ServiceProvider")">Upcoming Service</a>
+
+                <a href="@Url.Action("Dashboard","ServiceProvider")">Service History</a>
+
+                <a href="#">My Ratings</a>
+
+                <a href="#">Block Customer</a>
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details" id="newService">
+
+                <ul class="nav d-flex justify-content-around flex-nowrap mysetting" id="set">
+                    <li class="nav-item " role="button">
+                        <a class="nav-link " onclick="spDetails()">
+                            <p id="sp-details-p">My Details</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " role="button">
+                        <a class="nav-link " onclick="spAddress()">
+                            <p id="sp-address-p">My Address</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="button">
+                        <a class="nav-link" onclick="spPassword()">
+                            <p id="sp-password-p">Change Password</p>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div>
+                    <div id="spdetails">
+
+                        <form class="form-section" method="post" action="@Url.Action("Mysetting")">
+                            <div class="account_status mb-3 d-flex justify-content-between">
+                                <p><b>Account Status:</b> <span class="text-success">Active</span></p>
+                                <img src="~/images/avatar-@(ViewData["avatarImage"]).png" id="spAvatar" alt="loading avatar..." />
+                            </div>
+                            <div class="basic_detail">
+                                <p><b>Basic Details</b></p>
+                            </div>
+
+                            <hr />
+
+                            <div class="row justify-content-left form-group">
+
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <input type="hidden" asp-for="UserId" />
+                                        <label asp-for="FirstName">First name</label>
+                                        <input class="form-control" asp-for="FirstName" type="text" id="fname" placeholder="First Name">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="LastName">Last name</label>
+                                        <input class="form-control" asp-for="LastName" type="text" id="lname" placeholder="Last Name">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="Email">Email Id</label>
+                                        <input class="form-control" asp-for="Email" type="email" id="email" readonly placeholder="Email address">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                        @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-left form-group">
+                                <div class="col-lg-4 col-md-4">
+                                    <label asp-for="Mobile">Phone Number</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend mt-3">
+                                            <div class="input-group-text">+91</div>
+                                        </div>
+                                        <input class="form-control mt-3" asp-for="Mobile" pattern="[1-9]{1}[0-9]{9}" type="tel" id="MobileNo" placeholder="Phone Number" style="border-radius:4px">
+                                        @Html.ValidationMessage("MobileExist", new { @class = "text-danger" })
+                                    </div>
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="DateOfBirth">Date of Birth</label>
+                                        <input class="form-control" asp-for="DateOfBirth" type="date">
+                                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-left form-group">
+
+                                <div class="col-lg-6 col-md-6 align-items-center">
+                                    <div><label asp-for="Gender">Gender</label></div>
+                                    <div class="form-group form-check-inline sp-radio">
+
+                                        <input type="radio" id="gender" value="1" asp-for="Gender" class="mr-1" />Male
+                                        <input type="radio" id="gender" value="2" asp-for="Gender" class="mr-1 ml-3" />Female
+                                        <input type="radio" id="gender" value="3" asp-for="Gender" class="mr-1 ml-3" />Rather not to say
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-left form-group">
+
+                                <div class="col-lg-10 col-md-10 align-items-center">
+                                    <div><label asp-for="UserProfilePicture">Select Avatar</label></div>
+                                    <div class="services-img">
+
+                                        <div>
+                                            <input type="radio" id="avatar1" value="car" asp-for="UserProfilePicture" />
+                                            <label for="avatar1" asp-for="UserProfilePicture" class="check-label1" onclick="changeToCar()"><img src="~/images/avatar-car.png"></label>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="avatar2" value="female" asp-for="UserProfilePicture" />
+                                            <label for="avatar2" asp-for="UserProfilePicture" class="check-label1" onclick="changeToFemale()"><img src="~/images/avatar-female.png"></label>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="avatar3" value="hat" asp-for="UserProfilePicture" />
+                                            <label for="avatar3" asp-for="UserProfilePicture" class="check-label1" onclick="changeToHat()"><img src="~/images/avatar-hat.png"></label>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="avatar4" value="iron" asp-for="UserProfilePicture" />
+                                            <label for="avatar4" asp-for="UserProfilePicture" class="check-label1" onclick="changeToIron()"><img src="~/images/avatar-iron.png"></label>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="avatar5" value="male" asp-for="UserProfilePicture" />
+                                            <label for="avatar5" asp-for="UserProfilePicture" class="check-label1" onclick="changeToMale()"><img src="~/images/avatar-male.png"></label>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="avatar6" value="ship" asp-for="UserProfilePicture" />
+                                            <label for="avatar6" asp-for="UserProfilePicture" class="check-label1" onclick="changeToShip()"><img src="~/images/avatar-ship.png"></label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <div class="row justify-content-left">
+                                    <button class="check-zip-btn" formmethod="post">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="spaddress">
+                        <div id="loadSpadd">
+
+                        </div>
+                    </div>
+
+                    <div id="sppassword">
+                        <div id="loadSppasswd">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <a href="#top" class="to-top">
+        <img src="~/images/up-aero.png">
+    </a>
+</section>
+
+@if (ViewData["JavaScript"] != null)
+{
+    <script>
+           @Html.Raw(ViewData["JavaScript"])
+    </script>
+}

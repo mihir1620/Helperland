@@ -1,0 +1,53 @@
+﻿@model UserAddress
+@{
+    Layout = null;
+}
+
+<div class="basic_detail">
+    <p><b>My Address</b></p>
+</div>
+<hr />
+
+<form class="form-section" method="post" action="@Url.Action("SpAddress","ServiceProvider")">
+    <div class="row justify-content-left form-group">
+
+        <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+                <input type="hidden" asp-for="AddressId" />
+                <label>Street Name</label>
+                <input type="text" class="form-control" placeholder="Enter Street Name" id="street" asp-for="AddressLine1">
+                <span asp-validation-for="AddressLine1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+                <label>House Number</label>
+                <input type="text" class="form-control" placeholder="Enter House Number" id="house_no" asp-for="AddressLine2">
+                <span asp-validation-for="AddressLine2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+                <label>Postal code</label>
+                <input type="text" class="form-control" placeholder="Enter Postalcode" id="postalcode" asp-for="PostalCode">
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-left form-group">
+
+        <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" placeholder="Enter City" id="city" asp-for="City">
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="row justify-content-left">
+            <button class="check-zip-btn" formmethod="post">Save</button>
+        </div>
+    </div>
+    </form>

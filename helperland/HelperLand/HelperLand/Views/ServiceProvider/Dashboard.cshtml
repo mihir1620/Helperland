@@ -1,0 +1,226 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<section class="name-container text-align-center">
+    <div class="container-fluid ">
+        <h1>Welcome <b>@ViewBag.name</b></h1>
+    </div>
+</section>
+
+<section>
+    @if (TempData["serviceAccepteError"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["serviceAccepteError"]</strong>
+            </div>
+        </div>
+    }
+    @if (TempData["serviceConcurrentError"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 alert1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["serviceConcurrentError"]</strong>
+            </div>
+        </div>
+    }
+</section>
+
+<!--<div class="container modal-menu">-->
+<!-- The Modal -->
+<!--<div class="modal fade" id="collapsiblemodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">-->
+<!-- Modal Header -->
+<!--<div class="modal-header">
+    <div class="container">
+        <div>
+            <h5 class="modal-title">Welcome</h5>
+        </div>
+        <div>
+            <p class="modal-title">User!</p>
+        </div>
+    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+    <div class="container">
+
+        <a href="#">Dashboard</a>
+        <a href="#">New Service Request</a>
+        <a href="#" class="active">Upcoming Service</a>
+        <a href="#">Service Schedule</a>
+        <a href="#">Service History</a>
+        <a href="#">My Rating</a>
+        <a href="#">Block Customer</a>
+        <a href="#">My Setting</a>
+        <a href="#"></a>
+
+    </div>
+</div>-->
+<!-- Modal footer -->
+<!--<div class="modal-footer">
+                    <div class="container">
+                        <a href="#">Prices & Services</a>
+                        <a href="#">Warranty</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Content</a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="container" style="display: flex;margin: auto;justify-content: space-around;">
+                        <a href="#"><img src="~/images/ic-facebook.png"></a>
+                        <a href="#"><img src="~/images/ic-instagram.png"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>-->
+
+<div class="d-flex flex-row horizontal-menu flex-wrap">
+
+    <a href="#" id="newServiceTab1" class="active">New Service Request</a>
+
+    <a href="#" id="upcomingServiceTab1">Upcoming Service</a>
+
+    <a href="#" id="serviceHistoryTab1">Service History</a>
+
+    <a href="#">My Ratings</a>
+
+    <a href="#">Block Customer</a>
+
+</div>
+
+<section class="left-side-menu">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3 table-responsive menu service-tabs"> -->
+            <div class="col-lg-3 menu remove" style="min-height:500px">
+
+                <a href="#" id="newServiceTab" class="active">New Service Request</a>
+
+                <a href="#" id="upcomingServiceTab">Upcoming Service</a>
+
+                <a href="#" id="serviceHistoryTab">Service History</a>
+
+                <a href="#">My Ratings</a>
+
+                <a href="#">Block Customer</a>
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details" id="newService">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">New Service Request</p>
+                </div>
+
+                <div id="loadNewServices">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-9 table-responsive service-details" id="upcomingService">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Upcoming Service Request</p>
+                </div>
+
+                <div id="loadUpcomingServices">
+
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details" id="serviceHistory">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                </div>
+
+                <div id="loadServiceHistory">
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <a href="#top" class="to-top">
+        <img src="~/images/up-aero.png">
+    </a>
+</section>
+
+<script type="text/javascript">
+
+    $('#upcomingService').hide();
+    $('#serviceHistory').hide();
+
+    $('#newServiceTab').click(function () {
+        $('#loadNewServices').load('/ServiceProvider/NewServiceTable');
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#newService').show();
+        $('#upcomingServiceTab').removeClass('active');
+        $('#serviceHistoryTab').removeClass('active');
+        $('#newServiceTab').addClass('active');
+    });
+    $('#upcomingServiceTab').click(function () {
+        $('#loadUpcomingServices').load('/ServiceProvider/UpcomingServiceTable');
+        $('#newService').hide();
+        $('#serviceHistory').hide();
+        $('#upcomingService').show();
+        $('#newServiceTab').removeClass("active");
+        $('#serviceHistoryTab').removeClass("active");
+        $('#upcomingServiceTab').addClass("active");
+    });
+    $('#serviceHistoryTab').click(function () {
+        $('#loadServiceHistory').load('/ServiceProvider/ServiceHistoryTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').show();
+        $('#newServiceTab').removeClass("active");
+        $('#upcomingServiceTab').removeClass("active");
+        $('#serviceHistoryTab').addClass("active");
+    });
+
+    $('#newServiceTab1').click(function () {
+        $('#loadNewServices').load('/ServiceProvider/NewServiceTable');
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#newService').show();
+        $('#upcomingServiceTab1').removeClass('active');
+        $('#serviceHistoryTab1').removeClass('active');
+        $('#newServiceTab1').addClass('active');
+    });
+    $('#upcomingServiceTab1').click(function () {
+        $('#loadUpcomingServices').load('/ServiceProvider/UpcomingServiceTable');
+        $('#newService').hide();
+        $('#serviceHistory').hide();
+        $('#upcomingService').show();
+        $('#newServiceTab1').removeClass("active");
+        $('#serviceHistoryTab1').removeClass("active");
+        $('#upcomingServiceTab1').addClass("active");
+    });
+    $('#serviceHistoryTab1').click(function () {
+        $('#loadServiceHistory').load('/ServiceProvider/ServiceHistoryTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').show();
+        $('#newServiceTab1').removeClass("active");
+        $('#upcomingServiceTab1').removeClass("active");
+        $('#serviceHistoryTab1').addClass("active");
+    });
+</script>

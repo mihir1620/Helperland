@@ -172,7 +172,6 @@ D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\BouncyCas
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Service\Service.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Schedule.cshtml.g.cs
-D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Service\Details.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Dashboard.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Servicehistory.cshtml.g.cs
@@ -184,3 +183,14 @@ D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Vie
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Customer\ServiceHistoryTable.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\ClosedXML.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\Dashboard.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\NewServiceTable.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\UpcomingServiceTable.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\ServiceHistoryTable.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\Mysetting.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\SpAddress.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\SpPassword.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout0.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\EPPlus.dll
+D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll

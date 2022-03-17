@@ -5,7 +5,7 @@
 @model IEnumerable<HelperLand.Models.ServiceRequest>
 
 
-<table class="table service-table table-hover table-responsive-xl" id="example">
+<table class="table service-table table-hover table-responsive-xl" id="service_history_table">
     <thead>
         <tr>
             <th class="table-heading">Service ID </th>
@@ -19,54 +19,73 @@
     <tbody>
         @foreach (var item in Model)
         {
-            if (item.Status == 0 || item.Status == 1)
+            if (item.Status == 0 || item.Status == 2)
             {
                 var total_time = item.ServiceHours + item.ExtraHours;
                 decimal t = (decimal)total_time;
                 TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
                 var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
-                <tr>
-                    <td>
-                        @item.ServiceRequestId
-                    </td>
-                    <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
+        <tr>
+            <td>
+                <input id="userId" type="hidden" value="@item.UserId" />
+                <input id="spId" type="hidden" value="@item.ServiceProviderId" />
+                <input id="serviceId" type="hidden" value="@item.ServiceRequestId" />
+                @item.ServiceRequestId
+            </td>
+            <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
+                <div>
+                    <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
+                </div>
+                <div>
+                    <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                </div>
+            </td>
+            <td>
+                @if (item.ServiceProvider == null)
+                {
+                    <div>
+                        @item.ServiceProviderId
+                    </div>
+                }
+                @if (item.ServiceProvider != null)
+                {
+                    <div class="d-flex justify-content-between">
                         <div>
-                            <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
+                            <img src="~/images/avatar-hat.png" id="providerAvatar" />
                         </div>
                         <div>
-                            <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                            @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
+                            
                         </div>
-                    </td>
-                    <td>
-                        <div>
-                            <span><img src="~/images/cap.png"></span>  Lyum Watson
-                        </div>
-                        <div>
-                            <img src="~/images/star1.png">
-                            <img src="~/images/star1.png">
-                            <img src="~/images/star1.png">
-                            <img src="~/images/star1.png">
-                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                        </div>
-                    </td>
+                    </div>
 
-                    <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
+                }
+            </td>
 
-                    <td>
-                        @if (item.Status == 0)
-                        {
-                            <button class="cancelled-btn">Cancelled</button>
-                        }
-                        @if (item.Status == 1)
-                        {
-                            <button class="completed-btn">Completed</button>
-                        }
+            <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
 
-                    </td>
-                    <td>
-                        <button class="rate-sp-btn" data-toggle="modal" data-target="#rateSpModal"> Rate SP</button>
-                    </td>
-                </tr>
+            <td>
+                @if (item.Status == 0)
+                {
+                    <button class="cancelled-btn">Cancelled</button>
+                }
+                @if (item.Status == 1)
+                {
+                    <button class="completed-btn">Completed</button>
+                }
+
+            </td>
+            <td>
+                @if (item.Status == 0)
+                {
+                    <button class="rate-sp-disabled-btn" id="rate_btn_val" disabled> Rate SP</button>
+                }
+                @if (item.Status == 1)
+                {
+                    <button class="rate-sp-enabled-btn" id="rate_btn_val" onclick="callRateSp(@item.ServiceRequestId)"> Rate SP</button>
+                }
+            </td>
+        </tr>
             }
 
         }
@@ -132,7 +151,7 @@
     </div>
 
 <div class="modal fade" id="rateSpModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -140,16 +159,104 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <div class="modal-body service-details-modal-body">
+            <form>
+                <div class="modal-body service-details-modal-body">
+                    <div class="row justify-content-left form-group">
+                        <div class="col-lg-3">
+                            On time Arrival
+                        </div>
+                        <div class="col-lg-6 col-md-6 align-items-center">
+                            <div class="form-group form-check-inline sp-radio">
+                                <input type="radio" id="timimg" value="1" name="time" class="mr-1" required="required" />1
+                                <input type="radio" id="timimg" value="2" name="time" class="mr-1 ml-3" />2
+                                <input type="radio" id="timimg" value="3" name="time" class="mr-1 ml-3" />3
+                                <input type="radio" id="timimg" value="4" name="time" class="mr-1 ml-3" />4
+                                <input type="radio" id="timimg" value="5" name="time" class="mr-1 ml-3" />5
+                            </div>
+                        </div>
+                    </div>
 
-             
-            </div>
+                    <div class="row justify-content-left form-group">
+                        <div class="col-lg-3">
+                            Friendly
+                        </div>
+                        <div class="col-lg-6 col-md-6 align-items-center">
+                            <div class="form-group form-check-inline sp-radio">
+                                <input type="radio" id="friendly" value="1" name="friendlySp" class="mr-1" required="required" />1
+                                <input type="radio" id="friendly" value="2" name="friendlySp" class="mr-1 ml-3" />2
+                                <input type="radio" id="friendly" value="3" name="friendlySp" class="mr-1 ml-3" />3
+                                <input type="radio" id="friendly" value="4" name="friendlySp" class="mr-1 ml-3" />4
+                                <input type="radio" id="friendly" value="5" name="friendlySp" class="mr-1 ml-3" />5
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row justify-content-left form-group">
+                        <div class="col-lg-3">
+                            Qaulity of service
+                        </div>
+                        <div class="col-lg-6 col-md-6 align-items-center">
+                            <div class="form-group form-check-inline sp-radio">
+                                <input type="radio" id="qos" value="1" name="qosSp" class="mr-1" required="required" />1
+                                <input type="radio" id="qos" value="2" name="qosSp" class="mr-1 ml-3" />2
+                                <input type="radio" id="qos" value="3" name="qosSp" class="mr-1 ml-3" />3
+                                <input type="radio" id="qos" value="4" name="qosSp" class="mr-1 ml-3" />4
+                                <input type="radio" id="qos" value="5" name="qosSp" class="mr-1 ml-3" />5
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-left form-group">
+                        <div class="col-lg-12 col">
+                            <label>Feedback for service provider</label>
+                            <textarea class="form-control" type="text" placeholder="Feedback" id="spFeedback" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="row justify-content-left">
+                            <button value="" class="check-zip-btn" id="saveRating_btn"
+                                    onclick="rateServiceProvider(
+                                                            this.value ,
+                                                            $('#userId').val(),
+                                                            $('#spId').val(),
+                                                            $('#spFeedback').val(),
+                                                            $('#timimg:checked').val(),
+                                                            $('#friendly:checked').val(),
+                                                            $('#qos:checked').val())">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="thanksForRating" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Rating</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        Thanks for Rating
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
@@ -167,9 +274,24 @@
                 $('#comments').html(data.comments);
                 $("#servicedetails").modal('show');
             });
-
     }
 
+    function callRateSp(id) {
+        $("#saveRating_btn").prop("value", id);
+        $("#rateSpModal").modal('show');
+    }
 
+    function rateServiceProvider(Id, User, Sp, feedback, timing, friendly, qos) {
+        $.post("/Customer/RateSp", { Id: parseInt(Id), User: parseInt(User), ServiceProvider: parseInt(Sp), Feedback: feedback, Ontime: timing, Friend: friendly, QOS: qos },
+            function (data) {
+                $("#thanksForRating").modal('show');
+                $("#rateSpModal").modal('hide');
+            });
+    }
+
+    $(document).ready(function () {
+        $('#service_history_table').DataTable();
+    });
+    
 </script>
 

@@ -31,13 +31,24 @@ namespace HelperLand.Controllers
            
             User user = db.Users.Where(u => u.Email == model.Email && (string.Compare(Hash.HashPass(model.Password), u.Password) == 0)).FirstOrDefault();
 
-            if (user != null)
+            if (user != null && user.UserTypeId == 1)
                 {
+                    //HttpContext.Session.SetString("firstname", model.FirstName);
                     HttpContext.Session.SetString("username", model.Email);
+                    HttpContext.Session.SetString("type", "1");
 
-                    return RedirectToAction("Dashboard","Customer");
+                return RedirectToAction("Dashboard","Customer");
                 }
-            
+
+            if (user != null && user.UserTypeId == 2)
+                {
+                    //HttpContext.Session.SetString("firstname", model.FirstName);
+                    HttpContext.Session.SetString("username", model.Email);
+                    HttpContext.Session.SetString("type", "2");
+                 
+                return RedirectToAction("Dashboard", "ServiceProvider");
+                }
+
 
             else
             {

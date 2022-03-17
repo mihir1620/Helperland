@@ -119,11 +119,12 @@ ul li a:hover {
     color: #1D7A8C ;
 }
 
-#loginModal{
-    justify-content:center;
-    position:absolute;
-    font-family:Roboto;
-    color:#4F4F4F;
+
+#loginModal {
+    justify-content: center;
+    position: absolute;
+    font-family: Roboto;
+    color: #4F4F4F;
 }
 
 #forgotModal {
@@ -144,11 +145,6 @@ ul li a:hover {
         color: #1D7A8C;
     }
 
-.dropdown-menu{
-    
-
-
-}
 
 .login-btn {
     border: none;

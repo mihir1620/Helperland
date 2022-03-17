@@ -103,15 +103,15 @@ namespace HelperLand.Controllers
         [HttpPost]
         public IActionResult BecomeHelper(UserViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 User newHelper = new User
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
                     Mobile = model.Mobile,
-                    Password = Crypto.HashPassword(model.Password),
+                    Password = Hash.HashPass(model.Password),
                     //var verified = Crypto.VerifyHashedPassword(hash, "foo");
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
@@ -125,14 +125,13 @@ namespace HelperLand.Controllers
 
                 };
                 _helperlandContext.Add(newHelper);
-                //_helperlandContext.ContactUs.Add(contactus);
                 _helperlandContext.SaveChanges();
                 return RedirectToAction("BecomeHelper");
                 //_helperlandContext.Users.Add(model);
                 //_helperlandContext.SaveChanges();
                 //return RedirectToAction("Create");
 
-            }
+           // }
             return View();
         }
 

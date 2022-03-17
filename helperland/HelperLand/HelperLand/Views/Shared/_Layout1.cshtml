@@ -66,7 +66,7 @@
 
                     }
 
-                    @if (Context.Session.GetString("username") != null)
+                    @if (Context.Session.GetString("username") != null && Context.Session.GetString("type") == "1")
                     {
                         <li class="nav-item ">
                             <a href="@Url.Action("Service", "Service")" class="nav-link Rounded-Rectangle">
@@ -94,8 +94,13 @@
                             </a>
                         </li>
                         <li class="nav-item afterLogin">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Dashboard", "Customer")" class="nav-link">
                                 Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Servicehistory", "Customer")" class="nav-link">
+                                Service History
                             </a>
                         </li>
                         <li class="nav-item afterLogin">
@@ -127,9 +132,79 @@
                                         Welcome @Context.Session.GetString("username")
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action("Dashboard", "Customer")">Dashboard </a>
-                                    <a class="dropdown-item" href="@Url.Action("Mysetting", "Customer")">My Setting</a>
-                                    <a class="dropdown-item" href="@Url.Action("logout","home")">Logout</a>
+                                    @if (Context.Session.GetString("type") == "1")
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("Dashboard", "Customer")">Dashboard </a>
+                                        <a class="dropdown-item" href="@Url.Action("Mysetting", "Customer")">My Setting</a>
+                                        <a class="dropdown-item" href="@Url.Action("logout", "home")">Logout</a>
+                                    }
+                                </div>
+
+                            </a>
+                        </li>
+                    }
+                    @if (Context.Session.GetString("username") != null && Context.Session.GetString("type") == "2")
+                    {
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Dashboard", "ServiceProvider")" class="nav-link">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Mysetting", "ServiceProvider")" class="nav-link">
+                                My Setting
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("logout", "Home")" class="nav-link">
+                                Logout
+                            </a>
+                        </li>
+                        @*<li class="vertical-line remove"></li>*@
+                        <li class="nav-item remove">
+                            <a href="" class="nav-link" type="button">
+                                <div>
+                                    <img src="~/images/icon-notification.png">
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="nav-item remove">
+                            <a href="" type="button " class="nav-link dropdown-toggle" data-toggle="dropdown">
+
+                                <img src="~/images/user.png">
+                                <img src="~/images/keyboard-right-arrow-button.png">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-item-text">
+                                        Welcome @Context.Session.GetString("username")
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" href="@Url.Action("Dashboard", "ServiceProvider")">Dashboard </a>
+                                    <a class="dropdown-item" href="@Url.Action("Mysetting", "ServiceProvider")">My Setting</a>
+                                    <a class="dropdown-item" href="@Url.Action("logout", "home")">Logout</a>
+
                                 </div>
 
                             </a>

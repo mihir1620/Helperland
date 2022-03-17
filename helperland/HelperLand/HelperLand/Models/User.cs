@@ -31,9 +31,11 @@ namespace HelperLand.Models
         [Required]
         public string Mobile { get; set; }
         public int UserTypeId { get; set; }
+       
         public int? Gender { get; set; }
-        [Required]
+        
         public DateTime? DateOfBirth { get; set; }
+        
         public string UserProfilePicture { get; set; }
         public bool IsRegisteredUser { get; set; }
         public string PaymentGatewayUserRef { get; set; }

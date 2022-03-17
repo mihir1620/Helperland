@@ -5,8 +5,12 @@ $(document).ready(function () {
     $('#example').DataTable();
 });
 
+
 $('#loadDashboard').load('/Customer/DashboardTable');
 $('#loadServiceHistoryTable').load('/Customer/ServiceHistoryTable');
+$('#loadNewServices').load('/ServiceProvider/NewServiceTable');
+$('#loadSpadd').load('/ServiceProvider/SpAddress');
+$('#loadSppasswd').load('/ServiceProvider/SpPassword');
 
 window.addEventListener("scroll", () => {
     if (window.pageYOffset > 100) {
@@ -33,6 +37,7 @@ window.setTimeout(function () {
         $(this).remove();
     });
 }, 5000);
+
 
 function transformArrow(arrow) {
     arrow.classList.toggle('rotate-arrow');
@@ -325,8 +330,8 @@ function myDetails() {
     $('#myaddress').hide();
     $('#mypassword').hide();
     document.getElementById("my-details-p").style = "color:#1d7a8c;font-weight:bold";
-    document.getElementById("my-password-p").style = "color:#646464;";
-    document.getElementById("my-address-p").style = "color:#646464;";
+    document.getElementById("my-password-p").style = "color:#646464;font-weight:normal";
+    document.getElementById("my-address-p").style = "color:#646464;font-weight:normal";
     
     //document.getElementById("myaddress").style = "display:none";
     //document.getElementById("mypassword").style = "display:none";
@@ -341,18 +346,69 @@ function myAddress() {
     $("#loadAdd").load('/Customer/User_Address');
     $("#loadAddPopup").load('/Customer/AddressPopup');
     document.getElementById("my-address-p").style = "color:#1d7a8c;font-weight:bold";
-    document.getElementById("my-password-p").style = "color:#646464;";
+    document.getElementById("my-password-p").style = "color:#646464;font-weight:normal";
     document.getElementById("my-details-p").style = "color:#646464;font-weight:normal";
 }
 
 function myPassword() {
+    $('#mypassword').show();
     $('#myaddress').hide();
     $('#mydetails').hide();
-    $('#mypassword').show();
     $("#loadpasswd").load('/Customer/User_pswd');
     document.getElementById("my-password-p").style = "color:#1d7a8c;font-weight:bold";
-    document.getElementById("my-address-p").style = "color:#646464;";
+    document.getElementById("my-address-p").style = "color:#646464;font-weight:normal";
     document.getElementById("my-details-p").style = "color:#646464;font-weight:normal";
 }
 
+function spDetails() {
+    $('#spdetails').show();
+    $('#sppassword').hide();
+    $('#spaddress').hide();
+    document.getElementById("sp-details-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("sp-password-p").style = "color:#646464;font-weight:normal";
+    document.getElementById("sp-address-p").style = "color:#646464;font-weight:normal";
+
+    //document.getElementById("myaddress").style = "display:none";
+    //document.getElementById("mypassword").style = "display:none";
+    //document.getElementById("mydetails").style = "display:block";
+}
+
+function spPassword() {
+    $('#sppassword').show();
+    $('#spdetails').hide();
+    $('#spaddress').hide();
+    //$("#loadpasswd").load('/Customer/User_pswd');
+    document.getElementById("sp-password-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("sp-details-p").style = "color:#646464;font-weight:normal";
+    document.getElementById("sp-address-p").style = "color:#646464;font-weight:normal";
+}
+
+function spAddress() {
+    $('#spaddress').show();
+    $('#spdetails').hide();
+    $('#sppassword').hide();
+    //$("#loadpasswd").load('/Customer/User_pswd');
+    document.getElementById("sp-address-p").style = "color:#1d7a8c;font-weight:bold";
+    document.getElementById("sp-details-p").style = "color:#646464;font-weight:normal";
+    document.getElementById("sp-password-p").style = "color:#646464;font-weight:normal";
+}
 //$("#loadDashboard").load('/Customer/DashboardTable');
+
+function changeToCar() {
+    document.getElementById("spAvatar").src = "../images/avatar-car.png";
+}
+function changeToShip() {
+    document.getElementById("spAvatar").src = "../images/avatar-ship.png";
+}
+function changeToMale() {
+    document.getElementById("spAvatar").src = "../images/avatar-male.png";
+}
+function changeToFemale() {
+    document.getElementById("spAvatar").src = "../images/avatar-female.png";
+}
+function changeToIron() {
+    document.getElementById("spAvatar").src = "../images/avatar-iron.png";
+}
+function changeToHat() {
+    document.getElementById("spAvatar").src = "../images/avatar-hat.png";
+}

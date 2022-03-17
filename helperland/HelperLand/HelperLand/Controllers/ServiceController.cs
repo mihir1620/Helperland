@@ -40,7 +40,9 @@ namespace HelperLand.Controllers
         [HttpPost]
         public JsonResult Check(Zipcode model)
         {
-            Zipcode zip = _helperlandContext.Zipcodes.Where(z => z.ZipcodeValue == model.ZipcodeValue).FirstOrDefault();
+            var zip = _helperlandContext.Users
+                .Where(z => z.ZipCode == model.ZipcodeValue && z.UserTypeId == 2)
+                .FirstOrDefault();
            
             /*ServiceRequest serviceRequest = new ServiceRequest
             {
@@ -257,40 +259,40 @@ namespace HelperLand.Controllers
                 .Select(a => a.Email)
                 .FirstOrDefault();
 
-            MimeMessage message = new MimeMessage();
+            //MimeMessage message = new MimeMessage();
 
-            message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+            //message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
 
-            message.To.Add(MailboxAddress.Parse(serviceProviderMail));
+            //message.To.Add(MailboxAddress.Parse(serviceProviderMail));
 
-            message.Subject = "New Service";
+            //message.Subject = "New Service";
 
-            string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            //string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             
-            message.Body = new TextPart("html")
-            {
+            //message.Body = new TextPart("html")
+            //{
 
-                Text = "Dear Service Provider New service is avilable in your area."
+            //    Text = "Dear Service Provider New service is avilable in your area."
 
-            };
+            //};
 
-            SmtpClient smtp = new SmtpClient();
-            try
-            {
-                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
-                smtp.Send(message);
+            //SmtpClient smtp = new SmtpClient();
+            //try
+            //{
+            //    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            //    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+            //    smtp.Send(message);
                 
-            }
-            catch (Exception er)
-            {
-                Console.WriteLine(er.Message);
-            }
-            finally
-            {
-                smtp.Disconnect(true);
-                smtp.Dispose();
-            }
+            //}
+            //catch (Exception er)
+            //{
+            //    Console.WriteLine(er.Message);
+            //}
+            //finally
+            //{
+            //    smtp.Disconnect(true);
+            //    smtp.Dispose();
+            //}
 
             ViewBag.bookId = serviceReqId;
             return View("service");

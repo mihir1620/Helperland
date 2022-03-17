@@ -1,0 +1,335 @@
+﻿@model UserViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="~/images/favicon_img.png" type="image/icon type">
+    <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>@ViewData["Title"] | HelperLand</title>
+</head>
+<body>
+    <section class="header">
+        <nav class="navbar navbar-expand-lg fixed-top bgcolor">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img src="~/images/white-logo-transparent-background.png" style="width: 73px;height: 54px;"></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto text-center">
+                    @if (Context.Session.GetString("username") == null)
+                    {
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="#" class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">
+                                Book Now
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle " style="background-color: #29626D;">
+                            <a href="#" class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
+                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link">
+                                Become a Helper
+                            </a>
+                        </li>
+
+                    }
+
+                    @if (Context.Session.GetString("username") != null && Context.Session.GetString("type") == "1")
+                    {
+                        <li class="nav-item ">
+                            <a href="@Url.Action("Service", "Service")" class="nav-link Rounded-Rectangle">
+                                Book Now
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Dashboard", "Customer")" class="nav-link">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Servicehistory", "Customer")" class="nav-link">
+                                Service History
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Mysetting", "Customer")" class="nav-link">
+                                My Setting
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("logout", "Home")" class="nav-link">
+                                Logout
+                            </a>
+                        </li>
+                        @*<li class="vertical-line remove"></li>*@
+                        <li class="nav-item remove">
+                            <a href="" class="nav-link" type="button">
+                                <div>
+                                    <img src="~/images/icon-notification.png">
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="nav-item remove">
+                            <a href="" type="button " class="nav-link dropdown-toggle" data-toggle="dropdown">
+
+                                <img src="~/images/user.png">
+                                <img src="~/images/keyboard-right-arrow-button.png">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-item-text">
+                                        Welcome @Context.Session.GetString("username")
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    @if (Context.Session.GetString("type") == "1")
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("Dashboard", "Customer")">Dashboard </a>
+                                        <a class="dropdown-item" href="@Url.Action("Mysetting", "Customer")">My Setting</a>
+                                        <a class="dropdown-item" href="@Url.Action("logout", "home")">Logout</a>
+                                    }
+                                </div>
+
+                            </a>
+                        </li>
+                    }
+                    @if (Context.Session.GetString("username") != null && Context.Session.GetString("type") == "2")
+                    {
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                                Prices & Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Warranty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Dashboard", "ServiceProvider")" class="nav-link">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("Mysetting", "ServiceProvider")" class="nav-link">
+                                My Setting
+                            </a>
+                        </li>
+                        <li class="nav-item afterLogin">
+                            <a href="@Url.Action("logout", "Home")" class="nav-link">
+                                Logout
+                            </a>
+                        </li>
+                        @*<li class="vertical-line remove"></li>*@
+                        <li class="nav-item remove">
+                            <a href="" class="nav-link" type="button">
+                                <div>
+                                    <img src="~/images/icon-notification.png">
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="nav-item remove">
+                            <a href="" type="button " class="nav-link dropdown-toggle" data-toggle="dropdown">
+
+                                <img src="~/images/user.png">
+                                <img src="~/images/keyboard-right-arrow-button.png">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-item-text">
+                                        Welcome @Context.Session.GetString("username")
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" href="@Url.Action("Dashboard", "ServiceProvider")">Dashboard </a>
+                                    <a class="dropdown-item" href="@Url.Action("Mysetting", "ServiceProvider")">My Setting</a>
+                                    <a class="dropdown-item" href="@Url.Action("logout", "home")">Logout</a>
+
+                                </div>
+
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <!-- The Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Login to your account</b></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body login-modal-body">
+                    <form asp-controller="account" asp-action="login" method="post">
+                        <div class="form-group ">
+                            <input class="form-control" required type="email" asp-for="Email" name="email" placeholder="Email" />
+                        </div>
+                        <div class="form-group ">
+                            <input class="form-control" required type="password" asp-for="Password" name="password" placeholder="Password" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="form-check-inline" />
+                                <span class="terms"> Remember me</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="login-btn">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a href="" type="button" data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot Password</a>
+                    </div>
+                    <div class="text-center">
+                        Don't have an account <a href="@Url.Action("Create", "CreateUser")">Create an account</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- The Login Modal Ends-->
+    <!-- The Forgot Modal -->
+    <div class="modal fade" id="forgotModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Forgot password</b></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <form asp-action="ForgotPassword" asp-controller="Account" method="post">
+                        <div class="form-group ">
+                            <input class="form-control" asp-for="Email" required type="email" placeholder="Email" />
+                        </div>
+
+                        <div class="form-group">
+                            <button class="login-btn">Send</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a href="" type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Login now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Forgot Modal Ends-->
+
+    <div class="wrapper">
+        @RenderBody()
+    </div>
+
+    <section class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 footer-logo">
+                    <a href=#><img src="~/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
+                </div>
+                <div class="col-sm-6 footer-links">
+                    <p>
+                        <a href="@Url.Action("Index", "Home")">HOME</a>
+                        <a href="@Url.Action("About", "Home")">ABOUT</a>
+                        <a href="#">TESTIMONIALS</a>
+                        <a href="@Url.Action("FAQ", "Home")">FAQS</a>
+                        <a href="#">INSURANCE-POLICY</a>
+                        <a href="#">IMPRESSUM</a>
+                    </p>
+                </div>
+                <div class="col-sm-3 social-media-icons">
+
+                    <a href=#><img src="~/images/ic-facebook.png" style="padding-right: 15px;"></a>
+                    <a href=#><img src="~/images/ic-instagram.png"></a>
+                </div>
+            </div>
+            <div class="footer-links-2">
+                <hr style="border: #424242 1px solid;text-align: center;width: 1150px;">
+            </div>
+
+            <div class="footer-links-2">
+                <p>©2018 Helperland. All rights reserved. <a href=# style="color: #9ba0a3;">Terms and Conditions</a> | <a href=# style="color: #9ba0a3;">Privacy Policy</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -10,6 +10,11 @@ namespace HelperLand.ViewModels
 {
     public class ServiceViewModel
     {
+        public User user { get; set; }
+        public ServiceRequest servicerequest { get; set; }
+        public UserAddress userAddress { get; set; }
+        public ServiceRequestAddress serviceRequestAddress { get; set; }
+
         public int Id { get; set; }
 
         [Required]

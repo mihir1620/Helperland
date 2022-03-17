@@ -30,10 +30,10 @@
                 <td class="details">
                     <div>
                         <div class="d-flex justify-content-around">
-                            <button onclick="EditAddress(@item.AddressId)" id="editbtn" value="@item.AddressId">
-                                <img src="~/images/edit-icon.png" class="edit-img" typeof="button"> 
+                            <button onclick="callEditAddress(@item.AddressId)" value="@item.AddressId">
+                                <img src="~/images/edit-icon.png" class="edit-img" typeof="button">
                             </button>
-                            <button onclick="DeleteAddress(@item.AddressId)" id="deletebtn" value="@item.AddressId">
+                            <button onclick="callDeleteAddress(@item.AddressId)" value="@item.AddressId">
                                 <img src="~/images/delete-icon.png" class="delete-img" typeof="button">
                             </button>
                         </div>
@@ -47,33 +47,6 @@
 
 </table>
 
-<!--Delete add popup starts-->
-<div class="modal fade" id="editAddressModal3" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered  modal-sm">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title" style="color:#646464"><b>Delete Address</b></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body address-modal-body">
-                <div class="form-section">
-                    <div class="text-center">
-                        Your Address deleted successfully
-                    </div>
-                    <div>
-                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!--Delete add popup ends-->
-
 <!--Edit Add popup start-->
 <div class="modal fade" id="editAddressModal2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered address-modal">
@@ -84,7 +57,7 @@
             </div>
 
             <div class="modal-body address-modal-body">
-                <form class="form-section">
+                <form class="form-section" id="addressForm">
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -112,7 +85,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" class="form-control" placeholder="Enter City" id="city" >
+                                <input type="text" class="form-control" placeholder="Enter City" id="city">
                             </div>
                         </div>
                     </div>
@@ -125,39 +98,109 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">+49</div>
                                         </div>
-                                        <input class="form-control" type="tel" id="MobileNo" placeholder="Mobile Number" >
+                                        <input class="form-control" type="tel" id="MobileNo" placeholder="Mobile Number">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <button class="saveAdd1" id="editAddbtn" onclick="SaveEditAddress($('#editbtn').val(),$('#street').val(),$('#house_no').val(),$('#city').val(),$('#postalcode').val(),$('#MobileNo').val())">Update</button>
-
+                        <button class="saveAdd1" value="" id="editAddbtn" onclick="SaveEditAddress(this.value,$('#street').val(),$('#house_no').val(),$('#city').val(),$('#postalcode').val(),$('#MobileNo').val())">Update</button>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
 <!--Edit add popup ends-->
+<!--update add popup success starts-->
+<div class="modal fade" id="updatedAddressModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered  modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Delete Address</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        Your Address updated successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--update add success popup ends-->
+<!--delete add modal starts-->
+<div class="modal fade" id="deleteAddModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Cancel Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        <h4>Are you sure you want to delete this address?</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control saveAdd1" id="delete_btn" onclick="DeleteAddress(this.value)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--delete add modal ends-->
+<!--Delete add success popup starts-->
+<div class="modal fade" id="deletedAddressModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered  modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Delete Address</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        Your Address deleted successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Delete add success popup ends-->
+
 
 <script type="text/javascript">
-    function DeleteAddress(AddressId) {
-        $.post("/Customer/DeleteAddress", { Id: parseInt(AddressId) },
-            
-            function (data) {
-               
-                $("#editAddressModal3").modal('show');
-            });
-    }
-    function EditAddress(AddressId) {
-        $.get("/Customer/EditAddress", { Id: parseInt(AddressId) },
+
+    function callEditAddress(id) {
+
+        $("#editAddbtn").prop("value", id);
+
+        $.get("/Customer/EditAddress", { Id: parseInt(id) },
 
             function (data) {
-               
+                
                 $('#street').val(data.addressLine1);
                 $('#house_no').val(data.addressLine2);
                 $('#postalcode').val(data.postalcode);
@@ -165,14 +208,30 @@
                 $('#MobileNo').val(data.mobile);
                 $("#editAddressModal2").modal('show');
             });
+
     }
-    function SaveEditAddress(AddressId,line1,line2,city,postalcode,mobile) {
-        $.post("/Customer/SaveEditAddress", { Id: parseInt(AddressId), addLine1: line1, addLine2:line2, userCity:city, userPostalcode:postalcode, userMobile:mobile },
+
+    function SaveEditAddress(AddressId, line1, line2, city, postalcode, mobile) {
+        $.post("/Customer/SaveEditAddress", { Id: parseInt(AddressId), addLine1: line1, addLine2: line2, userCity: city, userPostalcode: postalcode, userMobile: mobile },
 
             function (data) {
-                $("#editAddressModal2").modal('show');
-                console.log(data);
+                $("#editAddressModal2").modal('hide');
+                $("#deletedAddressModal").modal('show');
+            });
+    }
+
+    function callDeleteAddress(id) {
+        $("#delete_btn").prop("value", id);
+        $("#deleteAddModal").modal('show');
+    }
+
+    function DeleteAddress(AddressId) {
+        $.post("/Customer/DeleteAddress", { Id: parseInt(AddressId) },
+            function (data) {
+                $("#deleteAddModal").modal('hide');
+                $("#deletedAddressModal").modal('show');
             });
     }
 
 </script>
+

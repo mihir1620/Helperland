@@ -11,8 +11,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using MailKit.Security;
 using System.Text;
 using System.Threading.Tasks;
+using OfficeOpenXml;
 
 namespace HelperLand.Controllers
 {
@@ -45,15 +50,18 @@ namespace HelperLand.Controllers
                .Select(a => a.UserId)
                .FirstOrDefault();
 
+           // var serviceReq1 = _helperlandContext.ServiceRequests
+           //.Where(a => a.UserId == id).Select(s => new { s, s.ServiceProvider});
 
             List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
-            .Where(a => a.UserId == id)
-            .ToList();
+            .Where(a => a.UserId == id).ToList();
 
-            //var query = from service in _helperlandContext.ServiceRequests
-            //            join user in _helperlandContext.Users on service.UserId equals user.UserId;
-
-
+            foreach(var item in serviceReq)
+            {
+                _helperlandContext.Entry(item).Reference(s => s.ServiceProvider).Load();
+                _helperlandContext.Entry(item).Collection(s => s.Ratings).Load();
+            }
+            //ViewData["JavaScript"] = "window.location = '" + Url.Page("/Customer/Dashboard") + "'";
             return View(serviceReq);
         }
 
@@ -88,7 +96,61 @@ namespace HelperLand.Controllers
             .Where(a => a.UserId == id)
             .ToList();
 
+
+            foreach (var item in serviceReq)
+            {
+                _helperlandContext.Entry(item).Reference(s => s.ServiceProvider).Load();
+            }
+
             return View(serviceReq);
+        }
+
+        [HttpPost]
+        public JsonResult RateSp(int Id, int User, int ServiceProvider, string Feedback, int Ontime, int Friend, int QOS)
+        {
+            var ser = _helperlandContext.Ratings
+                .Where(a => a.ServiceRequestId == Id)
+                .FirstOrDefault();
+
+
+            var ratings = (Ontime + Friend + QOS)/3;
+
+            if(ser == null)
+            {
+                Rating newRating = new Rating
+                {
+                    ServiceRequestId = Id,
+                    RatingFrom = User,
+                    RatingTo = ServiceProvider,
+                    Ratings = ratings,
+                    Comments = Feedback,
+                    OnTimeArrival = Ontime,
+                    Friendly = Friend,
+                    QualityOfService = QOS,
+                    RatingDate = DateTime.Now
+                };
+                _helperlandContext.Add(newRating);
+                _helperlandContext.SaveChanges();
+                return Json(true);
+            }
+
+            if(ser != null)
+            {
+                ser.ServiceRequestId = Id;
+                ser.RatingFrom = User;
+                ser.RatingTo = ServiceProvider;
+                ser.Ratings = ratings;
+                ser.OnTimeArrival = Ontime;
+                ser.Friendly = Friend;
+                ser.QualityOfService = QOS;
+                ser.Comments = Feedback;
+                ser.RatingDate = DateTime.Now;
+
+                _helperlandContext.Update(ser);
+                _helperlandContext.SaveChanges();
+                return Json(true);
+            }
+            return Json(true);
         }
 
         [HttpGet]
@@ -117,17 +179,17 @@ namespace HelperLand.Controllers
         {
             var isPhone = isMobileExist(model.Mobile);
             var isEmail = isEmailExist(model.Email);
-            if (isEmail)
-            {
-                ModelState.AddModelError("EmailExist", "Email already exist");
-                return View();
-            }
+            //if (isEmail)
+            //{
+            //    ModelState.AddModelError("EmailExist", "Email already exist");
+            //    return View();
+            //}
 
-            if (isPhone)
-            {
-                ModelState.AddModelError("MobileExist", "Mobile number already exist");
-                return View();
-            }
+            //if (isPhone)
+            //{
+            //    ModelState.AddModelError("MobileExist", "Mobile number already exist");
+            //    return View();
+            //}
             var user = _helperlandContext.Users.Where(a => a.UserId == model.UserId).FirstOrDefault();
 
             if(user != null)
@@ -218,12 +280,55 @@ namespace HelperLand.Controllers
                 .Where(a => a.ServiceRequestId == Id)
                 .FirstOrDefault();
 
+            var spId = _helperlandContext.ServiceRequests
+                .Where(a => a.ServiceRequestId == Id)
+                .Select(a => a.ServiceProviderId)
+                .FirstOrDefault();
+
             if (service != null)
             {
                 service.Status = 0;
                 _helperlandContext.Update(service);
                 _helperlandContext.SaveChanges();
+
+                var spEmail = _helperlandContext.Users
+               .Where(a => a.UserId == spId)
+               .Select(a => a.Email)
+               .FirstOrDefault();
+
+                MimeMessage message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                message.To.Add(MailboxAddress.Parse(spEmail));
+                message.Subject = "Service Cancellation";
+                string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                message.Body = new TextPart("html")
+                {
+
+                    Text = "Dear Service Provider service with ID:"+ Id +" is cancelled by user."
+
+                };
+
+                SmtpClient smtp = new SmtpClient();
+                try
+                {
+                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                    smtp.Send(message);
+
+                }
+                catch (Exception er)
+                {
+                    Console.WriteLine(er.Message);
+                }
+                finally
+                {
+                    smtp.Disconnect(true);
+                    smtp.Dispose();
+                }
             }
+
+           
             return Json(true);
         }
 
@@ -239,19 +344,101 @@ namespace HelperLand.Controllers
                 .Where(a => a.ServiceRequestId == Id)
                 .FirstOrDefault();
 
-            if(service != null)
+            var spId = _helperlandContext.ServiceRequests
+                .Where(a => a.ServiceRequestId == Id)
+                .Select(a => a.ServiceProviderId)
+                .FirstOrDefault();
+
+            var resheduled_dt = ServiceDate.Date + ServiceTime.TimeOfDay;
+
+            
+
+            if (service != null)
             {
-                service.ServiceStartDate = ServiceDate.Date + ServiceTime.TimeOfDay;
-                _helperlandContext.Update(service);
-                _helperlandContext.SaveChanges();
+                if(service.ServiceProviderId == null)
+                {
+                    service.ServiceStartDate = resheduled_dt;
+                    _helperlandContext.Update(service);
+                    _helperlandContext.SaveChanges();
+                }
+
+                else if(service.ServiceProviderId != null)
+                {
+                    List<ServiceRequest> spService = _helperlandContext.ServiceRequests
+                        .Where(a => a.ServiceProviderId == service.ServiceProviderId)
+                        .ToList();
+
+                  foreach(var item in spService)
+                    {
+                        var date = item.ServiceStartDate.Date;
+                        if(date == ServiceDate)
+                        {
+                            var total_time = item.ServiceHours + item.ExtraHours;
+                            decimal t = (decimal)total_time;
+                            TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
+                            var time = item.ServiceStartDate.Add(span);
+
+
+                           var result =  DateTime.Compare(time, ServiceTime);
+                            
+                            if(result < 0)
+                            {
+                                service.ServiceStartDate = resheduled_dt;
+                                _helperlandContext.Update(service);
+                                _helperlandContext.SaveChanges();
+                            }
+                            else
+                            {
+                                TempData["ResheduleError"] = "Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot";
+                                return Json(false);
+                            }
+                        }
+                    }
+                
+                   var spEmail = _helperlandContext.Users
+                   .Where(a => a.UserId == spId)
+                   .Select(a => a.Email)
+                   .FirstOrDefault();
+
+                    MimeMessage message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                    message.To.Add(MailboxAddress.Parse(spEmail));
+                    message.Subject = "Service Reschedule";
+                    string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                    message.Body = new TextPart("html")
+                    {
+
+                        Text = "Dear Service Provider service with ID:"+ Id +" is rescheduled by user with new date and time which is" + resheduled_dt + "."
+
+                    };
+
+                    SmtpClient smtp = new SmtpClient();
+                    try
+                    {
+                        smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                        smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                        smtp.Send(message);
+
+                    }
+                    catch (Exception er)
+                    {
+                        Console.WriteLine(er.Message);
+                    }
+                    finally
+                    {
+                        smtp.Disconnect(true);
+                        smtp.Dispose();
+                    }
+                }
             }
+           
             return Json(true);
         }
 
         [HttpGet]
         public IActionResult AddressPopup()
         {
-
             return View();
         }
 
@@ -286,7 +473,6 @@ namespace HelperLand.Controllers
         [HttpGet]
         public JsonResult EditAddress(int Id)
         {
-
             UserAddress newAdd = _helperlandContext.UserAddresses
             .Where(a => a.AddressId == Id)
             .First();
@@ -298,7 +484,6 @@ namespace HelperLand.Controllers
                 postalcode = newAdd.PostalCode,
                 city = newAdd.City,
                 mobile = newAdd.Mobile
-
             });
         }
 
@@ -316,7 +501,6 @@ namespace HelperLand.Controllers
 
             if(newAdd != null)
             {
-                //newAdd.AddressId = Id;
                 newAdd.AddressLine1 = addLine1;
                 newAdd.AddressLine2 = addLine2;
                 newAdd.City = userCity;
@@ -324,9 +508,9 @@ namespace HelperLand.Controllers
                 newAdd.Mobile = userMobile;
                 _helperlandContext.UserAddresses.Update(newAdd);
                 _helperlandContext.SaveChanges();
-                return Json(true);
-            }   
-            return Json(false);
+            }
+
+            return Json(true);
         }
 
         [HttpGet]
@@ -360,9 +544,9 @@ namespace HelperLand.Controllers
                 return RedirectToAction("Mysetting");
             }
 
-            else
+            else if(oldPswd != Hash.HashPass(model.OldPassword))
             {
-                ViewBag.pswdError = "Your cuurent password does not match please try again";
+                TempData["pswdError"] = "Your cuurent password does not match please try again";
                 return RedirectToAction("Mysetting");
             }
 
@@ -384,6 +568,34 @@ namespace HelperLand.Controllers
             var e = _helperlandContext.Users.Where(e => e.Mobile == mobile).FirstOrDefault();
             return e != null;
         }
+
+      /*  public void ExportListUsingEPPlus()
+        {
+            var id = _helperlandContext.Users
+                   .Where(a => a.Email == HttpContext.Session.GetString("username"))
+                   .Select(a => a.UserId)
+                   .FirstOrDefault();
+
+
+            List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
+            .Where(a => a.UserId == id)
+            .ToList();
+
+
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+            workSheet.Cells[1, 1].LoadFromCollection(serviceReq, true);
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //here i have set filname as Students.xlsx
+                Response.AddHeader("content-disposition", "attachment;  filename=Students.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+        }*/
 
     }
 }
