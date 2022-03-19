@@ -8,7 +8,7 @@
     @if (TempData["ResheduleError"] != null)
     {
         <div class="container d-flex justify-content-center">
-            <div class="alert alert-success col-lg-6 alert1">
+            <div class="alert alert-danger col-lg-6 bookalert">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>@TempData["ResheduleError"]</strong>
             </div>
@@ -36,11 +36,11 @@
                 decimal t = (decimal)total_time;
                 TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
                 var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
-        <tr onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
+        <tr >
             <td>
                 @item.ServiceRequestId
             </td>
-            <td >
+            <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
                 <div>
                     <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
                 </div>
@@ -299,6 +299,8 @@
 
     function RescheduleService(id, date, time) {
         $.post("/Customer/RescheduleService", { Id: parseInt(id), ServiceDate: date, ServiceTime: time },
+
+
             function (data) {
                 $("#rescheduleReqModal").modal('hide');
                 $("#resheduleModal").modal('show');

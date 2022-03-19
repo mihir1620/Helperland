@@ -4,6 +4,17 @@
 }
 @model IEnumerable<HelperLand.Models.ServiceRequest>
 
+<section>
+    @if (TempData["RateMsg"] != null)
+    {
+        <div class="container d-flex justify-content-center">
+            <div class="alert alert-success col-lg-6 bookalert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>@TempData["RateMsg"]</strong>
+            </div>
+        </div>
+    }
+</section>
 
 <table class="table service-table table-hover table-responsive-xl" id="service_history_table">
     <thead>
@@ -25,67 +36,67 @@
                 decimal t = (decimal)total_time;
                 TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
                 var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
-        <tr>
-            <td>
-                <input id="userId" type="hidden" value="@item.UserId" />
-                <input id="spId" type="hidden" value="@item.ServiceProviderId" />
-                <input id="serviceId" type="hidden" value="@item.ServiceRequestId" />
-                @item.ServiceRequestId
-            </td>
-            <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
-                <div>
-                    <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
-                </div>
-                <div>
-                    <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
-                </div>
-            </td>
-            <td>
-                @if (item.ServiceProvider == null)
-                {
-                    <div>
-                        @item.ServiceProviderId
-                    </div>
-                }
-                @if (item.ServiceProvider != null)
-                {
-                    <div class="d-flex justify-content-between">
+                <tr>
+                    <td>
+                        <input id="userId" type="hidden" value="@item.UserId" />
+                        <input id="spId" type="hidden" value="@item.ServiceProviderId" />
+                        <input id="serviceId" type="hidden" value="@item.ServiceRequestId" />
+                        @item.ServiceRequestId
+                    </td>
+                    <td onclick="getServiceDetails(@item.ServiceRequestId)" id="service_details">
                         <div>
-                            <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                            <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
                         </div>
                         <div>
-                            @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
-                            
+                            <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
                         </div>
-                    </div>
+                    </td>
+                    <td>
+                        @if (item.ServiceProvider == null)
+                        {
+                            <div>
+                                @item.ServiceProviderId
+                            </div>
+                        }
+                        @if (item.ServiceProvider != null)
+                        {
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                                </div>
+                                <div>
+                                    @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
 
-                }
-            </td>
+                                </div>
+                            </div>
 
-            <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
+                        }
+                    </td>
 
-            <td>
-                @if (item.Status == 0)
-                {
-                    <button class="cancelled-btn">Cancelled</button>
-                }
-                @if (item.Status == 1)
-                {
-                    <button class="completed-btn">Completed</button>
-                }
+                    <td class="payment-clm">@item.TotalCost<span style="font-size:20px;">₹</span></td>
 
-            </td>
-            <td>
-                @if (item.Status == 0)
-                {
-                    <button class="rate-sp-disabled-btn" id="rate_btn_val" disabled> Rate SP</button>
-                }
-                @if (item.Status == 1)
-                {
-                    <button class="rate-sp-enabled-btn" id="rate_btn_val" onclick="callRateSp(@item.ServiceRequestId)"> Rate SP</button>
-                }
-            </td>
-        </tr>
+                    <td>
+                        @if (item.Status == 0)
+                        {
+                            <button class="cancelled-btn">Cancelled</button>
+                        }
+                        @if (item.Status == 2)
+                        {
+                            <button class="completed-btn">Completed</button>
+                        }
+
+                    </td>
+                    <td>
+                        @if (item.Status == 0)
+                        {
+                            <button class="rate-sp-disabled-btn" id="rate_btn_val" disabled> Rate SP</button>
+                        }
+                        @if (item.Status == 2)
+                        {
+                            <button class="rate-sp-enabled-btn" id="rate_btn_val" onclick="callRateSp(@item.ServiceRequestId)"> Rate SP</button>
+                        }
+                    </td>
+                </tr>
             }
 
         }
@@ -94,61 +105,61 @@
 </table>
 
 <div class="modal fade" id="servicedetails" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title" style="color:#646464"><b>Service Details</b></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Service Details</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body service-details-modal-body">
+
+                <div class="d-flex justify-content-around">
+                    <h3 id="serviceDate" class="font-weight-bold"></h3>
+                    <h3 id="servicetime" class="font-weight-bold ml"></h3>
                 </div>
 
-                <div class="modal-body service-details-modal-body">
-
-                    <div class="d-flex justify-content-around">
-                        <h3 id="serviceDate" class="font-weight-bold"></h3>
-                        <h3 id="servicetime" class="font-weight-bold ml"></h3>
-                    </div>
-
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Duration: </p>
-                        <p id="serviceduration"></p>
-                        <p>Hrs</p>
-                    </div>
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Service Id: </p>
-                        <p id="Service_id"></p>
-                    </div>
-                    @*<span class="font-weight-bold">Extra: </span>  <p id="extra_id"></p>*@
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Net amount:</p>
-                        <p id="net_amount"></p>
-                        <p>₹</p>
-                    </div>
-
-                    <hr>
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Service Address: </p>
-                        <p id="Service_address"></p>
-                    </div>
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Billing Address:</p>
-                        <p id="billing_address">Same as service address</p>
-                    </div>
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Phone: </p>
-                        <p id="phone"></p>
-                    </div>
-                    <div class="d-flex">
-                        <p class="font-weight-bold">Comments: </p>
-                        <p id="comments"></p>
-                    </div>
-
+                <div class="d-flex">
+                    <p class="font-weight-bold">Duration: </p>
+                    <p id="serviceduration"></p>
+                    <p>Hrs</p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Service Id: </p>
+                    <p id="Service_id"></p>
+                </div>
+                @*<span class="font-weight-bold">Extra: </span>  <p id="extra_id"></p>*@
+                <div class="d-flex">
+                    <p class="font-weight-bold">Net amount:</p>
+                    <p id="net_amount"></p>
+                    <p>₹</p>
                 </div>
 
+                <hr>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Service Address: </p>
+                    <p id="Service_address"></p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Billing Address:</p>
+                    <p id="billing_address">Same as service address</p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Phone: </p>
+                    <p id="phone"></p>
+                </div>
+                <div class="d-flex">
+                    <p class="font-weight-bold">Comments: </p>
+                    <p id="comments"></p>
+                </div>
 
             </div>
+
+
         </div>
     </div>
+</div>
 
 <div class="modal fade" id="rateSpModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -217,7 +228,7 @@
                         <div class="row justify-content-left">
                             <button value="" class="check-zip-btn" id="saveRating_btn"
                                     onclick="rateServiceProvider(
-                                                            this.value ,
+                                                            this.value,
                                                             $('#userId').val(),
                                                             $('#spId').val(),
                                                             $('#spFeedback').val(),
@@ -235,28 +246,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="thanksForRating" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered ">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title" style="color:#646464"><b>Rating</b></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body address-modal-body">
-                <div class="form-section">
-                    <div class="text-center">
-                        Thanks for Rating
-                    </div>
-                    <div>
-                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script type="text/javascript">
@@ -284,7 +273,6 @@
     function rateServiceProvider(Id, User, Sp, feedback, timing, friendly, qos) {
         $.post("/Customer/RateSp", { Id: parseInt(Id), User: parseInt(User), ServiceProvider: parseInt(Sp), Feedback: feedback, Ontime: timing, Friend: friendly, QOS: qos },
             function (data) {
-                $("#thanksForRating").modal('show');
                 $("#rateSpModal").modal('hide');
             });
     }
@@ -292,6 +280,5 @@
     $(document).ready(function () {
         $('#service_history_table').DataTable();
     });
-    
-</script>
 
+</script>

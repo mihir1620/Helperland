@@ -1,0 +1,76 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.ServiceRequest>
+
+
+<table class="table service-table table-hover table-responsive-xl" id="example2">
+    <thead>
+        <tr>
+            <th class="table-heading">Service Id </th>
+            <th class="table-heading">Service Date </th>
+            <th class="table-heading">Customer Name  </th>
+            <th class="table-heading">Rating  </th>
+            <th class="table-heading">Customer Comment  </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            var total_time = item.ServiceHours + item.ExtraHours;
+            decimal t = (decimal)total_time;
+            TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
+            var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+        <tr>
+            <td>
+                @item.ServiceRequestId
+            </td>
+            <td>
+                <div>
+                    <span><img src="~/images/calendar2.png"></span>  <b>@item.ServiceStartDate.ToString("dd/MM/yyyy") </b>
+                </div>
+                <div>
+                    <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                </div>
+            </td>
+            <td>
+                <div>
+                    @item.User.FirstName @item.User.LastName
+                </div>
+            </td>
+            <td>
+                @if (item.Ratings != null)
+                {
+                    @foreach (var a in item.Ratings)
+                    {
+                        <span>Ratings:</span> @a.Ratings
+                    }
+                }
+            </td>
+            <td>
+                @if (item.Ratings != null)
+                {
+                    @foreach (var a in item.Ratings)
+                    {
+                        @a.Comments
+                    }
+                }
+            </td>
+        </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#example2').DataTable();
+    });
+
+</script>
+

@@ -85,15 +85,21 @@
 
             </div>
 
-            <div class="col-lg-9 table-responsive service-details">
-                <div class="btn-group ">
+            <div class="col-lg-9 table-responsive service-details ">
+                <div class="d-flex justify-content-between">
                     <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                    @using (Html.BeginForm("Export", "Customer", FormMethod.Post))
+                    {
+                        <button class="export-btn float-right" type="submit"> Export </button>
+                    }
                 </div>
-                <input class="export-btn float-right excel" type="button" value="Export">
+
+               
+
                 <div id="loadServiceHistoryTable">
 
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 

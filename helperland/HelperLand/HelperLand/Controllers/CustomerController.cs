@@ -131,6 +131,7 @@ namespace HelperLand.Controllers
                 };
                 _helperlandContext.Add(newRating);
                 _helperlandContext.SaveChanges();
+                TempData["RateMsg"] = "Thanks for your rating";
                 return Json(true);
             }
 
@@ -146,8 +147,9 @@ namespace HelperLand.Controllers
                 ser.Comments = Feedback;
                 ser.RatingDate = DateTime.Now;
 
-                _helperlandContext.Update(ser);
+                _helperlandContext.Ratings.Update(ser);
                 _helperlandContext.SaveChanges();
+                TempData["RateMsg"] = "Thanks for your rating";
                 return Json(true);
             }
             return Json(true);
@@ -553,7 +555,72 @@ namespace HelperLand.Controllers
             return RedirectToAction("Mysetting");
         }
 
+        [HttpPost]
+        public FileResult Export()
+        {
+            var id = _helperlandContext.Users
+                .Where(a => a.Email == HttpContext.Session.GetString("username"))
+                .Select(a => a.UserId)
+                .FirstOrDefault();
 
+            List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
+                    .Where(a => a.UserId == id && (a.Status == 0 || a.Status == 2))
+                    .ToList();
+
+            foreach (var item in serviceReq)
+            {
+                _helperlandContext.Entry(item).Reference(s => s.ServiceProvider).Load();
+            }
+
+            ExcelPackage Ep = new ExcelPackage();
+            ExcelWorksheet Sheet = Ep.Workbook.Worksheets.Add("Report");
+            Sheet.Cells["A1"].Value = "Service Id";
+            Sheet.Cells["B1"].Value = "Service Startdate";
+            Sheet.Cells["C1"].Value = "Service Provider";
+            Sheet.Cells["D1"].Value = "Payment";
+            Sheet.Cells["E1"].Value = "Status";
+
+            int row = 2;
+            foreach (var item in serviceReq)
+            {
+
+                Sheet.Cells[string.Format("A{0}", row)].Value = item.ServiceRequestId;
+                Sheet.Cells[string.Format("B{0}", row)].Value = item.ServiceStartDate.ToShortDateString();
+                if(item.ServiceProvider != null)
+                {
+                    Sheet.Cells[string.Format("C{0}", row)].Value = item.ServiceProvider.FirstName;
+                }
+                else
+                {
+                    Sheet.Cells[string.Format("C{0}", row)].Value = item.ServiceProviderId;
+                }
+                if(item.Status == null)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Pending";
+
+                }
+                if (item.Status == 0)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Cancelled";
+
+                }
+                if (item.Status == 2)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Completed";
+
+                }
+                Sheet.Cells[string.Format("E{0}", row)].Value = item.TotalCost + "₹";
+                row++;
+            }
+
+            Sheet.Cells["A:AZ"].AutoFitColumns();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Ep.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ServiceHistory.xlsx");
+            }
+        }
 
         [NonAction]
         public bool isEmailExist(string email)
@@ -569,33 +636,7 @@ namespace HelperLand.Controllers
             return e != null;
         }
 
-      /*  public void ExportListUsingEPPlus()
-        {
-            var id = _helperlandContext.Users
-                   .Where(a => a.Email == HttpContext.Session.GetString("username"))
-                   .Select(a => a.UserId)
-                   .FirstOrDefault();
-
-
-            List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
-            .Where(a => a.UserId == id)
-            .ToList();
-
-
-            ExcelPackage excel = new ExcelPackage();
-            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
-            workSheet.Cells[1, 1].LoadFromCollection(serviceReq, true);
-            using (var memoryStream = new MemoryStream())
-            {
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                //here i have set filname as Students.xlsx
-                Response.AddHeader("content-disposition", "attachment;  filename=Students.xlsx");
-                excel.SaveAs(memoryStream);
-                memoryStream.WriteTo(Response.OutputStream);
-                Response.Flush();
-                Response.End();
-            }
-        }*/
+        
 
     }
 }

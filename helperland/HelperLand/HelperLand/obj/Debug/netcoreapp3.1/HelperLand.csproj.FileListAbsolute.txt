@@ -194,3 +194,4 @@ D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLan
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout0.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\EPPlus.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\MyRatingTable.cshtml.g.cs

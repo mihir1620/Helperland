@@ -203,7 +203,33 @@
 </div>
 
 
+<div class="modal fade" id="rejectReqModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Accept Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        Another service request has already been assigned which has time overlap with this service
+                        request. You can’t pick this one!
+                    </div>
+                    <div>
+                        <img src="~/images/not-included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
@@ -226,7 +252,13 @@
     function AcceptService(serviceId) {
         $.post("/ServiceProvider/AcceptService", { Id: parseInt(serviceId) },
             function (data) {
-                $("#acceptReqModal").modal('show');
+                if (data) {
+                    $("#acceptReqModal").modal('show');
+                }
+                else {
+                    $("#rejectReqModal").modal('show');
+                }
+                
             });
     }
 

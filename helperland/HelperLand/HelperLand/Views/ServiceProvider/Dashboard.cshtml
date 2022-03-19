@@ -94,9 +94,9 @@
 
     <a href="#" id="serviceHistoryTab1">Service History</a>
 
-    <a href="#">My Ratings</a>
+    <a href="#" id="myRatingTab1">My Ratings</a>
 
-    <a href="#">Block Customer</a>
+    <a href="#" id="blockCustomerTab1">Block Customer</a>
 
 </div>
 
@@ -114,9 +114,9 @@
 
                 <a href="#" id="serviceHistoryTab">Service History</a>
 
-                <a href="#">My Ratings</a>
+                <a href="#" id="myRatingTab">My Ratings</a>
 
-                <a href="#">Block Customer</a>
+                <a href="#" id="blockCustomerTab">Block Customer</a>
 
             </div>
 
@@ -145,11 +145,39 @@
             </div>
 
             <div class="col-lg-9 table-responsive service-details" id="serviceHistory">
-                <div class="btn-group ">
+                <div class="d-flex justify-content-between">
                     <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service History</p>
+                    @using (Html.BeginForm("Export", "ServiceProvider", FormMethod.Post))
+                    {
+                        <input class="export-btn float-right excel" type="submit" value="Export" />
+                    }
                 </div>
 
                 <div id="loadServiceHistory">
+
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details" id="myRating">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">My Rating</p>
+                </div>
+
+                <div id="loadMyRating">
+
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-9 table-responsive service-details" id="blockCustomer">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Block Customer</p>
+                </div>
+
+                <div id="loadBlockCustomer">
 
                 </div>
 
@@ -167,60 +195,138 @@
 
     $('#upcomingService').hide();
     $('#serviceHistory').hide();
+    $('#myRating').hide();
+    $('#blockCustomer').hide();
 
     $('#newServiceTab').click(function () {
         $('#loadNewServices').load('/ServiceProvider/NewServiceTable');
         $('#upcomingService').hide();
         $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#newService').show();
         $('#upcomingServiceTab').removeClass('active');
         $('#serviceHistoryTab').removeClass('active');
+        $('#myRatingTab').removeClass('active');
+        $('#blockCustomerTab').removeClass('active');
         $('#newServiceTab').addClass('active');
     });
     $('#upcomingServiceTab').click(function () {
         $('#loadUpcomingServices').load('/ServiceProvider/UpcomingServiceTable');
         $('#newService').hide();
         $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#upcomingService').show();
         $('#newServiceTab').removeClass("active");
         $('#serviceHistoryTab').removeClass("active");
+        $('#myRatingTab').removeClass('active');
+        $('#blockCustomerTab').removeClass('active');
         $('#upcomingServiceTab').addClass("active");
     });
     $('#serviceHistoryTab').click(function () {
         $('#loadServiceHistory').load('/ServiceProvider/ServiceHistoryTable');
         $('#newService').hide();
         $('#upcomingService').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#serviceHistory').show();
         $('#newServiceTab').removeClass("active");
         $('#upcomingServiceTab').removeClass("active");
+        $('#myRatingTab').removeClass('active');
+        $('#blockCustomerTab').removeClass('active');
         $('#serviceHistoryTab').addClass("active");
+    });
+    $('#myRatingTab').click(function () {
+        $('#loadMyRating').load('/ServiceProvider/MyRatingTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#blockCustomer').hide();
+        $('#myRating').show();
+        $('#newServiceTab').removeClass("active");
+        $('#upcomingServiceTab').removeClass("active");
+        $('#serviceHistoryTab').removeClass("active");
+        $('#blockCustomerTab').removeClass('active');
+        $('#myRatingTab').addClass('active');
+    });
+    $('#blockCustomerTab').click(function () {
+        $('#loadBlockCustomer').load('/ServiceProvider/MyRatingTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').show();
+        $('#newServiceTab').removeClass("active");
+        $('#upcomingServiceTab').removeClass("active");
+        $('#serviceHistoryTab').removeClass("active");
+        $('#myRatingTab').removeClass('active');
+        $('#blockCustomerTab').addClass('active');
     });
 
     $('#newServiceTab1').click(function () {
         $('#loadNewServices').load('/ServiceProvider/NewServiceTable');
         $('#upcomingService').hide();
         $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#newService').show();
         $('#upcomingServiceTab1').removeClass('active');
         $('#serviceHistoryTab1').removeClass('active');
+        $('#myRatingTab1').removeClass('active');
+        $('#blockCustomerTab1').removeClass('active');
         $('#newServiceTab1').addClass('active');
     });
     $('#upcomingServiceTab1').click(function () {
         $('#loadUpcomingServices').load('/ServiceProvider/UpcomingServiceTable');
         $('#newService').hide();
         $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#upcomingService').show();
         $('#newServiceTab1').removeClass("active");
         $('#serviceHistoryTab1').removeClass("active");
+        $('#myRatingTab1').removeClass('active');
+        $('#blockCustomerTab1').removeClass('active');
         $('#upcomingServiceTab1').addClass("active");
     });
     $('#serviceHistoryTab1').click(function () {
         $('#loadServiceHistory').load('/ServiceProvider/ServiceHistoryTable');
         $('#newService').hide();
         $('#upcomingService').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').hide();
         $('#serviceHistory').show();
         $('#newServiceTab1').removeClass("active");
         $('#upcomingServiceTab1').removeClass("active");
+        $('#myRatingTab1').removeClass('active');
+        $('#blockCustomerTab1').removeClass('active');
         $('#serviceHistoryTab1').addClass("active");
+    });
+    $('#myRatingTab1').click(function () {
+        $('#loadMyRating').load('/ServiceProvider/MyRatingTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#blockCustomer').hide();
+        $('#myRating').show();
+        $('#newServiceTab1').removeClass("active");
+        $('#upcomingServiceTab1').removeClass("active");
+        $('#serviceHistoryTab1').removeClass("active");
+        $('#blockCustomerTab1').removeClass('active');
+        $('#myRatingTab1').addClass('active');
+    });
+    $('#blockCustomerTab1').click(function () {
+        $('#loadBlockCustomer').load('/ServiceProvider/MyRatingTable');
+        $('#newService').hide();
+        $('#upcomingService').hide();
+        $('#serviceHistory').hide();
+        $('#myRating').hide();
+        $('#blockCustomer').show();
+        $('#newServiceTab1').removeClass("active");
+        $('#upcomingServiceTab1').removeClass("active");
+        $('#serviceHistoryTab1').removeClass("active");
+        $('#myRatingTab1').removeClass('active');
+        $('#blockCustomerTab1').addClass('active');
     });
 </script>

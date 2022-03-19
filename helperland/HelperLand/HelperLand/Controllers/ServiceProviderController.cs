@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OfficeOpenXml;
+using System.IO;
 
 namespace HelperLand.Controllers
 {
@@ -86,6 +88,7 @@ namespace HelperLand.Controllers
             var service = _helperlandContext.ServiceRequests
                 .Where(a => a.ServiceRequestId == Id)
                 .FirstOrDefault();
+
             var id = _helperlandContext.Users
               .Where(a => a.Email == HttpContext.Session.GetString("username"))
               .Select(a => a.UserId)
@@ -94,27 +97,52 @@ namespace HelperLand.Controllers
 
             if (service != null)
             {
-                //var serDate = service.ServiceStartDate.ToShortDateString();
-                //var sameDateService = _helperlandContext.ServiceRequests
-                //    .Where(a => a.ServiceProviderId == id && a.ServiceStartDate.ToShortDateString() == serDate)
-                //    .FirstOrDefault();
-
-                //var totalTimeOfFirst = Convert.ToDouble(sameDateService.ServiceStartDate.ToString("HH:mm")) + sameDateService.ServiceHours + sameDateService.ExtraHours;
-                //var startTime = Convert.ToDouble(service.ServiceStartDate.ToString("HH:mm"));
-
-                //if ((startTime) - (totalTimeOfFirst) <= 1)
-                //{
-                //    TempData["serviceConcurrentError"] = "Another service request has already been assigned which has time overlap with this service request.You can’t pick this one!";
-                //}
-                if (service.Status == 1)
+                if(service.Status == null)
                 {
-                    TempData["serviceAccepteError"] = "This service request is no more available. It has been assigned to another provider.";
+                    List<ServiceRequest> spService = _helperlandContext.ServiceRequests
+                        .Where(a => a.ServiceProviderId == id)
+                        .ToList();
+
+                    foreach (var item in spService)
+                    {
+
+                        if (item.ServiceStartDate.ToLongDateString() == service.ServiceStartDate.ToLongDateString())
+                        {
+                            int result = DateTime.Compare(item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)), service.ServiceStartDate);
+
+                            if (result > 0)
+                            {
+                               
+                                return Json(false);
+                            }
+
+                            else
+                            {
+                                service.Status = 1;
+                                service.ServiceProviderId = id;
+                                service.SpacceptedDate = DateTime.Now;
+                                _helperlandContext.Update(service);
+                                _helperlandContext.SaveChanges();
+                            }
+                        }
+                    }
                 }
-                service.Status = 1;
-                service.ServiceProviderId = id;
-                service.SpacceptedDate = DateTime.Now;
-                _helperlandContext.Update(service);
-                _helperlandContext.SaveChanges();
+
+                else if (service.Status == 1)
+                {
+                    //TempData["serviceAccepteError"] = "This service request is no more available. It has been assigned to another provider.";
+                    return Json(false);
+                }
+
+                else
+                {
+                    service.Status = 1;
+                    service.ServiceProviderId = id;
+                    service.SpacceptedDate = DateTime.Now;
+                    _helperlandContext.Update(service);
+                    _helperlandContext.SaveChanges();
+                }
+                
             }
             return Json(true);
         }
@@ -208,25 +236,30 @@ namespace HelperLand.Controllers
                 _helperlandContext.Entry(item).Reference(s => s.User).Load();
                 _helperlandContext.Entry(item).Collection(s => s.ServiceRequestAddresses).Load();
             }
-            //List<ServiceRequest> servicerequests = _helperlandContext.ServiceRequests
-            //    .Where(a => a.UserId == id && a.Status == 2)
-            //    .ToList();
-            //List<User> user = _helperlandContext.Users
-            //    //.Where(a=>a.UserId == a.UserId)
-            //    .ToList();
+
+            return View(newService);
+        }
+
+        [HttpGet]
+        public IActionResult MyRatingTable()
+        {
+
+            var id = _helperlandContext.Users
+               .Where(a => a.Email == HttpContext.Session.GetString("username"))
+               .Select(a => a.UserId)
+               .FirstOrDefault();
+
+            List<ServiceRequest> newService = _helperlandContext.ServiceRequests
+                .Where(a => a.ServiceProviderId == id && a.Status == 2)
+                .ToList();
 
 
-            //var serviceRecord = from s in servicerequests
-            //                    join u in user on s.UserId equals u.UserId into table1
-            //                    from u in table1.ToList()
-
-            //                    select new ServiceViewModel
-            //                    {
-            //                        user = u,
-            //                        servicerequest = s,
-
-            //                    };
-
+            foreach (var item in newService)
+            {
+                _helperlandContext.Entry(item).Reference(s => s.User).Load();
+                _helperlandContext.Entry(item).Collection(s => s.Ratings).Load();
+            }
+            
             return View(newService);
         }
 
@@ -412,6 +445,73 @@ namespace HelperLand.Controllers
             return RedirectToAction("Mysetting");
         }
 
+        [HttpPost]
+        public FileResult Export()
+        {
+            var id = _helperlandContext.Users
+                .Where(a => a.Email == HttpContext.Session.GetString("username"))
+                .Select(a => a.UserId)
+                .FirstOrDefault();
+
+            List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
+                    .Where(a => a.ServiceProviderId == id && a.Status == 2)
+                    .ToList();
+
+            foreach (var item in serviceReq)
+            {
+                _helperlandContext.Entry(item).Reference(s => s.ServiceProvider).Load();
+            }
+
+            ExcelPackage Ep = new ExcelPackage();
+            ExcelWorksheet Sheet = Ep.Workbook.Worksheets.Add("Report");
+            Sheet.Cells["A1"].Value = "Service Id";
+            Sheet.Cells["B1"].Value = "Service Startdate";
+            Sheet.Cells["C1"].Value = "Service Provider";
+            Sheet.Cells["D1"].Value = "Payment";
+            Sheet.Cells["E1"].Value = "Status";
+
+            int row = 2;
+            foreach (var item in serviceReq)
+            {
+
+                Sheet.Cells[string.Format("A{0}", row)].Value = item.ServiceRequestId;
+                Sheet.Cells[string.Format("B{0}", row)].Value = item.ServiceStartDate.ToShortDateString();
+                if (item.ServiceProvider != null)
+                {
+                    Sheet.Cells[string.Format("C{0}", row)].Value = item.ServiceProvider.FirstName;
+                }
+                else
+                {
+                    Sheet.Cells[string.Format("C{0}", row)].Value = item.ServiceProviderId;
+                }
+                if (item.Status == null)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Pending";
+
+                }
+                if (item.Status == 0)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Cancelled";
+
+                }
+                if (item.Status == 2)
+                {
+                    Sheet.Cells[string.Format("D{0}", row)].Value = "Completed";
+
+                }
+                Sheet.Cells[string.Format("E{0}", row)].Value = item.TotalCost + "₹";
+                row++;
+            }
+
+            Sheet.Cells["A:AZ"].AutoFitColumns();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Ep.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ServiceHistory.xlsx");
+            }
+
+        }
         [NonAction]
         public bool isEmailExist(string email)
         {
