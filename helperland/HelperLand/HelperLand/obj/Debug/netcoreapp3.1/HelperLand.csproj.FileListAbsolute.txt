@@ -190,8 +190,12 @@ D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Vie
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\Mysetting.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\SpAddress.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\SpPassword.cshtml.g.cs
-D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout0.cshtml.g.cs
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\EPPlus.dll
 D:\Helperland\helperland\HelperLand\HelperLand\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\MyRatingTable.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AdminServiceRequestsTable.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\HelperLand.csproj.AssemblyReference.cache
+D:\Helperland\helperland\HelperLand\HelperLand\obj\Debug\netcoreapp3.1\Razor\Views\Admin\UserManagementTable.cshtml.g.cs

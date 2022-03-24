@@ -32,10 +32,7 @@
         {
             if (item.Status == null || item.Status == 1)
             {
-                var total_time = item.ServiceHours + item.ExtraHours;
-                decimal t = (decimal)total_time;
-                TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
-                var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+                var time = item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)).ToString("HH:mm");
         <tr >
             <td>
                 @item.ServiceRequestId

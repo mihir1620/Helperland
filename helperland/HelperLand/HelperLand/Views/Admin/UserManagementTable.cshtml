@@ -1,0 +1,349 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.User>
+
+<div class="admin-searching">
+    <div class="d-flex justify-content-around">
+        <div>
+            <lable for="serId">Search Username :</lable>
+            <input class="form-control" type="text" id="serId" onkeyup="serchcol1(this.value)">
+        </div>
+        <div>
+            <lable for="serDate">Search Usertype :</lable>
+            <input class="form-control" type="text" id="serDate" onkeyup="serchcol4(this.value)">
+        </div>
+        <div>
+            <lable for="customer">Search Phonenumber :</lable>
+            <input class="form-control" type="text" id="customer" onkeyup="serchcol5(this.value)">
+        </div>
+        <div>
+            <lable for="serProvider">Search Postalcode :</lable>
+            <input class="form-control" type="text" id="serProvider" onkeyup="serchcol6(this.value)">
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table user-management-table" id="user-management-table">
+
+    <thead class="user-management-tableheader text-center">
+        <tr>
+            <th>User Name</th>
+            <th>User Role</th>
+            <th>Date of Regestration</th>
+            <th>User Type</th>
+            <th>Phone</th>
+            <th>Postalcode</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.FirstName @item.LastName</td>
+                <td>
+                    @if (item.UserTypeId == 1)
+                    {
+                        <p>Customer</p>
+                    }
+                    @if (item.UserTypeId == 2)
+                    {
+                        <p>Service Provider</p>
+                    }
+                    @if (item.UserTypeId == 0)
+                    {
+                        <p>Admin</p>
+                    }
+                </td>
+                <td>
+                    <div>
+                        <span><img src="~/images/calendar2.png"></span><b>   @item.CreatedDate.ToString("dd/MM/yyyy")</b>
+                    </div>
+
+                </td>
+                <td>
+                    @if (item.UserTypeId == 1)
+                    {
+                        <p>Customer</p>
+                    }
+                    @if (item.UserTypeId == 2)
+                    {
+                        <p>Service Provider</p>
+                    }
+                    @if (item.UserTypeId == 0)
+                    {
+                        <p>Admin</p>
+                    }
+                </td>
+                <td>
+                    @item.Mobile
+                </td>
+                <td>
+                    @item.ZipCode
+                </td>
+                <td>
+                    @if (item.IsActive == false)
+                    {
+                        <button class="cancelled-btn">Inactive</button>
+                    }
+                    @if (item.IsActive == true)
+                    {
+                        <button class="completed-btn">Active</button>
+                    }
+                </td>
+                <td class="text-center">
+                    <div class="dropdown-container " tabindex="-1">
+                        <img src="~/images/group-38.png" />
+                        <div class="dropdown">
+                            <a onclick="callActivate(@item.UserId)">
+                                <div class="admin-action">Activate user</div>
+                            </a>
+                            <a onclick="callDeactivate(@item.UserId)">
+                                <div class="admin-action">Deactivate user</div>
+                            </a>
+                            @if (item.UserTypeId == 2)
+                            {
+                                <a onclick="callApproveSp(@item.UserId)">
+                                    <div class="admin-action">Approve Service Provider</div>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="activateUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Activate User</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section admin-edit-ser">
+                    <div class="text-center">
+                        Click on Activate to activate user
+                    </div>
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control updateSerDetails" id="activate_btn" onclick="ActivateUser(this.value)">Activate</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="activatedModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Activate Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        You activated user successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deactivateUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Deactivate User</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section admin-edit-ser">
+                    <div class="text-center">
+                        Click on Deactivate to deactivate user
+                    </div>
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control updateSerDetails" id="deactivate_btn" onclick="DeactivateUser(this.value)">Deactivate</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deactivatedModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Dectivate Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        You deactivated user successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="approveSPModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Approve Service Provider</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section admin-edit-ser">
+                    <div class="text-center">
+                        Click on Approve to approve service provider
+                    </div>
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control updateSerDetails" id="approve_sp_btn" onclick="ApproveSP(this.value)">Approve</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="approvedModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Approve Service Provider</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        You approved Service Provider successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#user-management-table').DataTable();
+    });
+
+    function serchcol1(val) {
+        let x = $('#user-management-table').DataTable();
+        x.column(0).search(val).draw();
+    }
+    function serchcol4(val) {
+        let x = $('#user-management-table').DataTable();
+        x.column(3).search(val).draw();
+    }
+    function serchcol5(val) {
+        let x = $('#user-management-table').DataTable();
+        x.column(4).search(val).draw();
+    }
+    function serchcol6(val) {
+        let x = $('#user-management-table').DataTable();
+        x.column(5).search(val).draw();
+    }
+
+
+    function callActivate(id) {
+        $("#activate_btn").prop("value", id);
+        $("#activateUserModal").modal('show');
+    }
+
+    function callDeactivate(id) {
+        $("#deactivate_btn").prop("value", id);
+        $("#deactivateUserModal").modal('show');
+    }
+
+    function callApproveSp(id) {
+        $("#approve_sp_btn").prop("value", id);
+        $("#approveSPModal").modal('show');
+    }
+
+    function ActivateUser(id) {
+        $.post("/Admin/ActivateUser", { Id: parseInt(id) },
+
+            function (data) {
+                if (data == true) {
+                    $("#activateUserModal").modal('hide');
+                    $("#activatedModal").modal('show');
+                    $('#user-management-table').DataTable().draw();
+                }
+                else if (data == false) {
+                    $("#activateUserModal").modal('hide');
+                    alert("Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot");
+                }
+            });
+    }
+
+    function DeactivateUser(id) {
+        $.post("/Admin/DeactivateUser", { Id: parseInt(id) },
+
+            function (data) {
+                if (data == true) {
+                    $("#deactivateUserModal").modal('hide');
+                    $("#deactivatedModal").modal('show');
+                    $('#user-management-table').DataTable().draw();
+                }
+                else if (data == false) {
+                    $("#deactivateUserModal").modal('hide');
+                    alert("Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot");
+                }
+            });
+    }
+
+    function ApproveSP(id) {
+        $.post("/Admin/ApproveServiceProvider", { Id: parseInt(id) },
+
+            function (data) {
+                if (data == true) {
+                    $("#approveSPModal").modal('hide');
+                    $("#approvedModal").modal('show');
+                }
+                else if (data == false) {
+                    $("#approveSPModal").modal('hide');
+                    alert("Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot");
+                }
+            });
+    }
+</script>
+

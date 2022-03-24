@@ -32,14 +32,10 @@
         {
             if (item.Status == 0 || item.Status == 2)
             {
-                var total_time = item.ServiceHours + item.ExtraHours;
-                decimal t = (decimal)total_time;
-                TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
-                var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+                var time = item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)).ToString("HH:mm");
                 <tr>
                     <td>
                         <input id="userId" type="hidden" value="@item.UserId" />
-                        <input id="spId" type="hidden" value="@item.ServiceProviderId" />
                         <input id="serviceId" type="hidden" value="@item.ServiceRequestId" />
                         @item.ServiceRequestId
                     </td>
@@ -60,6 +56,8 @@
                         }
                         @if (item.ServiceProvider != null)
                         {
+                            <input id="spId" type="hidden" value="@item.ServiceProviderId" />
+
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <img src="~/images/avatar-hat.png" id="providerAvatar" />

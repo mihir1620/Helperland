@@ -39,8 +39,10 @@ namespace HelperLand.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
+
             HttpContext.Session.Remove("username");
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
+
         }
 
         public IActionResult FAQ()

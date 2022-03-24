@@ -1,0 +1,435 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.ServiceRequest>
+
+<div class="admin-searching">
+    <div class="d-flex justify-content-around">
+        <div>
+            <lable for="serId">Search Id :</lable>
+            <input class="form-control" type="text" id="serId" onkeyup="serchcol1(this.value)">
+        </div>
+        <div>
+            <lable for="serDate">Search Date :</lable>
+            <input class="form-control" type="text" id="serDate" onkeyup="serchcol2(this.value)">
+        </div>
+        <div>
+            <lable for="customer">Search Customer :</lable>
+            <input class="form-control" type="text" id="customer" onkeyup="serchcol3(this.value)">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <lable for="serProvider">Search Service Provider :</lable>
+            <input class="form-control" type="text" id="serProvider" onkeyup="serchcol4(this.value)">
+        </div>
+        <div>
+            <lable for="amount">Search Amount :</lable>
+            <input class="form-control" type="text" id="amount" onkeyup="serchcol5(this.value)">
+        </div>
+        <div>
+            <lable for="status">Search Status :</lable>
+            <input class="form-control" type="text" id="status" onkeyup="serchcol6(this.value)">
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table user-management-table t1" id="admin-table">
+
+    <thead class="user-management-tableheader text-center">
+        <tr>
+            <th>Service ID</th>
+            <th>Service Date</th>
+            <th>Customer Details</th>
+            <th>Service Provider</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.Status != 2)
+            {
+                var time = item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)).ToString("HH:mm");
+                <tr>
+                    <td>@item.ServiceRequestId</td>
+
+                    <td>
+                        <div>
+                            <span><img src="~/images/calendar2.png"></span><b>@item.ServiceStartDate.ToString("dd/MM/yyyy")</b>
+                        </div>
+                        <div>
+                            <span><img src="~/images/layer-14.png"></span>  @item.ServiceStartDate.ToString("HH:mm") - @time
+                        </div>
+                    </td>
+
+                    <td>
+                        @item.User.FirstName @item.User.LastName
+                        <div>
+
+                            <span><img src="~/images/layer-15.png"></span>
+                            @if (item.ServiceRequestAddresses != null)
+                            {
+                                @foreach (var a in item.ServiceRequestAddresses)
+                                {
+
+                                    @a.AddressLine1
+                                    @a.AddressLine2<br />
+                                    @a.PostalCode<br />
+                                    @a.City @a.State<br />
+                                }
+                            }
+                        </div>
+                    </td>
+
+                    <td>
+                        @if (item.ServiceProvider == null)
+                        {
+                            <div>
+                                @item.ServiceProviderId
+                            </div>
+                        }
+                        @if (item.ServiceProvider != null)
+                        {
+                            <input id="spId" type="hidden" value="@item.ServiceProviderId" />
+
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                                </div>
+                                <div>
+                                    @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
+
+                                </div>
+                            </div>
+                        }
+                        @if (item.Ratings != null)
+                        {
+                            @foreach (var a in item.Ratings)
+                            {
+                                <span>Ratings:</span> @a.Ratings
+                            }
+                        }
+                    </td>
+
+                    <td>@item.TotalCost</td>
+
+                    <td>
+                        @if (item.Status == null)
+                        {
+                            <button class="new-btn">New</button>
+                        }
+                        @if (item.Status == 1)
+                        {
+                            <button class="pending-btn">Pending</button>
+                        }
+                        @if (item.Status == 0)
+                        {
+                            <button class="cancelled-btn">Cancelled</button>
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        <div class="dropdown-container " tabindex="-1">
+                            <img src="~/images/group-38.png" />
+                            <div class="dropdown">
+                                <a onclick="callRescheduleService(@item.ServiceRequestId)">
+                                    <div class="admin-action">Edit & Reschedule</div>
+                                </a>
+                                <a onclick="callCancelService(@item.ServiceRequestId)">
+                                    <div class="admin-action">Cancel service</div>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="rescheduleReqModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Edit Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section admin-edit-ser">
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <label for="edit-date">Date</label>
+                            <input class="form-control" type="date" id="edit-date" required>
+                        </div>
+
+                        <div>
+                            <label for="edit-time">Time</label>
+                            <select class="form-control" id="edit-time" required>
+                                <option selected value="8:00">8:00</option>
+                                <option value="8:30">8:30</option>
+                                <option value="9:00">9:00</option>
+                                <option value="9:30">9:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:10px">
+                        <b>Service Address</b>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <label for="reschedule_addline1">Street name</label>
+                            <input class="form-control " type="text" id="reschedule_addline1" required>
+                        </div>
+
+                        <div>
+                            <label for="reschedule_addline2">House No</label>
+                            <input class="form-control" type="text" id="reschedule_addline2" required>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <label for="postalcode">Postalcode</label>
+                            <input class="form-control" type="text" id="postalcode" required>
+                        </div>
+
+                        <div>
+                            <label for="city">City</label>
+                            <input class="form-control" type="text" id="city" required>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px">
+                        <b>Invoice Address</b>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <label for="reschedule_in_addline1">Street name</label>
+                            <input class="form-control " type="text" id="reschedule_in_addline1" required>
+                        </div>
+
+                        <div>
+                            <label for="reschedule_in_addline2">House No</label>
+                            <input class="form-control" type="text" id="reschedule_in_addline2" required>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <label for="in_postalcode">Postalcode</label>
+                            <input class="form-control" type="text" id="in_postalcode" required>
+                        </div>
+
+                        <div>
+                            <label for="in_city">City</label>
+                            <input class="form-control" type="text" id="in_city" required>
+                        </div>
+
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control updateSerDetails" id="reschedule_btn" onclick="EditServiceDetails(this.value, $('#edit-date').val(), $('#edit-time').val(),$('#reschedule_addline1').val(),$('#reschedule_addline2').val(),$('#postalcode').val(),$('#city').val())">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resheduleModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Edit Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        You rescheduled Request successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="AdminCancelSerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Deactivate User</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <form class="form-section admin-edit-ser">
+                    <div class="text-center">
+                        Click on Cancel to cancel service request
+                    </div>
+                    <div class="row justify-content-center">
+                        <button value="" class="form-control updateSerDetails" id="cancelByAdmin_btn" onclick="CancelSerByAdmin(this.value)">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cancelModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#646464"><b>Cancel Service Request</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body address-modal-body">
+                <div class="form-section">
+                    <div class="text-center">
+                        You cancelled service request successfully
+                    </div>
+                    <div>
+                        <img src="~/images/included.png" style="display:block;margin:auto;height:40px;width:40px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#admin-table').DataTable();
+
+    });
+    function serchcol1(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(0).search(val).draw();
+    }
+    function serchcol2(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(1).search(val).draw();
+    }
+    function serchcol3(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(2).search(val).draw();
+    }
+    function serchcol4(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(3).search(val).draw();
+    }
+    function serchcol5(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(4).search(val).draw();
+    }
+    function serchcol6(val) {
+        let x = $('#admin-table').DataTable();
+        x.column(5).search(val).draw();
+    }
+
+    function callRescheduleService(id) {
+        $("#reschedule_btn").prop("value", id);
+
+        $.get("/Admin/EditService", { Id: parseInt(id) },
+
+            function (data) {
+                $('#edit-date').val(data.serviceDate);
+                $('#edit-time').val(data.serviceTime);
+                $('#reschedule_addline1').val(data.addressLine1);
+                $('#reschedule_addline2').val(data.addressLine2);
+                $('#postalcode').val(data.postalcode);
+                $('#city').val(data.city);
+                $('#reschedule_in_addline1').val(data.addressLine1);
+                $('#reschedule_in_addline2').val(data.addressLine2);
+                $('#in_postalcode').val(data.postalcode);
+                $('#in_city').val(data.city);
+                $("#rescheduleReqModal").modal('show');
+            });
+
+    }
+
+    function EditServiceDetails(id, date, time, addline1, addline2, postalcode, city) {
+        $.post("/Admin/EditService", { Id: parseInt(id), ServiceDate: date, ServiceTime: time, NewAddressLine1: addline1, NewAddressLine2: addline2, NewPostalcode: postalcode, NewCity: city },
+
+            function (data) {
+                if (data) {
+                    $("#rescheduleReqModal").modal('hide');
+                    $("#resheduleModal").modal('show');
+                    $('#loadAdminRequests').load('/Admin/AdminServiceRequestsTable');
+                }
+                else {
+                    $("#rescheduleReqModal").modal('hide');
+                    alert("Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot");
+                }
+            });
+    }
+
+    function callCancelService(id) {
+        $("#cancelByAdmin_btn").prop("value", id);
+        $("#AdminCancelSerModal").modal('show');
+    }
+
+    function CancelSerByAdmin(id) {
+        $.post("/Admin/CancelService", { Id: parseInt(id) },
+
+            function (data) {
+                if (data == true) {
+                    $("#AdminCancelSerModal").modal('hide');
+                    $("#cancelModal").modal('show');
+                    $('#admin-table').DataTable().ajax.reload();
+                }
+                else if (data == false) {
+                    $("#AdminCancelSerModal").modal('hide');
+                    alert("Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot");
+                }
+            });
+    }
+</script>
+
+@*var table = $('#admin-table').DataTable({
+          });<lable>Search Address :</lable>
+    <input type="text" id="SearchAddress" name="search" onkeyup="serchcol2(this.value)">*@

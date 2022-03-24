@@ -1,0 +1,143 @@
+﻿@model User
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="~/images/favicon_img.png" type="image/icon type">
+    <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>@ViewData["Title"] | HelperLand</title>
+</head>
+<body style="background-color: #f2f4f5">
+    <section class="header">
+        <nav class="navbar navbar-expand-lg admin-nav fixed-top">
+            <a href="#" class="navbar-brand"><p>helperland</p></a>
+            <div class="center-icon align-items-center ">
+                <a href="#"><img src="~/images/user.png" style="margin-right: 15px;"></a>
+                <a style="margin-right: 15px;"> @ViewData["admin_name"]</a>
+                <a href="@Url.Action("logout", "Home")"><img src="~/images/logout.png"></a>
+            </div>
+
+            <button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+                </span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto text-center align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img src="~/images/user.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            @ViewData["admin_name"]
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("logout", "Home")" class="nav-link">
+                            <img src="~/images/logout.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </section>
+
+    <!-- The Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Login to your account</b></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body login-modal-body">
+                    <form asp-controller="account" asp-action="login" method="post">
+                        <div class="form-group ">
+                            <input class="form-control" required type="email" asp-for="Email" name="email" placeholder="Email" />
+                        </div>
+                        <div class="form-group ">
+                            <input class="form-control" required type="password" asp-for="Password" name="password" placeholder="Password" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="form-check-inline" />
+                                <span class="terms"> Remember me</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="login-btn">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a href="" type="button" data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Forgot Password</a>
+                    </div>
+                    <div class="text-center">
+                        Don't have an account <a href="@Url.Action("Create", "CreateUser")">Create an account</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- The Login Modal Ends-->
+    <!-- The Forgot Modal -->
+    <div class="modal fade" id="forgotModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered " style="max-width:370px">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Forgot password</b></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <form asp-action="ForgotPassword" asp-controller="Account" method="post">
+                        <div class="form-group ">
+                            <input class="form-control" asp-for="Email" required type="email" placeholder="Email" />
+                        </div>
+
+                        <div class="form-group">
+                            <button class="login-btn">Send</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a href="" type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Login now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Forgot Modal Ends-->
+
+    <div class="wrapper">
+        @RenderBody()
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/3960232895.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

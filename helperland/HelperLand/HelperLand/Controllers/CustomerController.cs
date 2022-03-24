@@ -129,7 +129,7 @@ namespace HelperLand.Controllers
                     QualityOfService = QOS,
                     RatingDate = DateTime.Now
                 };
-                _helperlandContext.Add(newRating);
+                _helperlandContext.Ratings.Add(newRating);
                 _helperlandContext.SaveChanges();
                 TempData["RateMsg"] = "Thanks for your rating";
                 return Json(true);

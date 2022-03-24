@@ -33,8 +33,7 @@ namespace HelperLand.Controllers
         public IActionResult Create(UserViewModel model)
         {
            
-            if (ModelState.IsValid)
-            {
+
                 var isPhone = isMobileExist(model.Mobile);
                 var isEmail = isEmailExist(model.Email);
                 if(isEmail)
@@ -73,7 +72,7 @@ namespace HelperLand.Controllers
                 _helperlandContext.SaveChanges();
                 return RedirectToAction("Create");
 
-            }
+            
             return View();
         }
 

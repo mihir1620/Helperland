@@ -37,19 +37,35 @@ namespace HelperLand.Controllers
                     HttpContext.Session.SetString("username", model.Email);
                     HttpContext.Session.SetString("type", "1");
 
-                return RedirectToAction("Dashboard","Customer");
+                    return RedirectToAction("Dashboard","Customer");
                 }
 
-            if (user != null && user.UserTypeId == 2)
+            if (user != null && user.UserTypeId == 2 )
                 {
-                    //HttpContext.Session.SetString("firstname", model.FirstName);
-                    HttpContext.Session.SetString("username", model.Email);
-                    HttpContext.Session.SetString("type", "2");
+                if (user.IsApproved == false)
+                {
+                    TempData["error"] = "You are not approved by admin yet. Please try after some time.";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                        //HttpContext.Session.SetString("firstname", model.FirstName);
+                        HttpContext.Session.SetString("username", model.Email);
+                        HttpContext.Session.SetString("type", "2");
+                    }
+                    
                  
-                return RedirectToAction("Dashboard", "ServiceProvider");
+                    return RedirectToAction("Dashboard", "ServiceProvider");
                 }
 
+            if (user != null && user.UserTypeId == 0)
+            {
+                //HttpContext.Session.SetString("firstname", model.FirstName);
+                HttpContext.Session.SetString("username", model.Email);
+                HttpContext.Session.SetString("type", "0");
 
+                return RedirectToAction("Dashboard", "Admin");
+            }
             else
             {
                 ViewBag.error = "Invalid Account";

@@ -9,6 +9,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using OfficeOpenXml;
 using System.IO;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using MailKit.Security;
 
 namespace HelperLand.Controllers
 {
@@ -60,28 +64,6 @@ namespace HelperLand.Controllers
             return View(newService);
         }
 
-        //[HttpPost]
-        //public IActionResult NewServiceTable()
-        //{
-
-        //    var id = _helperlandContext.Users
-        //       .Where(a => a.Email == HttpContext.Session.GetString("username"))
-        //       .Select(a => a.UserId)
-        //       .FirstOrDefault();
-
-        //    var spZipcode = _helperlandContext.UserAddresses
-        //        .Where(a => a.UserId == id)
-        //        .Select(a => a.PostalCode)
-        //        .FirstOrDefault();
-
-        //    List<ServiceRequest> newService = _helperlandContext.ServiceRequests
-        //        .Where(a => a.ZipCode == spZipcode && a.Status == null)
-        //        .ToList();
-
-
-        //    return View(newService);
-        //}
-
         [HttpPost]
         public JsonResult AcceptService(int Id)
         {
@@ -93,11 +75,21 @@ namespace HelperLand.Controllers
               .Where(a => a.Email == HttpContext.Session.GetString("username"))
               .Select(a => a.UserId)
               .FirstOrDefault();
-            
+
 
             if (service != null)
             {
-                if(service.Status == null)
+                if (service.ServiceProviderId == null)
+                {
+                    service.Status = 1;
+                    service.ServiceProviderId = id;
+                    service.SpacceptedDate = DateTime.Now;
+                    _helperlandContext.Update(service);
+                    _helperlandContext.SaveChanges();
+                    return Json(true);
+                }
+
+                else if (service.ServiceProviderId != null)
                 {
                     List<ServiceRequest> spService = _helperlandContext.ServiceRequests
                         .Where(a => a.ServiceProviderId == id)
@@ -110,39 +102,23 @@ namespace HelperLand.Controllers
                         {
                             int result = DateTime.Compare(item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)), service.ServiceStartDate);
 
-                            if (result > 0)
-                            {
-                               
-                                return Json(false);
-                            }
-
-                            else
+                            if (result < 0)
                             {
                                 service.Status = 1;
                                 service.ServiceProviderId = id;
                                 service.SpacceptedDate = DateTime.Now;
                                 _helperlandContext.Update(service);
                                 _helperlandContext.SaveChanges();
+                                return Json(true);
+                            }
+
+                            else
+                            {
+                                return Json(false);
                             }
                         }
                     }
                 }
-
-                else if (service.Status == 1)
-                {
-                    //TempData["serviceAccepteError"] = "This service request is no more available. It has been assigned to another provider.";
-                    return Json(false);
-                }
-
-                else
-                {
-                    service.Status = 1;
-                    service.ServiceProviderId = id;
-                    service.SpacceptedDate = DateTime.Now;
-                    _helperlandContext.Update(service);
-                    _helperlandContext.SaveChanges();
-                }
-                
             }
             return Json(true);
         }
@@ -188,6 +164,47 @@ namespace HelperLand.Controllers
                 service.ModifiedBy = id;
                 _helperlandContext.Update(service);
                 _helperlandContext.SaveChanges();
+
+                var userId = _helperlandContext.ServiceRequests
+                    .Where(a => a.ServiceRequestId == Id)
+                    .Select(a => a.UserId)
+                    .FirstOrDefault();
+
+                var userEmail = _helperlandContext.Users
+                    .Where(a => a.UserId == userId)
+                    .Select(a => a.Email)
+                    .FirstOrDefault();
+
+                MimeMessage message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                message.To.Add(MailboxAddress.Parse(userEmail));
+                message.Subject = "Service Completion";
+                string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                message.Body = new TextPart("html")
+                {
+
+                    Text = "Dear User service with ID:" + Id + " is Completed by Service Provider."
+
+                };
+
+                SmtpClient smtp = new SmtpClient();
+                try
+                {
+                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                    smtp.Send(message);
+
+                }
+                catch (Exception er)
+                {
+                    Console.WriteLine(er.Message);
+                }
+                finally
+                {
+                    smtp.Disconnect(true);
+                    smtp.Dispose();
+                }
             }
             return Json(true);
 
@@ -199,8 +216,8 @@ namespace HelperLand.Controllers
             var id = _helperlandContext.Users
                .Where(a => a.Email == HttpContext.Session.GetString("username"))
                .Select(a => a.UserId)
-
                .FirstOrDefault();
+
             var service = _helperlandContext.ServiceRequests
                 .Where(a => a.ServiceRequestId == Id)
                 .FirstOrDefault();
@@ -212,6 +229,47 @@ namespace HelperLand.Controllers
                 service.ModifiedBy = id;
                 _helperlandContext.Update(service);
                 _helperlandContext.SaveChanges();
+
+                var userId = _helperlandContext.ServiceRequests
+                    .Where(a => a.ServiceRequestId == Id)
+                    .Select(a => a.UserId)
+                    .FirstOrDefault();
+
+                var userEmail = _helperlandContext.Users
+                    .Where(a => a.UserId == userId)
+                    .Select(a => a.Email)
+                    .FirstOrDefault();
+
+                MimeMessage message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                message.To.Add(MailboxAddress.Parse(userEmail));
+                message.Subject = "Service Cancellation";
+                string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                message.Body = new TextPart("html")
+                {
+
+                    Text = "Dear User service with ID:" + Id + " is cancelled by Service Provider."
+
+                };
+
+                SmtpClient smtp = new SmtpClient();
+                try
+                {
+                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                    smtp.Send(message);
+
+                }
+                catch (Exception er)
+                {
+                    Console.WriteLine(er.Message);
+                }
+                finally
+                {
+                    smtp.Disconnect(true);
+                    smtp.Dispose();
+                }
             }
             return Json(true);
 

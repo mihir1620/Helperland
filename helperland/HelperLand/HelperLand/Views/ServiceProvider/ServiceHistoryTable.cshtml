@@ -17,10 +17,7 @@
         @foreach (var item in Model)
         {
 
-            var total_time = item.ServiceHours + item.ExtraHours;
-            decimal t = (decimal)total_time;
-            TimeSpan span = new TimeSpan(0, Convert.ToInt32(total_time), Convert.ToInt32(t - Math.Truncate(t)) * 6, 0);
-            var time = item.ServiceStartDate.Add(span).ToString("HH:mm");
+            var time = item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)).ToString("HH:mm");
             <tr>
                 <td>
                     @item.ServiceRequestId
@@ -142,9 +139,7 @@
                     <p id="comments1"></p>
                 </div>
                 <hr>
-                <div class="d-flex justify-content-around">
-                    <button class="rescheule-btn" onclick="AcceptService($('#accept_ser_btn').val())">Accept</button>
-                </div>
+
 
 
             </div>
