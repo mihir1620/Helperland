@@ -1055,7 +1055,7 @@ div p a {
 .admin-nav {
     background-color: #1FB6FF;
     color: white;
-    height: 60px;
+    max-height: 78px;
     display: flex;
     justify-content: space-between;
 }
@@ -1740,7 +1740,6 @@ input[type="radio"][id^="avatar"] {
         width: 55px;
         text-align: center;
         margin-top: 30px;
-        margin-left: 20px;
     }
 
 #AddForm {
@@ -2019,6 +2018,21 @@ input[type="radio"][id^="avatar"] {
 
 .admin-searching div{
     margin-bottom:7px;
+}
+
+.block-cust {
+    border: 2px solid #646464;
+    border-radius: 3px;
+    text-align:center;
+    padding:7px;
+}
+
+.status{
+    margin-left:20px;
+}
+
+.filter{
+    width:207px;
 }
 
 @media (max-width:915px) {

@@ -164,7 +164,17 @@
 
                         <form class="form-section" method="post" action="@Url.Action("Mysetting")">
                             <div class="account_status mb-3 d-flex justify-content-between">
-                                <p><b>Account Status:</b> <span class="text-success">Active</span></p>
+                                <p>
+                                    <b>Account Status:</b>
+                                    @if (ViewData["isActive"] != null)
+                                    {
+                                        <span class="text-success">Active</span>
+                                    }
+                                    @if (ViewData["isActive"] == null)
+                                    {
+                                        <span class="text-danger">Inactive</span>
+                                    }
+                                </p>
                                 <img src="~/images/avatar-@(ViewData["avatarImage"]).png" id="spAvatar" alt="loading avatar..." />
                             </div>
                             <div class="basic_detail">

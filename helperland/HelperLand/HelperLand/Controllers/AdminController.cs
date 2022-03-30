@@ -91,11 +91,6 @@ namespace HelperLand.Controllers
                 .Where(a => a.ServiceRequestId == Id)
                 .FirstOrDefault();
 
-            var spId = _helperlandContext.ServiceRequests
-                .Where(a => a.ServiceRequestId == Id)
-                .Select(a => a.ServiceProviderId)
-                .FirstOrDefault();
-
             var userId = _helperlandContext.ServiceRequests
                 .Where(a => a.ServiceRequestId == Id)
                 .Select(a => a.UserId)
@@ -103,7 +98,7 @@ namespace HelperLand.Controllers
 
             var resheduled_dt = ServiceDate.Date + ServiceTime.TimeOfDay;
 
-            if (service != null)
+            if (service != null )
             {
                 if (service.ServiceProviderId == null)
                 {
@@ -118,8 +113,45 @@ namespace HelperLand.Controllers
                     serviceReqAdd.PostalCode = NewPostalcode;
                     serviceReqAdd.City = NewCity;
                     _helperlandContext.ServiceRequestAddresses.Update(serviceReqAdd);
-
                     _helperlandContext.SaveChanges();
+
+                    var userEmail = _helperlandContext.Users
+                                       .Where(a => a.UserId == userId)
+                                       .Select(a => a.Email)
+                                       .FirstOrDefault();
+
+                    MimeMessage messageforCust = new MimeMessage();
+                    messageforCust.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                    messageforCust.To.Add(MailboxAddress.Parse(userEmail));
+                    messageforCust.Subject = "Service Reschedule";
+                    string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                    messageforCust.Body = new TextPart("html")
+                    {
+
+                        Text = "Dear Customer service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
+
+                    };
+
+                    SmtpClient smtp = new SmtpClient();
+                    try
+                    {
+                        smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                        smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                        smtp.Send(messageforCust);
+
+                    }
+                    catch (Exception er)
+                    {
+                        Console.WriteLine(er.Message);
+                    }
+                    finally
+                    {
+                        smtp.Disconnect(true);
+                        smtp.Dispose();
+                    }
+
+                    return Json(true);
                 }
 
                 else if (service.ServiceProviderId != null)
@@ -128,76 +160,206 @@ namespace HelperLand.Controllers
                         .Where(a => a.ServiceProviderId == service.ServiceProviderId)
                         .ToList();
 
+                    var spId = _helperlandContext.Users
+                            .Where(a => a.UserId == service.ServiceProviderId)
+                            .Select(a => a.UserId)
+                            .FirstOrDefault();
+
                     foreach (var item in spService)
                     {
+
+
                         var date = item.ServiceStartDate.Date;
                         if (date == ServiceDate)
                         {
-
                             int result = DateTime.Compare(item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)), service.ServiceStartDate);
 
                             if (result < 0)
                             {
+                                    service.ServiceStartDate = resheduled_dt;
+                                    service.ModifiedBy = admin_id;
+                                    service.ModifiedDate = DateTime.Now;
+                                    _helperlandContext.ServiceRequests.Update(service);
+
+
+                                    serviceReqAdd.AddressLine1 = NewAddressLine1;
+                                    serviceReqAdd.AddressLine2 = NewAddressLine2;
+                                    serviceReqAdd.PostalCode = NewPostalcode;
+                                    serviceReqAdd.City = NewCity;
+                                    _helperlandContext.ServiceRequestAddresses.Update(serviceReqAdd);
+                                    _helperlandContext.SaveChanges();
+
+                                //var userEmail = _helperlandContext.Users
+                                //      .Where(a => a.UserId == userId)
+                                //      .Select(a => a.Email)
+                                //      .FirstOrDefault();
+
+                                //MimeMessage messageforCust = new MimeMessage();
+                                //messageforCust.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                                //messageforCust.To.Add(MailboxAddress.Parse(userEmail));
+                                //messageforCust.Subject = "Service Reschedule";
+                                //string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                                //messageforCust.Body = new TextPart("html")
+                                //{
+
+                                //    Text = "Dear Customer service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
+
+                                //};
+
+                                //SmtpClient smtp = new SmtpClient();
+                                //try
+                                //{
+                                //    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                                //    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                                //    smtp.Send(messageforCust);
+
+                                //}
+                                //catch (Exception er)
+                                //{
+                                //    Console.WriteLine(er.Message);
+                                //}
+                                //finally
+                                //{
+                                //    smtp.Disconnect(true);
+                                //    smtp.Dispose();
+                                //}
+
+                                //var spEmail = _helperlandContext.Users
+                                //    .Where(a => a.UserId == spId)
+                                //    .Select(a => a.Email)
+                                //    .FirstOrDefault();
+
+                                //MimeMessage messageforSP = new MimeMessage();
+                                //messageforSP.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                                //messageforSP.To.Add(MailboxAddress.Parse(spEmail));
+                                //messageforSP.Subject = "Service Reschedule";
+
+                                //messageforSP.Body = new TextPart("html")
+                                //{
+
+                                //    Text = "Dear Service Provider service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
+
+                                //};
+
+                                //SmtpClient smtp1 = new SmtpClient();
+                                //try
+                                //{
+                                //    smtp1.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                                //    smtp1.Authenticate("helperlandservice@gmail.com", "Password@33");
+                                //    smtp1.Send(messageforSP);
+
+                                //}
+                                //catch (Exception er)
+                                //{
+                                //    Console.WriteLine(er.Message);
+                                //}
+                                //finally
+                                //{
+                                //    smtp.Disconnect(true);
+                                //    smtp.Dispose();
+                                //}
+
+                                return Json(true);
+                                }
+                            else
+                            {
+                                TempData["ResheduleError"] = "Another service request has been assigned to the service provider on this date.Either choose another date or pick up a different time slot";
+                                return Json(false);
+                            }
+                        }
+
+                        else if (date != ServiceDate)
+                        {
+
                                 service.ServiceStartDate = resheduled_dt;
                                 service.ModifiedBy = admin_id;
                                 service.ModifiedDate = DateTime.Now;
                                 _helperlandContext.ServiceRequests.Update(service);
-
 
                                 serviceReqAdd.AddressLine1 = NewAddressLine1;
                                 serviceReqAdd.AddressLine2 = NewAddressLine2;
                                 serviceReqAdd.PostalCode = NewPostalcode;
                                 serviceReqAdd.City = NewCity;
                                 _helperlandContext.ServiceRequestAddresses.Update(serviceReqAdd);
-
                                 _helperlandContext.SaveChanges();
 
-                                var spEmail = _helperlandContext.Users
-                                                   .Where(a => a.UserId == spId)
-                                                   .Select(a => a.Email)
-                                                   .FirstOrDefault();
+                            var userEmail = _helperlandContext.Users
+                                  .Where(a => a.UserId == userId)
+                                  .Select(a => a.Email)
+                                  .FirstOrDefault();
 
-                                MimeMessage messageforSP = new MimeMessage();
-                                MimeMessage messageforUser = new MimeMessage();
-                                messageforSP.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
-                                messageforSP.To.Add(MailboxAddress.Parse(spEmail));
-                                messageforSP.Subject = "Service Reschedule";
-                                string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+                            MimeMessage messageforCust = new MimeMessage();
+                            messageforCust.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                            messageforCust.To.Add(MailboxAddress.Parse(userEmail));
+                            messageforCust.Subject = "Service Reschedule";
+                            string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
 
-                                messageforSP.Body = new TextPart("html")
-                                {
-
-                                    Text = "Dear Service Provider service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
-
-                                };
-
-                                SmtpClient smtp = new SmtpClient();
-                                try
-                                {
-                                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                                    smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
-                                    smtp.Send(messageforSP);
-
-                                }
-                                catch (Exception er)
-                                {
-                                    Console.WriteLine(er.Message);
-                                }
-                                finally
-                                {
-                                    smtp.Disconnect(true);
-                                    smtp.Dispose();
-                                }
-                            }
-                            else
+                            messageforCust.Body = new TextPart("html")
                             {
-                                return Json(false);
+
+                                Text = "Dear Customer service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
+
+                            };
+
+                            SmtpClient smtp = new SmtpClient();
+                            try
+                            {
+                                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                                smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                                smtp.Send(messageforCust);
+
                             }
+                            catch (Exception er)
+                            {
+                                Console.WriteLine(er.Message);
+                            }
+                            finally
+                            {
+                                smtp.Disconnect(true);
+                                smtp.Dispose();
+                            }
+
+                            var spEmail = _helperlandContext.Users
+                                .Where(a => a.UserId == spId)
+                                .Select(a => a.Email)
+                                .FirstOrDefault();
+
+                            MimeMessage messageforSP = new MimeMessage();
+                            messageforSP.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                            messageforSP.To.Add(MailboxAddress.Parse(spEmail));
+                            messageforSP.Subject = "Service Reschedule";
+
+                            messageforSP.Body = new TextPart("html")
+                            {
+
+                                Text = "Dear Service Provider service with ID:" + Id + " is rescheduled by admin with new date and time which is" + resheduled_dt + "."
+
+                            };
+
+                            SmtpClient smtp1 = new SmtpClient();
+                            try
+                            {
+                                smtp1.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                                smtp1.Authenticate("helperlandservice@gmail.com", "Password@33");
+                                smtp1.Send(messageforSP);
+
+                            }
+                            catch (Exception er)
+                            {
+                                Console.WriteLine(er.Message);
+                            }
+                            finally
+                            {
+                                smtp.Disconnect(true);
+                                smtp.Dispose();
+                            }
+
+                            return Json(true);
+
                         }
                     }
-
                 }
-
             }
             return Json(true);
         }

@@ -52,7 +52,8 @@
                     {
                         <div class="row justify-content-between">
                             <div class="col-lg-2">
-                                <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                                
+                                <img src="~/images/avatar-@(item.ServiceProvider.UserProfilePicture).png" id="providerAvatar" />
                             </div>
                             <div class="col-lg-10">
                                 @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
@@ -60,15 +61,23 @@
                         </div>
                     }
 
-                        <div class="col-lg-10">
-                            @if (item.Ratings != null)
-                            {
-                                @foreach (var a in item.Ratings)
+                <div class="col-lg-10">
+                    @if (item.ServiceProvider != null)
+                    {
+                        @foreach (var a in item.Ratings)
+                        {
+                            <span>Ratings:</span> @a.Ratings
+                            <div class="row">
+                                @for (var i = 0; i < a.Ratings; i++)
                                 {
-                                    <span>Ratings:</span> @a.Ratings
+                                    <div class="col-lg-1">
+                                        <span><img src="~/images/star1.png" /></span>
+                                    </div>
                                 }
-                            }
-                        </div>
+                            </div>
+                        }
+                    }
+                </div>
                 </div>
             </td>
 
@@ -271,8 +280,8 @@
             </div>
         </div>
     </div>
-
 </div>
+
 <script type="text/javascript">
     function getServiceDetails(serviceId) {
         $("#reschedule_btn_val1").prop("value", serviceId);
@@ -296,7 +305,6 @@
 
     function RescheduleService(id, date, time) {
         $.post("/Customer/RescheduleService", { Id: parseInt(id), ServiceDate: date, ServiceTime: time },
-
 
             function (data) {
                 $("#rescheduleReqModal").modal('hide');

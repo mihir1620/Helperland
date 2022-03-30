@@ -77,8 +77,38 @@ namespace HelperLand.Controllers
               .FirstOrDefault();
 
 
-            if (service != null)
+            if (service != null )
             {
+                // if (service != null && service.ProvicderId == null )
+                List<ServiceRequest> spService = _helperlandContext.ServiceRequests
+                       .Where(a => a.ServiceProviderId == id)
+                       .ToList();
+
+                foreach (var item in spService)
+                {
+
+                    if (item.ServiceStartDate.ToLongDateString() == service.ServiceStartDate.ToLongDateString())
+                    {
+                        int result = DateTime.Compare(item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)), service.ServiceStartDate);
+
+                        if (result < 0)
+                        {
+                            service.Status = 1;
+                            service.ServiceProviderId = id;
+                            service.SpacceptedDate = DateTime.Now;
+                            _helperlandContext.Update(service);
+                            _helperlandContext.SaveChanges();
+                            return Json(true);
+                        }
+
+                        else
+                        {
+                            return Json(false);
+                        }
+                    }
+                    //}
+                }
+
                 if (service.ServiceProviderId == null)
                 {
                     service.Status = 1;
@@ -86,39 +116,51 @@ namespace HelperLand.Controllers
                     service.SpacceptedDate = DateTime.Now;
                     _helperlandContext.Update(service);
                     _helperlandContext.SaveChanges();
+
+                    for (int i = 0; i <= _helperlandContext.Users.Count(); i++)
+                    {
+                        var SpInArea = _helperlandContext.Users
+                            .Where(a => a.UserTypeId == 2 && a.ZipCode == service.ZipCode)
+                            .Select(a => a.Email)
+                            .FirstOrDefault();
+
+                        MimeMessage message = new MimeMessage();
+                        message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
+                        message.To.Add(MailboxAddress.Parse(SpInArea));
+                        message.Subject = "Service Acceptance";
+                        string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+                        message.Body = new TextPart("html")
+                        {
+
+                            Text = "The service with ID:" + Id + " is Accepted by  someone and is no more available to you."
+
+                        };
+
+                        SmtpClient smtp = new SmtpClient();
+                        try
+                        {
+                            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                            smtp.Authenticate("helperlandservice@gmail.com", "Password@33");
+                            smtp.Send(message);
+
+                        }
+                        catch (Exception er)
+                        {
+                            Console.WriteLine(er.Message);
+                        }
+                        finally
+                        {
+                            smtp.Disconnect(true);
+                            smtp.Dispose();
+                        }
+                    }
                     return Json(true);
                 }
 
-                else if (service.ServiceProviderId != null)
-                {
-                    List<ServiceRequest> spService = _helperlandContext.ServiceRequests
-                        .Where(a => a.ServiceProviderId == id)
-                        .ToList();
-
-                    foreach (var item in spService)
-                    {
-
-                        if (item.ServiceStartDate.ToLongDateString() == service.ServiceStartDate.ToLongDateString())
-                        {
-                            int result = DateTime.Compare(item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)), service.ServiceStartDate);
-
-                            if (result < 0)
-                            {
-                                service.Status = 1;
-                                service.ServiceProviderId = id;
-                                service.SpacceptedDate = DateTime.Now;
-                                _helperlandContext.Update(service);
-                                _helperlandContext.SaveChanges();
-                                return Json(true);
-                            }
-
-                            else
-                            {
-                                return Json(false);
-                            }
-                        }
-                    }
-                }
+                //else if (service.ServiceProviderId != null)
+                //{
+                   
             }
             return Json(true);
         }
@@ -341,6 +383,14 @@ namespace HelperLand.Controllers
                 .Select(a=>a.UserProfilePicture)
                 .FirstOrDefault();
             ViewData["avatarImage"] = avatar;
+
+            bool isActive = _helperlandContext.Users.Where(a => a.UserId == id)
+                .Select(a => a.IsActive)
+                .FirstOrDefault();
+            if(isActive == true)
+            {
+                ViewData["isActive"] = "Active";
+            }
 
             User newModel = _helperlandContext.Users.Where(a => a.UserId == id).FirstOrDefault();
 
@@ -583,5 +633,68 @@ namespace HelperLand.Controllers
             var e = _helperlandContext.Users.Where(e => e.Mobile == mobile).FirstOrDefault();
             return e != null;
         }
+
+        public IActionResult BlockCustomer()
+        {
+            var id = _helperlandContext.Users
+               .Where(a => a.Email == HttpContext.Session.GetString("username"))
+               .Select(a => a.UserId)
+               .FirstOrDefault();
+
+            var newService = _helperlandContext.ServiceRequests
+                .Where(a => a.ServiceProviderId == id && a.Status == 2)
+                .Select(a=>a.User).Distinct()
+                .ToList();
+
+
+            foreach (var item in newService)
+            {
+                _helperlandContext.Entry(item).Property(s => s.FirstName);
+            }
+
+            return View(newService);
+        }
+
+        [HttpPost]
+        public JsonResult BlockCustomer(int targetId)
+        {
+            var spId = _helperlandContext.Users
+               .Where(a => a.Email == HttpContext.Session.GetString("username"))
+               .Select(a => a.UserId)
+               .FirstOrDefault();
+
+            var fav = _helperlandContext.FavoriteAndBlockeds
+                .Where(a => a.UserId == spId && a.TargetUserId == targetId)
+                .FirstOrDefault();
+
+            if(fav != null)
+            {
+                fav.UserId = spId;
+                fav.TargetUserId = targetId;
+                fav.IsBlocked = true;
+                fav.IsFavorite = false;
+
+                _helperlandContext.FavoriteAndBlockeds.Update(fav);
+                _helperlandContext.SaveChanges();
+                return Json(true);
+            }
+            else
+            {
+                FavoriteAndBlocked favoriteAndBlocked = new FavoriteAndBlocked
+                {
+                    UserId = spId,
+                    TargetUserId = targetId,
+                    IsBlocked = true,
+                    IsFavorite = false
+                };
+
+                _helperlandContext.Add(favoriteAndBlocked);
+                _helperlandContext.SaveChanges();
+                return Json(true);
+            }
+                
+
+        }
+
     }
 }

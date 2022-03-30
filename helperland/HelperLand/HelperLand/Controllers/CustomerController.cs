@@ -50,11 +50,9 @@ namespace HelperLand.Controllers
                .Select(a => a.UserId)
                .FirstOrDefault();
 
-           // var serviceReq1 = _helperlandContext.ServiceRequests
-           //.Where(a => a.UserId == id).Select(s => new { s, s.ServiceProvider});
-
             List<ServiceRequest> serviceReq = _helperlandContext.ServiceRequests
-            .Where(a => a.UserId == id).ToList();
+                .Where(a => a.UserId == id)
+                .ToList();
 
             foreach(var item in serviceReq)
             {

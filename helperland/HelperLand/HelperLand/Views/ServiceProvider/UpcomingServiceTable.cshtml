@@ -72,6 +72,7 @@
                 }
                 
                 <button class="cancel-ser-btn" onclick="CancelService(@item.ServiceRequestId)" id="cancel_btn">Cancel</button>
+
             </td>
         </tr>
         }
@@ -129,11 +130,7 @@
                 </div>
                 <hr>
                 <div class="d-flex justify-content-around">
-
-                    @*@if ((item.ServiceStartDate > DateTime.Now) && (Convert.ToDateTime(time) > Convert.ToDateTime(DateTime.Now.ToString("HH:mm"))))
-                    {
-                        <button class="rescheule-btn" id="complete_btn" onclick="CompleteService(@item.ServiceRequestId)" value="@item.ServiceRequestId">Complete</button>
-                    }*@
+                    <button class="rescheule-btn" id="complete_btn" >Complete</button>
                     <button class="cancel-ser-btn" onclick="CancelService($('#cancel_btn').val())">Cancel</button>
                 </div>
 

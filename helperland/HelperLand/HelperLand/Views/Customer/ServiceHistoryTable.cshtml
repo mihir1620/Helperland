@@ -60,12 +60,13 @@
 
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                                    <img src="~/images/avatar-@(item.ServiceProvider.UserProfilePicture).png" id="providerAvatar" />
                                 </div>
                                 <div>
                                     @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
 
                                 </div>
+                                
                             </div>
 
                         }

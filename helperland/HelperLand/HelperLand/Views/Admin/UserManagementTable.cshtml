@@ -10,18 +10,39 @@
             <lable for="serId">Search Username :</lable>
             <input class="form-control" type="text" id="serId" onkeyup="serchcol1(this.value)">
         </div>
-        <div>
-            <lable for="serDate">Search Usertype :</lable>
-            <input class="form-control" type="text" id="serDate" onkeyup="serchcol4(this.value)">
-        </div>
-        <div>
-            <lable for="customer">Search Phonenumber :</lable>
-            <input class="form-control" type="text" id="customer" onkeyup="serchcol5(this.value)">
+        <div class="userType-filter filter">
+            <lable for="userTypeFilter">Select Usertype :</lable>
+            <select id="userTypeFilter" class="form-control">
+                <option value="">Show All</option>
+                <option value="Customer">Customer</option>
+                <option value="Service Provider">Service Provider</option>
+                <option value="Admin">Admin</option>
+            </select>
         </div>
         <div>
             <lable for="serProvider">Search Postalcode :</lable>
             <input class="form-control" type="text" id="serProvider" onkeyup="serchcol6(this.value)">
         </div>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <lable for="customer">Search Phonenumber :</lable>
+            <input class="form-control" type="text" id="customer" onkeyup="serchcol5(this.value)">
+        </div>
+        <div>
+            <lable for="serEmail">Search Email :</lable>
+            <input class="form-control" type="text" id="serEmail" onkeyup="serchcol3(this.value)">
+        </div>
+        <div class="userType-filter filter">
+            <lable for="userActiveFilter">Select Status :</lable>
+            <select id="userActiveFilter" class="form-control">
+                <option value="">Show All</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </div>
+
     </div>
 </div>
 
@@ -32,9 +53,9 @@
     <thead class="user-management-tableheader text-center">
         <tr>
             <th>User Name</th>
-            <th>User Role</th>
             <th>Date of Regestration</th>
-            <th>User Type</th>
+            <th>Email</th>
+            <th>UserType</th>
             <th>Phone</th>
             <th>Postalcode</th>
             <th>Status</th>
@@ -49,25 +70,11 @@
             <tr>
                 <td>@item.FirstName @item.LastName</td>
                 <td>
-                    @if (item.UserTypeId == 1)
-                    {
-                        <p>Customer</p>
-                    }
-                    @if (item.UserTypeId == 2)
-                    {
-                        <p>Service Provider</p>
-                    }
-                    @if (item.UserTypeId == 0)
-                    {
-                        <p>Admin</p>
-                    }
-                </td>
-                <td>
                     <div>
                         <span><img src="~/images/calendar2.png"></span><b>   @item.CreatedDate.ToString("dd/MM/yyyy")</b>
                     </div>
-
                 </td>
+                <td>@item.Email</td>
                 <td>
                     @if (item.UserTypeId == 1)
                     {
@@ -102,18 +109,25 @@
                     <div class="dropdown-container " tabindex="-1">
                         <img src="~/images/group-38.png" />
                         <div class="dropdown">
-                            <a onclick="callActivate(@item.UserId)">
-                                <div class="admin-action">Activate user</div>
-                            </a>
-                            <a onclick="callDeactivate(@item.UserId)">
-                                <div class="admin-action">Deactivate user</div>
-                            </a>
-                            @if (item.UserTypeId == 2)
+                            @if (item.IsActive == false)
+                            {
+                                <a onclick="callActivate(@item.UserId)">
+                                    <div class="admin-action">Activate user</div>
+                                </a>
+                            }
+                            @if (item.IsActive == true)
+                            {
+                                <a onclick="callDeactivate(@item.UserId)">
+                                    <div class="admin-action">Deactivate user</div>
+                                </a>
+                            }
+                            @if (item.UserTypeId == 2 && item.IsActive == true && item.IsApproved == false)
                             {
                                 <a onclick="callApproveSp(@item.UserId)">
                                     <div class="admin-action">Approve Service Provider</div>
                                 </a>
                             }
+
                         </div>
                     </div>
                 </td>
@@ -263,12 +277,21 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $('#user-management-table').DataTable();
+        $('#user-management-table').DataTable({
+            'columnDefs': [{
+                'targets': [6,7], // column index (start from 0)
+                'orderable': false, // set orderable false for selected columns
+            }]
+        });
     });
 
     function serchcol1(val) {
         let x = $('#user-management-table').DataTable();
         x.column(0).search(val).draw();
+    }
+    function serchcol3(val) {
+        let x = $('#user-management-table').DataTable();
+        x.column(2).search(val).draw();
     }
     function serchcol4(val) {
         let x = $('#user-management-table').DataTable();
@@ -345,5 +368,67 @@
                 }
             });
     }
+
+
 </script>
 
+<script>
+    $("document").ready(function () {
+        //Get a reference to the new datatable
+        var userTable = $('#user-management-table').DataTable();
+        //Take the category filter drop down and append it to the datatables_filter div.
+        //You can use this same idea to move the filter anywhere withing the datatable that you want.
+        $("#filterTable_filter.dataTables_filter").append($("#userTypeFilter"));
+        $("#filterTable_filter.dataTables_filter").append($("#userActiveFilter"));
+        //Get the column index for the Category column to be used in the method below ($.fn.dataTable.ext.search.push)
+        //This tells datatables what column to filter on when a user selects a value from the dropdown.
+        //It's important that the text used here (Category) is the same for used in the header of the column to filter
+        var userCategoryIndex = 0;
+        $("#user-management-table th").each(function (i) {
+            if ($($(this)).html() == "UserType") {
+                userCategoryIndex = i; return false;
+            }
+        });
+        //Use the built in datatables API to filter the existing rows by the Category column
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var selectedItem = $('#userTypeFilter').val()
+                var userCategory = data[userCategoryIndex];
+                if (selectedItem === "" || userCategory.includes(selectedItem)) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        //Set the change event for the Category Filter dropdown to redraw the datatable each time
+        //a user selects a new filter.
+        $("#userTypeFilter").change(function (e) {
+            userTable.draw();
+        });
+        userTable.draw();
+
+        var userCategoryIndex1 = 0;
+        $("#user-management-table th").each(function (i) {
+            if ($($(this)).html() == "Status") {
+                userCategoryIndex1 = i; return false;
+            }
+        });
+        //Use the built in datatables API to filter the existing rows by the Category column
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var selectedItem = $('#userActiveFilter').val()
+                var userCategory1 = data[userCategoryIndex1];
+                if (selectedItem === "" || userCategory1.includes(selectedItem)) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        //Set the change event for the Category Filter dropdown to redraw the datatable each time
+        //a user selects a new filter.
+        $("#userActiveFilter").change(function (e) {
+            userTable.draw();
+        });
+        userTable.draw();
+    });
+</script>

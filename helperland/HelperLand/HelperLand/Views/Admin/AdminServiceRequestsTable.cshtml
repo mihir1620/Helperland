@@ -11,9 +11,10 @@
             <input class="form-control" type="text" id="serId" onkeyup="serchcol1(this.value)">
         </div>
         <div>
-            <lable for="serDate">Search Date :</lable>
-            <input class="form-control" type="text" id="serDate" onkeyup="serchcol2(this.value)">
+            <lable for="serProvider">Search Service Provider :</lable>
+            <input class="form-control" type="text" id="serProvider" onkeyup="serchcol4(this.value)">
         </div>
+
         <div>
             <lable for="customer">Search Customer :</lable>
             <input class="form-control" type="text" id="customer" onkeyup="serchcol3(this.value)">
@@ -22,23 +23,27 @@
 
     <div class="d-flex justify-content-around">
         <div>
-            <lable for="serProvider">Search Service Provider :</lable>
-            <input class="form-control" type="text" id="serProvider" onkeyup="serchcol4(this.value)">
+            <lable for="date">Search Date :</lable>
+            <input class="form-control" type="text" id="date" onkeyup="serchcol2(this.value)">
+        </div>
+        <div class="status-filter filter">
+            <lable for="statusFilter">Select Status :</lable>
+            <select id="statusFilter" class="form-control">
+                <option value="">Show All</option>
+                <option value="Pending">Pending</option>
+                <option value="New">New</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
         </div>
         <div>
             <lable for="amount">Search Amount :</lable>
             <input class="form-control" type="text" id="amount" onkeyup="serchcol5(this.value)">
         </div>
-        <div>
-            <lable for="status">Search Status :</lable>
-            <input class="form-control" type="text" id="status" onkeyup="serchcol6(this.value)">
-        </div>
     </div>
 </div>
 
 
-
-<table class="table user-management-table t1" id="admin-table">
+<table class="table user-management-table t1" id="adminTable">
 
     <thead class="user-management-tableheader text-center">
         <tr>
@@ -55,7 +60,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if (item.Status != 2)
+            @if (item.Status != 2 )
             {
                 var time = item.ServiceStartDate.AddHours(Convert.ToDouble(item.ServiceHours + item.ExtraHours)).ToString("HH:mm");
                 <tr>
@@ -102,7 +107,7 @@
 
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <img src="~/images/avatar-hat.png" id="providerAvatar" />
+                                    <img src="~/images/avatar-@(item.ServiceProvider.UserProfilePicture).png" id="providerAvatar" />
                                 </div>
                                 <div>
                                     @item.ServiceProvider.FirstName @item.ServiceProvider.LastName
@@ -110,13 +115,13 @@
                                 </div>
                             </div>
                         }
-                        @if (item.Ratings != null)
+                        @*@if (item.Ratings != null)
                         {
                             @foreach (var a in item.Ratings)
                             {
                                 <span>Ratings:</span> @a.Ratings
                             }
-                        }
+                        }*@
                     </td>
 
                     <td>@item.TotalCost</td>
@@ -230,7 +235,7 @@
                             <input class="form-control" type="text" id="city" required>
                         </div>
                     </div>
-                    <div style="margin-top:10px">
+                    @*<div style="margin-top:10px">
                         <b>Invoice Address</b>
                     </div>
 
@@ -258,7 +263,7 @@
                             <input class="form-control" type="text" id="in_city" required>
                         </div>
 
-                    </div>
+                    </div>*@
 
                     <div class="row justify-content-center">
                         <button value="" class="form-control updateSerDetails" id="reschedule_btn" onclick="EditServiceDetails(this.value, $('#edit-date').val(), $('#edit-time').val(),$('#reschedule_addline1').val(),$('#reschedule_addline2').val(),$('#postalcode').val(),$('#city').val())">Update</button>
@@ -297,7 +302,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" style="color:#646464"><b>Deactivate User</b></h4>
+                <h4 class="modal-title" style="color:#646464"><b>Cancel Service</b></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -343,33 +348,39 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $('#admin-table').DataTable();
-
+        $('#adminTable').DataTable({
+            'columnDefs': [{
+                'targets': [5,6], // column index (start from 0)
+                'orderable': false, // set orderable false for selected columns
+            }]
+        });
     });
+
     function serchcol1(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(0).search(val).draw();
     }
     function serchcol2(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(1).search(val).draw();
     }
     function serchcol3(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(2).search(val).draw();
     }
     function serchcol4(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(3).search(val).draw();
     }
     function serchcol5(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(4).search(val).draw();
     }
     function serchcol6(val) {
-        let x = $('#admin-table').DataTable();
+        let x = $('#adminTable').DataTable();
         x.column(5).search(val).draw();
     }
+
 
     function callRescheduleService(id) {
         $("#reschedule_btn").prop("value", id);
@@ -420,7 +431,6 @@
                 if (data == true) {
                     $("#AdminCancelSerModal").modal('hide');
                     $("#cancelModal").modal('show');
-                    $('#admin-table').DataTable().ajax.reload();
                 }
                 else if (data == false) {
                     $("#AdminCancelSerModal").modal('hide');
@@ -430,6 +440,31 @@
     }
 </script>
 
-@*var table = $('#admin-table').DataTable({
-          });<lable>Search Address :</lable>
-    <input type="text" id="SearchAddress" name="search" onkeyup="serchcol2(this.value)">*@
+<script>
+    $("document").ready(function () {
+        var table = $('#adminTable').DataTable();
+
+        $("#filterTable_filter.dataTables_filter").append($("#statusFilter"));
+        var categoryIndex = 0;
+        $("#adminTable th").each(function (i) {
+            if ($($(this)).html() == "Status") {
+                categoryIndex = i; return false;
+            }
+        });
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var selectedItem = $('#statusFilter').val()
+                var category = data[categoryIndex];
+                if (selectedItem === "" || category.includes(selectedItem)) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        $("#statusFilter").change(function (e) {
+            table.draw();
+        });
+        table.draw();
+    });
+</script>
+

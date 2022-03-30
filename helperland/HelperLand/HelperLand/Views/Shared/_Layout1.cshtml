@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Price", "Home")" class="nav-link">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Price"? "Rounded-Rectangle1":"")" >
                                 Prices & Services
                             </a>
                         </li>
@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"? "Rounded-Rectangle1":"")">
                                 Contact
                             </a>
                         </li>
@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class="nav-item Rounded-Rectangle" style="background-color: #29626D;">
-                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link">
+                            <a href="@Url.Action("BecomeHelper", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="BecomeHelper"? "Rounded-Rectangle1":"")">
                                 Become a Helper
                             </a>
                         </li>
@@ -74,7 +74,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Price"? "Rounded-Rectangle1":"")">
                                 Prices & Services
                             </a>
                         </li>
@@ -89,7 +89,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"? "Rounded-Rectangle1":"")">
                                 Contact
                             </a>
                         </li>
@@ -147,7 +147,7 @@
                     {
 
                         <li class="nav-item">
-                            <a href="@Url.Action("Price", "Home")" class="nav-link ">
+                            <a href="@Url.Action("Price", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Price"? "Rounded-Rectangle1":"")">
                                 Prices & Services
                             </a>
                         </li>
@@ -162,7 +162,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Contact", "Home")" class="nav-link">
+                            <a href="@Url.Action("Contact", "Home")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString()=="Contact"? "Rounded-Rectangle1":"")">
                                 Contact
                             </a>
                         </li>
@@ -295,7 +295,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 footer-logo">
-                    <a href=#><img src="~/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
+                    <a href="@Url.Action("Index", "Home")"><img src="~/images/white-logo-transparent-background-copy-4.png" style="width: 120px;height: 92px;"></a>
                 </div>
                 <div class="col-sm-6 footer-links">
                     <p>

@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+@{
+    Layout = null;
+}
+@model IEnumerable<HelperLand.Models.User>
+
+@foreach (var item in Model)
+{
+    <div class="d-flex justify-content-start">
+        <div class="block-cust">
+            <label class="fav-pro">
+                <img src="~/images/cap.png">
+            </label>
+            <h6 class="text-left">@item.FirstName @item.LastName</h6>
+            <button type="button" class="select-pro-btn" value="@item.UserId" onclick="BlockCustomer(this.value)">Block</button>
+        </div>
+    </div>
+}
+
+
+
+
+<script type="text/javascript">
+
+    function BlockCustomer(userId) {
+        $.post("/ServiceProvider/BlockCustomer", { targetId: parseInt(userId) },
+            function (data) {
+                if (data) {
+                    alert("You blocked customer successfully");
+                }
+                else {
+                    alert("Something went wrong!!");
+                }
+            });
+    }
+
+</script>
+

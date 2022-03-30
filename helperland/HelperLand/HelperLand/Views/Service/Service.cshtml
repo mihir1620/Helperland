@@ -9,7 +9,7 @@
     <img class="img-fluid" src="~/images/book-service-banner.jpg" alt="About-banner" style="width:100%;height: auto;">
 </sectiion>
 
-<section >
+<section>
     <div class="container mt-2 text-center ">
         @if (ViewBag.bookId != null)
         {
@@ -44,36 +44,33 @@
         <div class="service-tabs">
             <ul class="nav flex-nowrap d-flex justify-content-center">
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center  tab1" id="service-tab-1" type="button" onclick="show1()" >
+                    <button class="nav-link d-flex align-items-center justify-content-center  tab1" id="service-tab-1" type="button" onclick="show1()">
                         <img id="set-up-img" src="~/images/setup-service-white.png" asp-append-version="true">
                         <p id="set-p-text">Setup Service</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex " id="service-tab-2" type="button" onclick="show2()" disabled >
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex " id="service-tab-2" type="button" onclick="show2()">
                         <img id="schedule-img" src="~/images/schedule.png" asp-append-version="true">
                         <p id="schedule-p-text">Schedule & Plan</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-3" type="button" onclick="show3()" disabled >
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-3" type="button" onclick="show3()">
                         <img id="your-detail-img" src="~/images/details.png" asp-append-version="true">
                         <p id="detail-p-text">Your Details</p>
                     </button>
                 </li>
 
                 <li class="nav-item" role="button">
-                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-4" type="button" onclick="show4();" disabled >
+                    <button class="nav-link d-flex align-items-center justify-content-center nav-flex" id="service-tab-4" type="button" onclick="show4();">
                         <img id="payment-img" src="~/images/payment.png" asp-append-version="true">
                         <p id="payment-p-text">Make Payment</p>
                     </button>
                 </li>
             </ul>
-
-
-
 
             <form>
                 <div class="set-up-service mt-4 " id="div1">
@@ -84,7 +81,7 @@
                         </div>
                         <div class="d-flex flex-row">
                             <div>
-                                <input type="text" class="form-control zipcode" asp-for="ZipcodeValue" id="zipcode">
+                                <input type="text" class="form-control zipcode" asp-for="ZipcodeValue" id="zipcode" required>
 
                                 @if (ViewBag.zipmsg != null)
                                 {
@@ -130,7 +127,7 @@
             </script>
 
 
-            <form>
+            <form class="form-check">
 
                 <div class="schedule-plan mt-4" id="div2">
 
@@ -146,9 +143,9 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <input class="form-control form-check-inline" id="datepicker" onchange="S_Date()" asp-for="ServiceStartDate" type="date">
+                            <input class="form-control form-check-inline" id="datepicker" onchange="S_Date()" asp-for="ServiceStartDate" type="date" required>
 
-                            <select class="form-control form-check-inline" id="scheduled_time" onchange="Time()" asp-for="ServiceTime">
+                            <select class="form-control form-check-inline" id="scheduled_time" onchange="Time()" asp-for="ServiceTime" required>
                                 <option selected value="8:00">8:00</option>
                                 <option value="8:30">8:30</option>
                                 <option value="9:00">9:00</option>
@@ -207,7 +204,7 @@
                     <div class="services-img">
                         <input id="count" value="0" type="hidden" asp-for="ExtraHours" />
                         <div>
-                            <input type="checkbox" id="mycheckbox1" onclick="cabinet()"/>
+                            <input type="checkbox" id="mycheckbox1" onclick="cabinet()" />
                             <label for="mycheckbox1" onclick="cabinet()" class="check-label"><img src="~/images/service_1.png" id="cabinetimg"></label>
                             <p>Inside cabinets</p>
                         </div>
@@ -264,7 +261,7 @@
                         type: "POST",
                         url: "/Service/Schedule",
                         dataType: "json",
-                        data: { ServiceStartDate: $('#datepicker').val(), ServiceTime: $('#scheduled_time').val(), ServiceHours: $('#total_hours').val(), ExtraHours: $('#count').val(), Comments: $('#comments').val(), HasPets: $('#pet_chk:checked').val()},
+                        data: { ServiceStartDate: $('#datepicker').val(), ServiceTime: $('#scheduled_time').val(), ServiceHours: $('#total_hours').val(), ExtraHours: $('#count').val(), Comments: $('#comments').val(), HasPets: $('#pet_chk:checked').val() },
                         /* ServiceExtraId: $('mycheckbox1:checked').val(), ServiceExtraId: $('mycheckbox2:checked').val(), ServiceExtraId: $('mycheckbox3:checked').val(), ServiceExtraId: $('mycheckbox4:checked').val(), ServiceExtraId: $('mycheckbox5:checked').val()
                            var extraSerArr[] = [$('mycheckbox1:checked').val(), $('mycheckbox2:checked').val(), $('mycheckbox3:checked').val(), $('mycheckbox4:checked').val(), $('mycheckbox5:checked').val()];
                          */
@@ -282,11 +279,6 @@
                     });
                 });
             </script>
-
-
-
-
-
 
             <form>
                 <div class="details" id="div3">
@@ -345,7 +337,6 @@
                     </div>
 
                     <button class="check-zip-btn " name="action" value="addSerAdd" style="float: right;" id="details-btn">Continue</button>
-                    
                 </div>
 
             </form>
@@ -366,33 +357,30 @@
                             else {
                                 $('#details-error').text("Something went wrong");
                             }
-
                         }
                     });
                 });
 
                 $('#details-btn').click(function (data) {
                     data.preventDefault();
-                $.ajax({
-                    type: "POST",
-                url: "/Service/Details",
-                dataType: "json",
-                data: {Address_radio: $('#checked_add:checked').val(), action: $('#details-btn').val() },
+                    $.ajax({
+                        type: "POST",
+                        url: "/Service/Details",
+                        dataType: "json",
+                        data: { Address_radio: $('#checked_add:checked').val(), action: $('#details-btn').val() },
 
-                success: function (data) {
-                    console.log(data);
-                if (data) {
-                            return show4();
+                        success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                return show4();
+                            }
+                            else {
+                                $('#details-error').text("Something went wrong");
+                            }
                         }
-                else {
-                    $('#details-error').text("Something went wrong");
-                        }
-
-                    }
+                    });
                 });
-            });
-        </script>
-            
+            </script>
 
             <form method="post" action="@Url.Action("payment")">
 
@@ -458,9 +446,7 @@
 
                     </div>
                 </div>
-
             </form>
-
         </div>
 
         <div class="payment-slip">
@@ -531,10 +517,7 @@
 
             </div>
         </div>
-
-
     </section>
-
 </section>
 
 <!-- Button trigger modal -->
@@ -580,10 +563,10 @@
                 <p class="total-pay"><b>Total Payment<span class="paymentsub" id="total1">60₹</span></b></p>
                 <br>
             </div>
-                <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">
-                    <p><img src="~/images/smiley.png"> <span>  See What is always include </span></p>
-                </div>
+            <div class="modal-footer" role="button" data-toggle="modal" data-target="#include">
+                <p><img src="~/images/smiley.png"> <span>  See What is always include </span></p>
             </div>
+        </div>
     </div>
 </div>
 
@@ -676,22 +659,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
 <a href="#top" class="to-top">
     <img src="~/images/up-aero.png">
 </a>
-
-
-@if (ViewBag.Msg != null)
-{
-    <script type="text/javascript">
-
-            function displayMsg() {
-                alert("Booking Completed with Reference ID: @ViewBag.Msg");
-            };
-    </script>
-
-}  

@@ -43,9 +43,19 @@
                     @foreach (var a in item.Ratings)
                     {
                         <span>Ratings:</span> @a.Ratings
-                    }
+            <div class="row">
+                @for (var i = 0; i < a.Ratings; i++)
+                {
+
+                <div class="col-lg-1">
+                    <span><img src="~/images/star1.png" /></span>
+                </div>
+
                 }
-            </td>
+            </div>
+                            }
+                            }
+                        </td>
             <td>
                 @if (item.Ratings != null)
                 {

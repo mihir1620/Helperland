@@ -19,8 +19,6 @@ namespace HelperLand.Controllers
     {
         private readonly HelperLandContext _helperlandContext = null;
        
-        //User user = new User();
-
         public ServiceController(HelperLandContext helperlandContext)
         {
             _helperlandContext = helperlandContext;
@@ -76,7 +74,6 @@ namespace HelperLand.Controllers
         [HttpPost]
         public JsonResult Schedule(ServiceViewModel model)
         {
-
             var id = _helperlandContext.Users
                 .Where(a => a.Email == HttpContext.Session.GetString("username"))
                 .Select(a => a.UserId)
@@ -93,7 +90,6 @@ namespace HelperLand.Controllers
                 var cost = (decimal)(20 * (model.ServiceHours));
                 ServiceRequest newRequest = new ServiceRequest
                 {
-                    
                     UserId = id,
                     ServiceStartDate = model.ServiceStartDate.Date + model.ServiceTime.TimeOfDay,
                     ServiceHourlyRate = 20,
@@ -187,7 +183,6 @@ namespace HelperLand.Controllers
 
             else 
             {
-
                 UserAddress userAddress = new UserAddress
                 {
                     UserId = id,
@@ -203,11 +198,8 @@ namespace HelperLand.Controllers
                 TempData["bookingId"] = serviceReqId;
                 _helperlandContext.Add(userAddress);
                 _helperlandContext.SaveChanges();
-                
                 return Json(true);
-               
             }
-
             return Json(false);
         }
 
@@ -260,20 +252,13 @@ namespace HelperLand.Controllers
                 .FirstOrDefault();
 
             //MimeMessage message = new MimeMessage();
-
             //message.From.Add(new MailboxAddress("Helperland", "helperlandservice@gmail.com"));
-
             //message.To.Add(MailboxAddress.Parse(serviceProviderMail));
-
             //message.Subject = "New Service";
-
             //string host = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-            
             //message.Body = new TextPart("html")
             //{
-
             //    Text = "Dear Service Provider New service is avilable in your area."
-
             //};
 
             //SmtpClient smtp = new SmtpClient();

@@ -47,5 +47,6 @@ namespace HelperLand.Models
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<ServiceRequestAddress> ServiceRequestAddresses { get; set; }
         public virtual ICollection<ServiceRequestExtra> ServiceRequestExtras { get; set; }
+       // public virtual ICollection<FavoriteAndBlocked> FavoriteAndBlockeds { get; set; }
     }
 }

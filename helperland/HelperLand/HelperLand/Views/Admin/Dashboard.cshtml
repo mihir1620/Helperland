@@ -5,622 +5,620 @@
 
 
 
-    <!--<nav class="navbar navbar-expand-lg admin-nav fixed-top">
-        <a href="#" class="navbar-brand"><p>helperland</p></a>
-        <div class="center-icon align-items-center ">
-            <a href="#"><img src="~/images/user.png" style="margin-right: 15px;"></a>
-            <a style="margin-right: 15px;"> James Smith</a>
-            <a href="#"><img src="~/images/logout.png"></a>
-        </div>-->
-        <!-- <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon">
-                <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
-            </span>
-        </button> -->
+<!--<nav class="navbar navbar-expand-lg admin-nav fixed-top">
+    <a href="#" class="navbar-brand"><p>helperland</p></a>
+    <div class="center-icon align-items-center ">
+        <a href="#"><img src="~/images/user.png" style="margin-right: 15px;"></a>
+        <a style="margin-right: 15px;"> James Smith</a>
+        <a href="#"><img src="~/images/logout.png"></a>
+    </div>-->
+<!-- <button class="navbar-toggler"  data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon">
+        <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+    </span>
+</button> -->
+<!--<button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
+        <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
+        </span>
+    </button>
 
-        <!--<button class="navbar-toggler modal-btn" data-toggle="modal" data-target="#collapsiblemodal">
-            <span class="navbar-toggler-icon">
-                <i class="fas fa-bars" style="color: white;font-size: 28px;"></i>
-            </span>
-        </button>
 
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto text-center align-items-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <img src="~/images/user.png">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    @ViewData["admin_name"]
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("logout", "Home")" class="nav-link">
+                    <img src="~/images/logout.png">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>-->
 
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto text-center align-items-center">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <img src="~/images/user.png">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        @ViewData["admin_name"]
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("logout", "Home")" class="nav-link">
-                        <img src="~/images/logout.png">
-                    </a>
-                </li>
-            </ul>
+<section class="left-side-admin-menu">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-2 admin-menu remove " style="min-height:500px">
+
+                <a href="#" id="serviceRequestTab" class="active">Service Requests</a>
+
+                <a href="#" id="userManagementTab">User Management</a>
+
+            </div>
+
+            <div class="col-lg-10 table-responsive service-details" id="adminAllService">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service Request</p>
+                </div>
+
+                <div id="loadAdminRequests">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-10 table-responsive service-details" id="userManagement">
+                <div class="btn-group ">
+                    <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">User Management</p>
+                </div>
+
+                <div id="loaduserManTable">
+
+                </div>
+
+            </div>
         </div>
-    </nav>-->
+    </div>
+    <a href="#top" class="to-top">
+        <img src="~/images/up-aero.png">
+    </a>
+</section>
 
+<!--<div class="container modal-menu">-->
+<!-- The Modal -->
+<!--<div class="modal fade" id="collapsiblemodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">-->
+<!-- Modal Header -->
+<!--<div class="modal-header">
+    <div class="container">
+        <div>
+            <h5 class="modal-title">Welcome</h5>
+        </div>
+        <div>
+            <p class="modal-title">Admin!</p>
+        </div>
+    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+                        <div class="container">
 
-    <section class="left-side-admin-menu">
+                            <a href="#">Service Request</a>
+                            <a class="active" onclick="toUserManagement()">User Management</a>
 
-        <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-lg-2 admin-menu remove " style="min-height:500px">
-
-                    <a href="#" id="serviceRequestTab" class="active">Service Requests</a>
-
-                    <a href="#" id="userManagementTab">User Management</a>
-
-                </div>
-
-                <div class="col-lg-10 table-responsive service-details" id="adminAllService">
-                    <div class="btn-group ">
-                        <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">Service Request</p>
-                    </div>
-
-                    <div id="loadAdminRequests">
-
-                    </div>
-
-                </div>
-
-                <div class="col-lg-10 table-responsive service-details" id="userManagement">
-                    <div class="btn-group ">
-                        <p style="color: #646464;font-family: Roboto;font-weight: bold;font-size: 22px;">User Management</p>
-                    </div>
-
-                    <div id="loaduserManTable">
-
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
+    </div>-->
+<!--<div class="wrapper user-management-wrapper">
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 remove">
+                    <div class="user-management-sidebar">
+                        <a href="#" class="active">Service Requests</a>
+                        <a href="user-management.html" href="#">User Management</a>
+                    </div>
+                </div>
+                <div class="col-lg-10 right-side-admin">
+                    <div class="user-div-1">
+                        <div>
+                            <p>
+                                Service Requests
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="container modal-menu">-->
+<!-- The Modal -->
+<!--<div class="modal fade" id="collapsiblemodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">-->
+<!-- Modal Header -->
+<!--<div class="modal-header">
+    <div class="container">
+        <div>
+            <h5 class="modal-title">Welcome</h5>
+        </div>
+        <div>
+            <p class="modal-title">Admin!</p>
+        </div>
+    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+                        <div class="container">
+
+                            <a href="#">Service Request</a>
+                            <a class="active" onclick="toUserManagement()">User Management</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="form-section admin-form-section">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10 right-side-admin">
+                    <form class="form-inline">
+
+                        <input class="form-control" type="text" id="s_id" name="s_id" placeholder="Service ID">
+
+                        <select class="">
+                            <option>Select Customer</option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                        </select>
+
+                        <select class="">
+                            <option>Select Service Provider</option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                        </select>
+
+                        <select class="">
+                            <option>Set Status</option>
+                            <option>New</option>
+                            <option>Pending</option>
+                            <option>Completed</option>
+                            <option>Cancelled</option>
+                            <option>Refunded</option>
+                            <option>Expired</option>
+                            <option>Rescheduled</option>
+                        </select>
+                        <input class="form-control" type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="table-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10  right-side-admin">
+                    <table class="table user-management-table" id="admin-table">
+
+                        <thead class="user-management-tableheader text-center">
+                            <tr>
+                                <th>Service ID</th>
+                                <th>Service Date</th>
+                                <th>Customer Details</th>
+                                <th>Service Provider</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>323436</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>09/04/2018</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Lyum Watson
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>54,00 €</td>
+
+                                <td>
+                                    <button class="new-btn">New</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Edit & Reschedule</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>323437</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>18/04/2018</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Will Smith
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>20,00 €</td>
+
+                                <td>
+                                    <button class="pending-btn">Pending</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Edit & Reschedule</div></a>
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>323438</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>09/04/2018</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Lyum Watson
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>54,00 €</td>
+
+                                <td>
+                                    <button class="rescheduled-btn">Rescheduled</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>323439</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>18/04/2018</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Will Smith
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>70,00 €</td>
+
+                                <td>
+                                    <button class="cancelled-btn">Cancelled</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Edit & Reschedule</div></a>
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>323440</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>20/04/2018</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Will Smith
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>50,00 €</td>
+
+                                <td>
+                                    <button class="completed-btn">Completed</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Has Issue</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>323441</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>18/04/2019</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Will Smith
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>70,00 €</td>
+
+                                <td>
+                                    <button class="refunded-btn">Refunded</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Edit & Reschedule</div></a>
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>323442</td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/calendar2.png"></span><b>28/04/2019</b>
+                                    </div>
+                                    <div>
+                                        <span><img src="~/images/layer-14.png"></span>  12:00-18:00
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div>
+                                        <span><img src="~/images/cap.png"></span>  Will Smith
+                                    </div>
+                                    <div>
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/star1.png">
+                                        <img src="~/images/grey-small-star.png"> <span>4</span>
+                                    </div>
+                                </td>
+
+                                <td>70,00 €</td>
+
+                                <td>
+                                    <button class="expired-btn">Expired</button>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown-container" tabindex="-1">
+                                        <div class="three-dots"></div>
+                                        <div class="dropdown">
+                                            <a href="#"><div>Edit & Reschedule</div></a>
+                                            <a href="#"><div>Refund</div></a>
+                                            <a href="#"><div>Inquiry</div></a>
+                                            <a href="#"><div>History Log</div></a>
+                                            <a href="#"><div>Download Unvoice</div></a>
+                                            <a href="#"><div>Other Transaction</div></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <a href="#top" class="to-top">
             <img src="~/images/up-aero.png">
         </a>
     </section>
 
-    <!--<div class="container modal-menu">-->
-    <!-- The Modal -->
-    <!--<div class="modal fade" id="collapsiblemodal">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">-->
-    <!-- Modal Header -->
-    <!--<div class="modal-header">
-        <div class="container">
-            <div>
-                <h5 class="modal-title">Welcome</h5>
-            </div>
-            <div>
-                <p class="modal-title">Admin!</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10  right-side-admin" style="display: flex;justify-content: space-between;">
+                <p class="footnote">©2018 Helperland. All rights reserved.</p>
             </div>
         </div>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>-->
-    <!-- Modal body -->
-    <!--<div class="modal-body">
-                            <div class="container">
+    </div>
 
-                                <a href="#">Service Request</a>
-                                <a class="active" onclick="toUserManagement()">User Management</a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    <!--<div class="wrapper user-management-wrapper">
-
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 remove">
-                        <div class="user-management-sidebar">
-                            <a href="#" class="active">Service Requests</a>
-                            <a href="user-management.html" href="#">User Management</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-10 right-side-admin">
-                        <div class="user-div-1">
-                            <div>
-                                <p>
-                                    Service Requests
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <div class="container modal-menu">-->
-    <!-- The Modal -->
-    <!--<div class="modal fade" id="collapsiblemodal">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">-->
-    <!-- Modal Header -->
-    <!--<div class="modal-header">
-        <div class="container">
-            <div>
-                <h5 class="modal-title">Welcome</h5>
-            </div>
-            <div>
-                <p class="modal-title">Admin!</p>
-            </div>
-        </div>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>-->
-    <!-- Modal body -->
-    <!--<div class="modal-body">
-                            <div class="container">
-
-                                <a href="#">Service Request</a>
-                                <a class="active" onclick="toUserManagement()">User Management</a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section class="form-section admin-form-section">
-            <div class="container ">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-10 right-side-admin">
-                        <form class="form-inline">
-
-                            <input class="form-control" type="text" id="s_id" name="s_id" placeholder="Service ID">
-
-                            <select class="">
-                                <option>Select Customer</option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                            </select>
-
-                            <select class="">
-                                <option>Select Service Provider</option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                            </select>
-
-                            <select class="">
-                                <option>Set Status</option>
-                                <option>New</option>
-                                <option>Pending</option>
-                                <option>Completed</option>
-                                <option>Cancelled</option>
-                                <option>Refunded</option>
-                                <option>Expired</option>
-                                <option>Rescheduled</option>
-                            </select>
-                            <input class="form-control" type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="table-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-10  right-side-admin">
-                        <table class="table user-management-table" id="admin-table">
-
-                            <thead class="user-management-tableheader text-center">
-                                <tr>
-                                    <th>Service ID</th>
-                                    <th>Service Date</th>
-                                    <th>Customer Details</th>
-                                    <th>Service Provider</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <td>323436</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>09/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Lyum Watson
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>54,00 €</td>
-
-                                    <td>
-                                        <button class="new-btn">New</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Edit & Reschedule</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>323437</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>18/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Will Smith
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>20,00 €</td>
-
-                                    <td>
-                                        <button class="pending-btn">Pending</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Edit & Reschedule</div></a>
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>323438</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>09/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Lyum Watson
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>54,00 €</td>
-
-                                    <td>
-                                        <button class="rescheduled-btn">Rescheduled</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>323439</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>18/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Will Smith
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>70,00 €</td>
-
-                                    <td>
-                                        <button class="cancelled-btn">Cancelled</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Edit & Reschedule</div></a>
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>323440</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>20/04/2018</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Will Smith
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>50,00 €</td>
-
-                                    <td>
-                                        <button class="completed-btn">Completed</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Has Issue</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>323441</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>18/04/2019</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Will Smith
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>70,00 €</td>
-
-                                    <td>
-                                        <button class="refunded-btn">Refunded</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Edit & Reschedule</div></a>
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>323442</td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/calendar2.png"></span><b>28/04/2019</b>
-                                        </div>
-                                        <div>
-                                            <span><img src="~/images/layer-14.png"></span>  12:00-18:00
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/layer-15.png"></span>  Musterstrabe 5,12345 Bonn
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div>
-                                            <span><img src="~/images/cap.png"></span>  Will Smith
-                                        </div>
-                                        <div>
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/star1.png">
-                                            <img src="~/images/grey-small-star.png"> <span>4</span>
-                                        </div>
-                                    </td>
-
-                                    <td>70,00 €</td>
-
-                                    <td>
-                                        <button class="expired-btn">Expired</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="dropdown-container" tabindex="-1">
-                                            <div class="three-dots"></div>
-                                            <div class="dropdown">
-                                                <a href="#"><div>Edit & Reschedule</div></a>
-                                                <a href="#"><div>Refund</div></a>
-                                                <a href="#"><div>Inquiry</div></a>
-                                                <a href="#"><div>History Log</div></a>
-                                                <a href="#"><div>Download Unvoice</div></a>
-                                                <a href="#"><div>Other Transaction</div></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#top" class="to-top">
-                <img src="~/images/up-aero.png">
-            </a>
-        </section>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-10  right-side-admin" style="display: flex;justify-content: space-between;">
-                    <p class="footnote">©2018 Helperland. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>-->
+</div>-->
 
 
 
